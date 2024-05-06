@@ -5,6 +5,7 @@
 \title{Appunti Lab}
 \author{Francesco Sermi}
 \date{}
+\makeindex
 \begin{document}
 	\maketitle
 	\tableofcontents
@@ -19,7 +20,7 @@
 		x = \hat{x} \pm \Delta x
 		\label{err_max}
 	\end{equation}
-	intendo come $\Delta x$ l'errore massimo, ovvero stiamo diendo che l'intervallo $[\hat{x} - \Delta x; \hat{x} + \Delta x]$ è il più piccolo intervallo possibile che ci dà la certezza di includere il valore incognito $x$. Definiamo adesso una serie di termini comodi per esprimere al meglio i concetti successivi:
+	intendo come $\Delta x$ l'\index{errore massimo}, ovvero stiamo dicendo che l'intervallo $[\hat{x} - \Delta x; \hat{x} + \Delta x]$ è il più piccolo intervallo possibile che ci dà la certezza di includere il valore incognito $x$. Definiamo adesso una serie di termini comodi per esprimere al meglio i concetti successivi:
 	\begin{itemize}
 		\item $x$ è il valore, incognito (siccome non lo conosciamo mai appieno), della grandezza che vogliamo misurare e che chiameremo \emph{misurando};
 		\item $\hat{x}$ è la migliore stima di $x$ che possiamo fornire a partire dei dati a nostra disposizione (e che chiameremo \emph{valore centrale} o \emph{migliore stima} della nostra misura);
@@ -33,7 +34,7 @@
 	\end{equation}
 	La \ref{err_stat} ha un significato diverso da \ref{err_max} prima siccome questa definisce un intervallo che non ci dà la \emph{certezza} ma solo la probabilità, ben definita, di contenere il valore del misurando. \\
 	Adesso definiamo un altro modo molto utili per quantificare quanto è grosso, rispetto alla misura, l'errore che noi commettiamo:
-	\dfn{Errore percentuale}{L'errore relativo è il rapporto tra l'incertezza della misura e il suo valore centrale:
+	\dfn{Errore percentuale}{L'\index{errore relativo} è il rapporto tra l'incertezza della misura e il suo valore centrale:
 	\begin{equation}
 		e_{\%} = \frac{\sigma_x}{|\hat{x}|}
 \end{equation}}
@@ -42,11 +43,11 @@
 	\chapter{Probabilità}
 	Grazie al matematico Kolmogorov abbiamo la prima costruzione rigorosa della teoria della probabilità, in una struttura che, sostanzialmente, sopravvive ancora oggi nei manuali moderni. \\
 	La struttura di base su cui si fonda la struttura assiomatica della probabilità parte dal definire lo spazio campionario
-	\dfn{Spazio campionario $\Omega$}{Lo spazio campionario $\Omega$ è l'insieme (numerabile) di tutte le possibili realizzazioni elementari di un dato fenomeno e spazio degli eventi $\mathcal{F}$ l'insieme di tutti i sottoinsiemi di $\Omega$ tale che:
+	\dfn{Spazio campionario $\Omega$}{Lo \index{spazio campionario} $\Omega$ è l'insieme (numerabile) di tutte le possibili realizzazioni elementari di un dato fenomeno e \index{spazio degli eventi} $\mathcal{F}$ l'insieme di tutti i sottoinsiemi di $\Omega$ tale che:
 	$$
 		\# \mathcal{F} = 2^{\# \Omega}
 	$$}
-\noindent L'idea di Kolmogorov è quella di definire la probabilità direttamente sullo spazio degli eventi-cioè possiamo assegnare una probabilità non solo ad ogni elemento dello spazio campionario, ma anche ad uno qualsiasi dei suoi sottoinsiemi.
+\noindent L'idea di Kolmogorov è quella di definire la \index{probabilità} direttamente sullo spazio degli eventi-cioè possiamo assegnare una probabilità non solo ad ogni elemento dello spazio campionario, ma anche ad uno qualsiasi dei suoi sottoinsiemi.
 	Definiamo adesso il concetto di probabilità:
 	\dfn{Probabilità}{Definiamo probabilità una misura P su $\mathcal{F}$ che associ univocamente ad ogni elemento E di $\mathcal{F}$ un numero reale $P(E)$ che soddisfa le seguenti tre proprietà (o assiomi di Kolmogorov):
 	\begin{enumerate}[label=\protect\circled{\arabic*}]
@@ -69,10 +70,11 @@
 	Siccome possiamo vedere nell'ultimo passaggio la somma fra due eventi che sono fra loro disgiunti, ovvero fra l'evento $E_1 \cup \E_2 \cdots \cup E_n$ e l'evento $E_{n+1}$ e per ipotesi sappiamo che $E_i \cap E_j = \emptyset \, \forall i,j$. \\
 	La dimostrazione è dunque conclusa.
 	\end{myproof}
-	\cor{Probabilità complementare}{Dato un evento E e detto $\bar{E}$ il suo complementare in $\Omega$, si ha che:
+	\cor{Probabilità complementare}{Dato un evento E e detto $\bar{E}$ il suo complementare in $\mathcal{F}$, si ha che:
 		$$
 			P(\bar{E}) = 1 - P(E)
-		$$	
+		$$
+		dove $P(\bar{E})$ è detta \index{probabilità complementare} di $E$
 	}
 	\begin{myproof}
 		Sapendo che $\bar{E} \cap E = \emptyset$ ma $\bar{E} \cup E = \Omega$:
@@ -164,7 +166,7 @@
 	All'interno della scuola soggettivista vi sono diversi approcci distinti per derivare le regole fondamentali della probabilità in un modo logicamente consistente (sebbene, con questo \emph{approccio}, gli assiomi non sono tali, ma regole che si ricavano da un principio più formale): il più popolare di questi approcci è il principio della \textbf{scommessa coerente}, il quale afferma che \emph{una volta assegnata la probabilità ad un evento dovremo essere disposti ad accettare scommesse sul verificarsi dell'evento stesso con un rapporto tra puntata e vincita determinato dalla probabilità stessa}\footnote{il senso è che se diciamo che due eventi sono equiprobabili allora dobbiamo essere pronti ad accettare scommesse 1:1, ovvero che una \emph{scommessa} è coerente se e solo se non determina \textbf{a priori} una perdita per il banco o per lo scommettitore, dunque è equivalente anche se i ruoli fossero scambiati} \\
 	\section{Elementi di calcolo combinatorio}
 	La combinatoria è quella branca della matematica che si occupa del \emph{contare}, dunque è strettamente connessa alla probabilità. \\
-	Introduciamo il fattoriale di un numero nella seguente maniera
+	Introduciamo il \index{fattoriale} di un numero nella seguente maniera
 	\dfn{Fattoriale}{Dato un numero $n \in \mathbb{N}$, indichiamo con $n!$
 		\begin{equation}
 			n! = \prod_{k=1}^{n} k = n(n-1) \cdots 1	
@@ -172,15 +174,15 @@
 	}
 \noindent Se ci pensiamo bene, la funzione fattoriale non è altro il numero di \emph{permutazioni}, ovvero il numero di modi in cui si possono disporre $n$ elementi se non possiamo ripeterli e \textbf{conta} l'ordine con cui questi elementi vengono disposti: supponiamo infatti di avere $20$ oggetti e di volerli disporre all'interno di un cassetto, noi abbiamo ben $20!$ modi possibili per metterli, siccome per il primo "posto" del cassetto possiamo metterci uno dei $20$, nel secondo "posto" $19$ oggetti e così via; ottenendo ben $20!$ fattoriale di possibilità. \\
 	Le permutazioni possono essere viste come un caso particolare delle disposizioni, ovvero i modi con cui è possibile disporre $n$ oggetti in $k$ posti: per esempio, riprendendo l'esempio di prima, se noi volessimo prendere da $20$ oggetti $5$, presi a caso da questi $20$, all'interno di un cassetto in maniera tale che conti l'ordine con cui li mettiamo, si osserva che nel primo \emph{posto} del cassetto abbiamo $20$ oggetti disponibili, nel secondo $19$, nel terzo $18$, nel quarto $17$ e nell'ultimo $16$; dunque affermare che i modi totali sono $\frac{20!}{15!} = 20 \cdot 19 \cdot 18 \cdot 17 \cdot 16$. Definiamo quindi una disposizione come
-	\dfn{Disposizione di $n$ elementi e di ordine $k$}{Definiamo una disposizione di $n$ elementi e di ordine $k$ come il numero di modi con cui è possibile disporre $n$ elementi in $k$ slot, pari a 		\begin{equation}
+	\dfn{Disposizione di $n$ elementi e di ordine $k$}{Definiamo una \index{disposizione} di $n$ elementi e di ordine $k$ come il numero di modi con cui è possibile disporre $n$ elementi in $k$ slot, pari a 		\begin{equation}
 		D_{n,k} = \frac{n!}{(n-k)!}
 	\end{equation}
 }
-\noindent Tornando alla funzione fattoriale, è comoda l'approssimazione di Stirling (di cui non daremo una dimostrazione) per cui:
+\noindent Tornando alla funzione fattoriale, è comoda l'\index{approssimazione di Stirling} (di cui non daremo una dimostrazione) per cui:
 \begin{equation}
 	n! = \sqrt{2\pi n} \left( \frac{n}{e} \right)^n
 \end{equation}
-Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è dato dal coefficiente binomiale $n$ su $k$
+Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è dato dal \index{coefficiente binomiale} $n$ su $k$
 \dfn{Coefficiente binomiale $n$ su $k$}{Il coefficiente binomiale $n$ su $k$ è definito come
 	\begin{equation}
 		\binom{n}{k} = \frac{n!}{k!(n-k)!}
@@ -203,7 +205,7 @@ Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è d
 		&\binom{n}{k+1} + \binom{n}{k} = \frac{n!}{(k+1)!(n-k-1)!} + \frac{n!}{k!(n-k)!} = \frac{n!}{(k+1)k!(n-k-1)!} + \frac{n!}{k!(n-k)(n-k-1)!} \\ &= \frac{n!}{k!(n-k-1)!} \left( \frac{1}{k+1} + \frac{1}{n-k} \right) = \frac{n!}{k!(n-k-1)!} \left( \frac{n -k + k + 1}{(k+1)(n-k)} \right) = \frac{n!}{k!(n-k-1)!} \cdot \frac{(n+1)}{(k+1)(n-k)} \\ &= \frac{(n+1)!}{(k+1)!(n-k)!} = \binom{n+1}{k+1}
 	\end{align*}
 \end{myproof}
-\thm{Teorema binomiale}{Lo sviluppo della potenza $n$-esima del binomio $x_1 + x_2$ è pari a
+\thm{\index{Teorema binomiale}}{Lo sviluppo della potenza $n$-esima del binomio $x_1 + x_2$ è pari a
 \begin{equation}
 	(x_1 + x_2)^n = \sum_{k=0}^n \binom{n}{k} x_1^{n-k}x_2^k
 \end{equation}
@@ -240,7 +242,7 @@ $$
 2^n = \sum_{k = 0}^{n} \binom{n}{k} 1^{n-k} 1^{k} = \sum_{k=0}^{n} \binom{n}{k}
 $$
 Il coefficiente binomiale può anche essere generalizzato supponendo di voler dividere un insieme di $n$ elementi in $m$ sottoinsiemi disgiunti, ciascuno con un numero $k_i$ di elementi, la cui unione costituisca l'insieme di partenza, dunque si deve avere che $\sum_{i=1}^{m} k_i = n$
-Il numero di modi con cui si può effettuare tale suddivisione prende il nome di \textbf{coefficiente multinomiale $n$ su $k_1, \dots , k_m$}  e si basa sull'idea che abbiamo $n$ su $k_1$ modi per scegliere il primo sottoinsieme, $n-k_1$ su $k_2$ modi per scegliere il secondo sottoinsieme e così via, dunque:
+Il numero di modi con cui si può effettuare tale suddivisione prende il nome di \textbf{\index{coefficiente multinomiale} $n$ su $k_1, \dots , k_m$}  e si basa sull'idea che abbiamo $n$ su $k_1$ modi per scegliere il primo sottoinsieme, $n-k_1$ su $k_2$ modi per scegliere il secondo sottoinsieme e così via, dunque:
 $$
 	\binom{n}{k_1, k_2, \dots, k_m} = \binom{n}{k_1} \binom{n-k_1}{k_2} + \dots + \binom{n-k_1 \dots - k_{m-1}}{k_m}
 $$
@@ -250,7 +252,7 @@ Sempre come per il coefficiente binomiale, possiamo caratterizzare il coefficien
 \end{equation*}
 \section{Probabilità condizionata}
 Tutto ciò che è stato mostrato nella sezione precedente può essere comodo per calcolare la probabilità di determinati eventi\footnote{usufruendo della definizione combinatoriale della probabilità} e consiglio caldamente di guardare gli esempi proposti da Baldini nel suo libro, su cui non mi soffermerò. Diamo delle definizioni
-\dfn{Probabilità condizionata}{Dati due eventi $E_1$ ed $E_2$, con $P(E_2) \neq 0$, definiamo la \emph{probabilità condizionata}  $P(E_1 | E_2)$ di $E_1$ dato $E_2$ (cioé la probabilità che si verifichi $E_1$ nel caso in cui sappiamo già che si verifica$E_2$) come
+\dfn{Probabilità condizionata}{Dati due eventi $E_1$ ed $E_2$, con $P(E_2) \neq 0$, definiamo la \emph{\index{probabilità condizionata}}  $P(E_1 | E_2)$ di $E_1$ dato $E_2$ (cioé la probabilità che si verifichi $E_1$ nel caso in cui sappiamo già che si verifica$E_2$) come
 	\begin{equation}
 		P(E_1 | E_2) = \frac{P(E_1 \cap E_2)}{P(E_2)}
 	\end{equation}
@@ -272,7 +274,7 @@ e per la definizione di probabilità condizionata possiamo riscrivere che
 }
 \nt{Non bisogna confondere il concetto di \emph{eventi indipendenti } con il concetto di \emph{eventi disgiunti} e, dunque, incompatibili: si rimanda all'esempio di Baldini sul libro, in cui si osserva proprio il classico esempio del mazzo da carte in cui viene inserito un jolly. Prima dell'aggiunta del jolly i due eventi $E_1$="pesco un re" ed $E_2$="pesco una carta di cuori" erano indipendenti pure avendo un'intersezione non nulla, dopo l'aggiunta del jolly non sono più indipendenti ma non sono nemmeno incompatibili}
 \section{Teorema di Bayes}
-La naturale conseguenza di tutto ciò che abbiamo detto sulla probabilità condizionata è il \textit{teorema di Bayes}, che lega tra loro la probabilità condizionata $P(E_1 | E_2)$ con la probabilità $P(E_2 | E_1)$
+La naturale conseguenza di tutto ciò che abbiamo detto sulla probabilità condizionata è il \textit{\index{teorema di Bayes}}, che lega tra loro la probabilità condizionata $P(E_1 | E_2)$ con la probabilità $P(E_2 | E_1)$
 \thm{Teorema di Bayes}{La probabilità condizionata di $E_1$ dato $E_2$ è pari a
 	\begin{equation}
 		P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{P(E_2)}
@@ -294,18 +296,28 @@ dove $P(E_2 | E_1)$ è la probabilità condizionata di $E_2$ dato $E_1$
 $$
 	P(E_2) = P(E_1 \cap E_2) + P(\bar{E_1} \cap E_2)
 $$
-(si ricorda che $(E_1 \cup E_2) \cup (\bar{E_1} \cup E_2) = \emptyset$ siccome se, per assurdo, $\exists c \in (E_1 \cap E_2) \cap (\bar{E_1} \cap E_2) \neq \emptyset \implies \{ c \in E_1 \cap E_2  \wedge c \in \bar{E_1} \cap E_2 \}$ ma ciò implica che $c \in E_1 \wedge c \in \bar{E_1}$ che è un assurdo; dunque possiamo usare il terzo assioma di Kolmogorov per stimare la probabilità di $E_2$). Ciò implica che
+(si ricorda che $(E_1 \cup E_2) \cup (\bar{E_1} \cup E_2) = \emptyset$ siccome se, per assurdo, $\exists c \in (E_1 \cap E_2) \cap (\bar{E_1} \cap E_2) \neq \emptyset \implies (c \in E_1 \cap E_2  \wedge c \in \bar{E_1} \cap E_2 )$ ma ciò implica che $(c \in E_1 \wedge c \in \bar{E_1})$ che è un assurdo; dunque possiamo usare il terzo assioma di Kolmogorov per stimare la probabilità di $E_2$). Ciò implica che
 \begin{equation}
 	P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{P(E_1 \cap E_2) + P(\bar{E_1} \cap E_2)}
 \end{equation}
-Più in generale, possiamo dire che se si dispone di un partizionamento dell'insieme $ \{ E_i \} $ (tali che $E_i \cap E_j = \emptyset \, \, \forall i, j, i \neq j$ e $\bigcup\limits_{i} E_i = \Omega$) allora possiamo generalizzare, per induzione su $i$, che $P(E_2) = \sum\limits_{i} P(E_2 | E_i)P(E_i)$, dunque:
+Più in generale, possiamo dire che se si dispone di un partizionamento dell'insieme $ \{ A_i \} $ (tali che $A_i \cap A_j = \emptyset \, \, \forall i, j, i \neq j$ e $\bigcup\limits_{i} A_i = \Omega$) allora possiamo generalizzare, per induzione su $i$, che $P(E_2) = \sum\limits_{i} P(E_2 | A_i)P(A_i)$, dunque:
+\cor{Caratterizzazione di un evento tramite le partizioni}{Sia $\Omega$ lo spazio campionario degli eventi e sia $\{ E_i \}$ con $i \in I=[1, \dots, m], m \leq \#\mathcal{F}$ un partizionamento \footnote{ricordiamo che un partizione, per essere tale, deve risultare che $\forall i, j, i \neq j \, E_i \cap E_j = \emptyset$ e $\bigcup E_i = \mathcal{F}$} dell'insieme $\mathcal{F} = P(\Omega)$, ovvero lo spazio degli eventi, allora, dato un evento $A$, risulta che
+$$
+	A = (A \cap E_1) \cup (A \cap E_2) \dots (A \cap E_m)
+$$
+}
+\begin{myproof}
+	Si ha che $\bigcup\limits_i E_i = \mathcal{F}$ e siccome l'evento $A = A \cap \mathcal{F} = A \cap \bigcup\limits_i E_i = A \cap (E_1 \cup E_2 \dots E_m) = (A \cap E_1) \cup (A \cap E_2) \dots (A \cap E_m) = \bigcup\limits_i (A \cap E_i)$. Dimostriamo che gli $(A \cap E_i)$ sono tutti insiemi disgiunti $\forall i$: infatti se, per assurdo, $\exists c \in \mathcal{F} : \exists \tilde{i}, \tilde{d} \in I | (A \cap E_{\tilde{i}}) \cap (A \cap E_{\tilde{d}}) = c \neq \emptyset \implies (c \in (A \cap E_{\tilde{i}}) \wedge c \in (A \cap E_{\tilde{d}}))$ ma, per la definizione dell'operazione $\cap$, implica che $c \in E_{\tilde{i}} \wedge c \in E_{\tilde{d}}$ il che è un assurdo siccome gli $\{ E_i \}$ sono un partizionamento dell'insieme e, dunque, disgiunti.
+	La dimostrazione è dunque conclusa
+\end{myproof}
+\noindent Andiamo adesso a scrivere il teorema di Bayes alla luce del corollario qua sopra
 \begin{equation}
-	P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{\sum\limits_{i} P(E_2 | E_i)P(E_i)}
+	P(A_1 | E_2) = \frac{P(E_2 | A_1)P(A_1)}{\sum\limits_{i} P(E_2 | A_i)P(A_i)}
 \end{equation}
 Questo teorema, sebbene risulti a prima vista banale, in realtà è molto importante siccome lega la probabilità diretta al problema di probabilità inversa. Si rimanda sempre al libro di Baldini per degli esempi per comprendere meglio il teorema di Bayes, sebbene sia utile osservare una cosa: mentre lo statista, oppure il matematico, studia la probabilità in astratto, ovvero cerca di calcolare la probabilità di un determinato processo "contando"; il fisico, di professione, cerca di inferire sul calcolo della probabilità attraverso delle raccolte dati, dunque tramite queste relazioni possiamo eventualmente ricondurci alla probabilità inversa, tuttavia cambia l'approccio "metodologico".
 \section{Variabili casuali e funzioni di distribuzione}
 Iniziamo questa sezione introducendo il concetto di variabile casuale
-\dfn{Variabile casuale}{Una \emph{variabile casuale} o \emph{variabile aleatoria} è una variabile che rappresenta la realizzazione numerica di un processo causale, per cui il suo valore è soggetto a fluttuazioni casuali e non è noto a priori. Si distinguono in
+\dfn{Variabile casuale}{Una \emph{\index{variabile casuale}} o \emph{\index{variabile aleatoria}} è una variabile che rappresenta la realizzazione numerica di un processo causale, per cui il suo valore è soggetto a fluttuazioni casuali e non è noto a priori. Si distinguono in
 \begin{itemize}
 	\item \underline{discrete}, cioè variabili che possono assumere un numero finito o numerabile di valori;
 	\item \underline{continue}, cioè variabili che possono assumere tutti i valori compresi in un intervallo.
@@ -315,4 +327,85 @@ Iniziamo questa sezione introducendo il concetto di variabile casuale
 	\item L'uscita del lancio di un dado a sei facce è una variabile casuale discreta che può assumere esattamente sei valori: ${1, 2, 3, 4, 5, 6}$
 	\item Il tempo necessario per arrivare da casa al luogo di lavoro è un esempio di variabile casuale continua
 \end{itemize}}
+\noindent Occupiamoci inizialmente di una variabile discreta $x$ che può assumere $n$ valori distinti $x_1, \dots, x_n$ e indichiamo con $P(x_k)$ la probabilità che assuma il valore $x_k$ e definiamo la \index{funzione di distribuzione}\footnote{in letteratura, si indica con questa espressione anche la funzione cumulativa di una distribuzione. Nel caso continuo, un termine che useremo sarà funzione di densità di probabilità} nella seguente maniera
+\dfn{Funzione di distribuzione di $x$}{La \emph{funzione di densità di probabilità} è la funzione che associa ad ogni valore di $x_k$ della variabile la sua probabilità $P(x_k)$}
+In questo contesto il secondo assioma di Kolmogorov si scrive nella forma di una \emph{\index{condizione di normalizzazione}}, che tutte le distribuzioni di distribuzione devono rispettare:
+$$
+	\sum_k P(x_k) = 1
+$$
+Nel caso di una variabile continua la definizione di funzione di distribuzione data per una variabile discreta fallisce clamorosamente siccome la probabilità che la variabile aleatoria $x$ assuma un valore \emph{esattamente} definito è zero (infatti mostreremo che si tratta di un integrale su un dominio di misura nulla). Ha però senso chiedersi qual è la probabilità, dato un punto generico $x_0$, che la variabile assuma un valore appartenente all'intervallo $[x_0, x_0 + dx]$
+$$
+	P(x_0, dx) = P(x_0 \leq x < x_0 + dx)
+$$
+Se a questo punto noi dividiamo per la larghezza dell'intervallo e consideriamo il limite per $dx \to 0$ otteniamo una sorta di probabilità specifica o probabilità specifica per unità di intervallo che chiamiamo \emph{\index{densità di probabilità}}:
+\begin{equation}
+	p(x_0) = \lim_{dx \to 0} \frac{P(x_0, dx)}{dx}
+\end{equation}
+che si tratta di una sorta di rapporto incrementale, per cui possiamo dire che la funzione di densità di probabilità è, in un certo senso, la derivata dalla funzione probabilità, dunque possiamo dire che la probabilità che la variabile aleatoria continua assuma un valore compreso nell'intervallo $[x_0, x_0 + dx]$ risulta essere pari
+$$
+	P(x_0, dx) = p(x_0)dx
+$$
+e, dunque, la probabilità che assuma un valore compreso nell'intervallo chiuso e limitato $[x_1, x_2]$ è pari a
+\begin{equation}
+	P(x_1, x_2) = \int_{x_1}^{x_2} p(x)dx
+\end{equation}
+In questo caso la \index{condizione di normalizzazione}, nel caso di una variabile aleatoria continua, si scrive come
+\begin{equation}
+	\int_{-\infty}^{+\infty} p(x)dx = 1
+\end{equation}
+\nt{Si osserva che mentre la probabilità che la variabile casuale assuma un valore contenuto in $[x_0, x_0+dx]$ sia un numero adimensionale, nel caso della funzione di densità di probabilità questa dimensionalmente deve avere dimensione pari all'inverso di $x$}
+\section{Valore di aspettazione, varianza e momenti di una distribuzione}
+Nel momento in cui andiamo a fare un'indagine statistica o, nel caso nostro, effettuiamo un esperimento è comodo condensare le informazioni contenute nella funzione di distribuzione in una serie di parametri significativi come il valore che assume in media la nostra distribuzione oppure quanto la funzione di distribuzione si discosta in media da questo valore. \\
+\noindent Andiamo, proprio per questo, a definire il valore di aspettazione, primo strumento utile per caratterizzare i parametri d'interesse di una distribuzione:
+\dfn{Valore di aspettazione di $f(x)$}{Sia data una variabile aleatoria $x$ e una funzione $f(x)$, definiamo il \index{valore di aspettazione} come
+\begin{equation}
+	E[f(x)] = \begin{cases} \sum\limits_{k} f(x_k)P(x_k) \, \text{nel caso di variabili discrete} \\ \int_{-\infty}^{+\infty} f(x)p(x)dx \, \text{nel caso di variabili continue} \end{cases}
+\end{equation}
+}
+\noindent Inoltre, il valore di aspettazione è un \emph{operatore lineare}, siccome
+$$
+	E[c_1 f(x) + c_2 g(x)] = \int_{-\infty}^{+\infty} (c_1 f(x) + c_2 g(x))dx = c_1 \int_{-\infty}^{+\infty} f(x)dx + c_2 \int_{-\infty}^{+\infty} g(x)dx = c_1 E[f(x)] + c_2 E[g(x)]
+$$
+Inoltre il valore di aspettazione di una costante è pari alla costante stessa, siccome
+$$
+	E[c] = \int_{-\infty}^{+\infty} cdx = c\int_{-\infty}^{+\infty} dx = c \, \text{per la condizione di normalizzazione}
+$$
+Definiamo a questo punto il valore medio di una variabile casuale $x$ (continua o discreta) come
+\dfn{Valore medio di una variabile causale $x$}{Il \index{valore medio} di una variabile casuale $x$ si definisce come il valore di aspettazione di $x$
+\begin{equation}
+	\mu = E[x] = \begin{cases} \sum\limits_{k} x_kP(x_k) \\ \int_{-\infty}^{+\infty} xp(x)dx \end{cases}
+\end{equation}
+}
+\noindent Naturalmente, se $c$ è una costante allora
+$$
+	E[cx] = cE[x]
+$$
+per linearità dell'integrale.
+\nt{Nel caso particolare di una variabile casuale e discreta per cui si abbiano $n$ uscite equiprobabili $x_k$ equiprobabili (ovvero $P(x_1) = P(x_2) = \dots = P(x_n) = \frac{1}{n}$ si ha che
+$$
+	\mu = \sum_{k = 1}^{n} x_k P(x_k) = \frac{1}{n}\sum_{k=1}^{n} P(x_k)
+$$
+}
+\noindent Tuttavia il valore medio non è l'unica stima possibile di tendenza centrale: possiamo definire anche la \emph{\index{mediana}}:
+\dfn{Mediana}{Si definisca mediana di una distribuzione quel valore $\mu_{\frac{1}{2}}$ della variabile casuale tale che
+$$
+	P(x \leq \mu_{\frac{1}{2}}) = P(x \geq \mu_{\frac{1}{2}})
+$$
+}
+\noindent Per una variabile casuale continua la mediana è definita, tramite la condizione di normalizzazione, nella seguente maniera
+$$
+	\int_{-\infty}^{\mu_{\frac{1}{2}}} p(x)dx = \int_{\mu_{\frac{1}{2}}}^{+\infty} p(x)dx = \frac{1}{2}
+$$
+Per una variabile discreta non è detto che questo valore esista e sia univocamente determinato (proprio per questo la mediana è rilevante per le distribuzioni continue) e, proprietà degna di nota, è il fatto che se la funzione di distribuzione è simmetrica rispetto al valore medio, allora la media coincide con la mediana. Definiamo adesso la \index{moda}
+\dfn{Moda}{La moda di una variabile casuale $x$ è il valore della variabile casuale (se \textbf{esiste} ed è \textbf{unico}) in corrispondenza del quale la funzione ha un massimo}. \\
+Come caratterizziamo quanto si disperde la funzione di distribuzione attorno al valore medio? Si fa definendo una funzione  il cui valore di aspettazione definisce in media quanto si disperde rispetto al valore medio 
+
+
+
+
+
+
+
+\pagebreak
+\printindex
 \end{document}
