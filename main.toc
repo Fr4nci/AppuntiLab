@@ -1,0 +1,12 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduzione}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}L'errore massimo e le sue limitazioni}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Precisione vs accuratezza}{3}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Probabilità}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Definizione operativa della probabilità}{6}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Definizione combinatoriale}{6}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Definizione frequentista}{6}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Definizione soggettivista della probabilità}{7}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Elementi di calcolo combinatorio}{7}{section.2.2}%
+\contentsfinish 

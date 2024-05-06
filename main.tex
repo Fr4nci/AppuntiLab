@@ -1,0 +1,197 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+\title{Appunti Lab}
+\author{Francesco Sermi}
+\date{}
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\newpage
+	\chapter{Introduzione}
+	Il concetto di \emph{incertezza} e di \emph{misura} gioca un ruolo centrale nelle scienze sperimentali siccome noi \textbf{non} siamo mai in grado di misurare una grandezza fisica con un'accuratezza infinita, dunque il nostro risultato manca di una parte sostanziosa del proprio contenuto se non vi è assegnata una stima dell'incertezza compiuta nella misura effettuata. \\
+	Il primo sforzo nella storia delle scienze verso un sistema standard di unità di misure è stato costituito, nella Francia del XVIII secolo, del sistema metrico decimale. Una domanda molto interessante che il lettore si potrebbe chiedere sarebbe la seguente \emph{"Come possiamo definire un'unità di misura?"} La risposta più semplice, ma non banale, è tramite dei campioni inalterabili e riproducibili: si riporta proprio la realizzazione del metro campione e del kilogrammo campione realizzati, sebbene subiscano una contaminazione, ogni anno, pari a $1 \si{\micro\gram}$. \\
+	Oggi è stato definito il Sistema internazione delle misure che si basa sul fissare 7 unità di base da cui è possibile esprimere tutte le altre come combinazione delle altre (si rimanda la lettura delle dispense di Baldini per usufruire dei suoi grafici e/o tabelle). \\
+	\section{L'errore massimo e le sue limitazioni}
+	Si osserva che nella sua formulazione più elementare il concetto di \emph{errore massimo} è legato alla domanda \emph{"Qual è il più piccolo intervallo che contiene con certezza il valore numerico della quantità che sto misurando?"}. In altre parole, il risultato della misura di una generica grandezza fisica $x$ risulta essere pari a:
+	\begin{equation}
+		x = \hat{x} \pm \Delta x
+		\label{err_max}
+	\end{equation}
+	intendo come $\Delta x$ l'errore massimo, ovvero stiamo diendo che l'intervallo $[\hat{x} - \Delta x; \hat{x} + \Delta x]$ è il più piccolo intervallo possibile che ci dà la certezza di includere il valore incognito $x$. Definiamo adesso una serie di termini comodi per esprimere al meglio i concetti successivi:
+	\begin{itemize}
+		\item $x$ è il valore, incognito (siccome non lo conosciamo mai appieno), della grandezza che vogliamo misurare e che chiameremo \emph{misurando};
+		\item $\hat{x}$ è la migliore stima di $x$ che possiamo fornire a partire dei dati a nostra disposizione (e che chiameremo \emph{valore centrale} o \emph{migliore stima} della nostra misura);
+		\item $\Delta x$ è l'incertezza di misura e, in questo \textbf{caso}, coincide con l'\textbf{errore massimo}
+	\end{itemize}
+	Tuttavia, nel caso di misure ripetute, giungiamo ad un assurdo: infatti, se una misura fluttua, da un punto di vista operativo, non possiamo escludere che una nuova misura della grandezza non fornisca un valore al di fuori dell'intervallo iniziale di incertezza e, ove questo accade, siamo costretti ad allargare tale intervallo, giungendo, dunque, ad un evidente paradosso, siccome acquisire nuove informazioni può solo peggiore (o lasciare invariato, se otteniamo delle misure che fanno ancora parte di $[x-\Delta x; x + \Delta x]$) il nostro stato di conoscenza, almeno determinando l'incertezza come errore massimo. \\
+	Questo è il motivo per cui non utilizziamo quasi mai il concetto di errore massimo, ma utilizzeremo il concetto di errore statistico.
+	\begin{equation}
+		x = \hat{x} \pm \sigma_x
+		\label{err_stat}
+	\end{equation}
+	La \ref{err_stat} ha un significato diverso da \ref{err_max} prima siccome questa definisce un intervallo che non ci dà la \emph{certezza} ma solo la probabilità, ben definita, di contenere il valore del misurando. \\
+	Adesso definiamo un altro modo molto utili per quantificare quanto è grosso, rispetto alla misura, l'errore che noi commettiamo:
+	\dfn{Errore percentuale}{L'errore relativo è il rapporto tra l'incertezza della misura e il suo valore centrale:
+	\begin{equation}
+		e_{\%} = \frac{\sigma_x}{|\hat{x}|}
+\end{equation}}
+	\section{Precisione vs accuratezza}
+	E' molto sottile la distinzione fra la precisione di uno strumento e la sua accuratezza: con il primo termine si indica l'accordo tra il valore misurato dallo strumento e quello effettivo del misurando, mentre con il secondo si intende il grado di consistenza fra i risultati di misure successive della stessa quantità nelle medesime condizioni
+	\chapter{Probabilità}
+	Grazie al matematico Kolmogorov abbiamo la prima costruzione rigorosa della teoria della probabilità, in una struttura che, sostanzialmente, sopravvive ancora oggi nei manuali moderni. \\
+	La struttura di base su cui si fonda la struttura assiomatica della probabilità parte dal definire lo spazio campionario
+	\dfn{Spazio campionario $\Omega$}{Lo spazio campionario $\Omega$ è l'insieme (numerabile) di tutte le possibili realizzazioni elementari di un dato fenomeno e spazio degli eventi $\mathcal{F}$ l'insieme di tutti i sottoinsiemi di $\Omega$ tale che:
+	$$
+		\# \mathcal{F} = 2^{\# \Omega}
+	$$}
+\noindent L'idea di Kolmogorov è quella di definire la probabilità direttamente sullo spazio degli eventi-cioè possiamo assegnare una probabilità non solo ad ogni elemento dello spazio campionario, ma anche ad uno qualsiasi dei suoi sottoinsiemi.
+	Definiamo adesso il concetto di probabilità:
+	\dfn{Probabilità}{Definiamo probabilità una misura P su $\mathcal{F}$ che associ univocamente ad ogni elemento E di $\mathcal{F}$ un numero reale $P(E)$ che soddisfa le seguenti tre proprietà (o assiomi di Kolmogorov):
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\item $0 \leq P(E) \leq 1 \, \forall E \in \mathcal{F}$
+		\item $P(\Omega) = 1$
+		\item $P(E_1 \cup E_2) = P(E_1) + P(E_2) \, \text{se} \, E_1 \cap E_2 = \emptyset$
+	\end{enumerate}		
+	}
+\noindent Possiamo utilizzare il terzo assioma di Kolgomorov all'unione numerabili di eventi \emph{disgiunti} (ovvero eventi per cui la loro intersezione è nulla)
+	\cor{Unione numerabili di eventi disgiunti}{$P(\bigcup\limits_{i}^n E_i) = \sum\limits_{i}^n P(E_i)$ se $E_1 = E_2 = \cdots = E_n = 0$}
+	\begin{myproof}
+	Si procede per induzione su $n$. Per $n = 1$ è banale, siccome:
+	$$
+		P \left( \bigcup_i^1 E_i \right) = P(E_1) = \sum_i^1 P(E_i) = P(E_i)
+	$$
+	Adesso mostriamo $n \implies n+1$:
+	$$
+		\sum_i^{n+1} P(E_i) = P(E_1) + \cdots + P(E_{n+1}) = \text{(ip. induttiva)} \, P \left(\bigcup_i^n E_i \right) + P(E_{n+1}) = P \left( \sum_{i}^{n+1} E_i \right)
+	$$
+	Siccome possiamo vedere nell'ultimo passaggio la somma fra due eventi che sono fra loro disgiunti, ovvero fra l'evento $E_1 \cup \E_2 \cdots \cup E_n$ e l'evento $E_{n+1}$ e per ipotesi sappiamo che $E_i \cap E_j = \emptyset \, \forall i,j$. \\
+	La dimostrazione è dunque conclusa.
+	\end{myproof}
+	\cor{Probabilità complementare}{Dato un evento E e detto $\bar{E}$ il suo complementare in $\Omega$, si ha che:
+		$$
+			P(\bar{E}) = 1 - P(E)
+		$$	
+	}
+	\begin{myproof}
+		Sapendo che $\bar{E} \cap E = \emptyset$ ma $\bar{E} \cup E = \Omega$:
+		$$ 1 = P(\Omega) = P(\bar{E} + E) = P(\bar{E}) + P(E) \implies P(\bar{E}) = 1 - P(E)$$
+	\end{myproof}
+	\cor{Probabilità dell'insieme nullo}{$P(\emptyset) = 0$}
+	\begin{myproof}
+		$$
+			P(\Omega) = P(\Omega \cup \emptyset)
+		$$
+		ma siccome $\Omega \cap \emptyset = \emptyset$ allora
+		$$
+			P(\Omega \cup \emptyset) = P(\Omega) + P(\emptyset) = P(\Omega) \implies 1 + P(\emptyset) = 1 \implies P(\emptyset) = 0
+		$$
+		La dimostrazione è dunque conclusa.
+	\end{myproof}
+	\cor{Limitatezza della probabilità di un sottoinsieme}{Se $E_1 \subset E_2 \implies P(E_1) \leq P(E_2)$}
+	\begin{myproof}
+		Se $E_1 \subset E_2 \implies E_2 = E_1 + (E_2 \setminus E_1)$ ma siccome $E_1 \cap (E_1 \setminus E_2) = \emptyset$:
+		$$P(E_2) = P(E_1) + P(E_1 \setminus E_2) \implies P(E_1) \leq P(E_2)$$
+	\end{myproof}
+	\thm{Addizione delle probabilità}{Dati due eventi $E_1$ ed $E_2$, si ha che:
+	\begin{equation}
+		P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)
+	\end{equation}			
+	}
+	\begin{myproof}
+		Possiamo scrivere gli insiemi $E_1$ ed $E_2$ come unione di eventi disgiunti, infatti:
+		$$
+			E_2 = E_2 \cap \Omega = E_2 \cap (E_1 \cup \bar{E_1}) = (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1})
+		$$
+		ma siccome $(E_2 \cap E_1) \cap (E_2 \cap \bar{E_1}) = \emptyset$ (altrimenti si giungerebbe ad un assurdo, visto che se $E_2 \cap E_1$ avesse degli elementi in comune con $E_2 \cap \bar{E_1}$ implicherebbe, visto che l'intersezione fra insieme è un'operazione che gode di proprietà associativa e commutativa, che $E_1 \cap \bar{E_1} \cap E_2 \cap E_2 \neq \emptyset$ ma $E_1 \cap \bar{E_1} = \emptyset$, dunque assurdo). Tornando alla dimostrazione:
+		\begin{equation}
+			P(E_2) = P \left( (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1}) \right) = P(E_2 \cap E_1) + P(E_2 \cap \bar{E_1})
+		\end{equation}
+		d'altra parte abbiamo che
+		$$
+			E_1 \cup E_2 = (E_1 \cup E_2) \cap \Omega = (E_1 \cup E_2) \cap (E_1 \cup \bar{E_1}) = (E_1 \cap E_1) \cup (E_1 \cap \bar{E_1}) \cup (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1})
+		$$ = $E_1 \cup (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1})$
+		ma si osserva che il termine $E_1 \cup (E_2 \cap E_1)$ è ridondante, siccome $E_1 \cup (E_2 \cap E_1) = E_1$, dunque
+		\begin{align*}
+			E_1 \cup E_2 = E_1 \cup (E_2 \cup \bar{E_1}) \implies P(E_1) = P(E_1) + P(E_2 \cup \bar{E_1})
+		\end{align*}
+		e combinando le due relazioni ottenute
+		\begin{equation*}			
+			\begin{cases}
+				P(E_2) = P(E_2 \cap E_1) + P(E_2 \cap \bar{E_1}) \\
+				P(E_1 \cup E_2) = P(E_1) \cup P(E_2 \cap \bar{E_1})
+			\end{cases}
+		\end{equation*}
+		dunque
+		$$
+			P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)
+		$$
+	\end{myproof}
+	\section{Definizione operativa della probabilità}
+	Il lettore più attento si sarà però accorto di come la definizione che abbiamo dato di probabilità non ci dà alcun modo con cui calcolare la probabilità, ma piuttosto una serie di assiomi da cui possiamo ricavare una serie di proprietà utili di cui gode la probabilità.
+	\subsection{Definizione combinatoriale}
+	Nella sua definizione combinatoriale, definiamo la probabilità di un evento E con quanto segue
+	\dfn{Definizione combinatoriale della probabilità}{La probabilità di un evento E coincide con il rapporto tra il numero di casi favorevoli $n$ e il numero di casi possibili $N$, \underline{a condizione che questi siano tutti equiprobabili}
+	\begin{equation}
+		P(E) = \frac{n}{N}
+\end{equation}		
+	}
+	\nt{Si osserva che questa definizione di probabilità rispetta i tre assiomi di Kolmogorov: il primo assioma discende dalla ovvia condizione per cui $0 \leq n \leq N$ ed il secondo fatto deriva dal fatto che se $n=N \implies P(E) = 1$. Per quanto riguarda la terza condizione, si osserva che se $E_1$ e $E_2$ sono due eventi disgiunti con rispettivamente $n_1$ e $n_2$ casi favorevoli, allora:
+		\begin{equation*}
+		P(E_1 \cup E_2) = \frac{n_1 + n_2}{N} = \frac{n_1}{N} + \frac{n_2}{N} = P(E_1) + P(E_2)
+\end{equation*}		
+	dunque anche il terzo assioma è rispettato	
+	}
+\noindent Tuttavia questa definizione operativa di probabilità possiede un grande problema: nella definizione è compiuto infatti un ragionamento circolare, siccome richiediamo l'equiprobabilità dei casi nella definizione stessa di probabilità.
+	\subsection{Definizione frequentista}
+	Quando è possibile ripetere un esperimento in condizioni controllate, è possibile definire la probabilità di un evento E come il limite della frequenza relativa all'evento stesso quando il numero di ripetizioni $N$ dell'esperimento tende all'infinito. Possiamo quindi pensare di effettuare un esperimento un numero $N$ arbitrariamente grande di volte, contare le $n$ volte in cui è avvenuto l'evento E e definire la probabilità $P(E)$ dell'evento come il limite del rapporto $\frac{n}{N}$
+	\dfn{Definizione frequentista della probabilità}{La probabilità di un evento E si definisce come
+	\begin{equation}
+		P(E) = \lim_{N \to +\infty} \frac{n}{N}
+	\end{equation}
+	dove il limite va inteso nei termini della convergenza statistica, ovvero
+	\begin{equation}
+		\forall \epsilon, \delta > 0 \exists \tilde{N} > 0:\forall N, N>\tilde{N} \implies P \left( \left|\frac{n}{N} - P(E) \right| \geq \delta \right) \leq \epsilon
+	\end{equation}
+	}
+	\nt{Il senso di questo limite, che va inteso come limite in senso statistico piuttosto che nel senso usuale dell'analisi matematica, è il fatto che non è possibile garantire a priori l'esistenza di un numero $N$ di ripetizioni del nostro esperimento che mi permetta di affermare con certezza che la differenza tra la frequenza registrata $\frac{n}{N} - P(E)$ sia minore di una certa quantità $\epsilon$: infatti, se effettuiamo due diverse serie di $N$ ripetizioni dell'esperimento otterrò frequenze relative $\frac{n}{N}$ diverse. Quello che possiamo però dire è il fatto che se $N$ è abbastanza grande allora posso rendere piccola a piacere la probabilità che $\frac{n}{N}$ si discosti da $P(E)$ di un valore prefissato $\delta$.}
+	\ex{Lancio di un dado}{Se lanciamo $N$ volte un dado equo a sei facce e registriamo (al crescere di N) il numero $n$ di volte in cui esce, ad esempio, il numero 3, per $N$ molto grande il rapporto $\frac{n}{M}$ tenderà a $P(3) = \frac{1}{3}$ (nel senso della convergenza statistica)}
+	\subsection{Definizione soggettivista della probabilità}
+	\dfn{Definizione soggettivista}{La probabilità di un evento E si identifica con la misura del grado di fiducia che un individuo attribuisce al verificarsi di E, sulla base dell'informazione a sua disposizione}
+	\nt{Il termine "soggettivo" si riferisce al fatto che persone diverse, sulla base di differenti informazioni, assoceranno, in generale, una probabilità diversa allo stesso evento e, proprio per questo fatto, si dice che questa definizione è \emph{soggettiva}}
+\noindent Alla fine, sebbene questa definizione lasci inizialmente sbigottiti siccome si perde quell'oggettività che, in un certo senso, assicuravano le altre due definizioni, questa definizione rispetto di fatto come noi operiamo nella vita di tutti i giorni.
+	All'interno della scuola soggettivista vi sono diversi approcci distinti per derivare le regole fondamentali della probabilità in un modo logicamente consistente (sebbene, con questo \emph{approccio}, gli assiomi non sono tali, ma regole che si ricavano da un principio più formale): il più popolare di questi approcci è il principio della \textbf{scommessa coerente}, il quale afferma che \emph{una volta assegnata la probabilità ad un evento dovremo essere disposti ad accettare scommesse sul verificarsi dell'evento stesso con un rapporto tra puntata e vincita determinato dalla probabilità stessa}\footnote{il senso è che se diciamo che due eventi sono equiprobabili allora dobbiamo essere pronti ad accettare scommesse 1:1, ovvero che una \emph{scommessa} è coerente se e solo se non determina \textbf{a priori} una perdita per il banco o per lo scommettitore, dunque è equivalente anche se i ruoli fossero scambiati} \\
+	\section{Elementi di calcolo combinatorio}
+	La combinatoria è quella branca della matematica che si occupa del \emph{contare}, dunque è strettamente connessa alla probabilità. \\
+	Introduciamo il fattoriale di un numero nella seguente maniera
+	\dfn{Fattoriale}{Dato un numero $n \in \mathbb{N}$, indichiamo con $n!$
+		\begin{equation}
+			n! = \prod_{k=1}^{n} k = n(n-1) \cdots 1	
+		\end{equation}			
+	}
+\noindent Se ci pensiamo bene, la funzione fattoriale non è altro il numero di \emph{permutazioni}, ovvero il numero di modi in cui si possono disporre $n$ elementi se non possiamo ripeterli e \textbf{conta} l'ordine con cui questi elementi vengono disposti: supponiamo infatti di avere $20$ oggetti e di volerli disporre all'interno di un cassetto, noi abbiamo ben $20!$ modi possibili per metterli, siccome per il primo "posto" del cassetto possiamo metterci uno dei $20$, nel secondo "posto" $19$ oggetti e così via; ottenendo ben $20!$ fattoriale di possibilità. \\
+	Le permutazioni possono essere viste come un caso particolare delle disposizioni, ovvero i modi con cui è possibile disporre $n$ oggetti in $k$ posti: per esempio, riprendendo l'esempio di prima, se noi volessimo prendere da $20$ oggetti $5$, presi a caso da questi $20$, all'interno di un cassetto in maniera tale che conti l'ordine con cui li mettiamo, si osserva che nel primo \emph{posto} del cassetto abbiamo $20$ oggetti disponibili, nel secondo $19$, nel terzo $18$, nel quarto $17$ e nell'ultimo $16$; dunque affermare che i modi totali sono $\frac{20!}{15!} = 20 \cdot 19 \cdot 18 \cdot 17 \cdot 16$. Definiamo quindi una disposizione come
+	\dfn{Disposizione di $n$ elementi e di ordine $k$}{Definiamo una disposizione di $n$ elementi e di ordine $k$ come il numero di modi con cui è possibile disporre $n$ elementi in $k$ slot, pari a 		\begin{equation}
+		D_{n,k} = \frac{n!}{(n-k)!}
+	\end{equation}
+}
+\noindent Tornando alla funzione fattoriale, è comoda l'approssimazione di Stirling (di cui non daremo una dimostrazione) per cui:
+\begin{equation}
+	n! = \sqrt{2\pi n} \left( \frac{n}{e} \right)^n
+\end{equation}
+Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è dato dal coefficiente binomiale $n$ su $k$
+\dfn{Coefficiente binomiale $n$ su $k$}{Il coefficiente binomiale $n$ su $k$ è definito come
+	\begin{equation}
+		\binom{n}{k} = \frac{n!}{k!(n-k)!}
+	\end{equation}
+}
+\cor{}{$$ \binom{n}{k} = \binom{n}{n-k} $$}
+\begin{myproof}
+	Banalmente, si osserva che
+	$$
+		\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n!}{(n-k)!(n-(n-k))!} = \binom{n}{n-k}
+	$$
+\end{myproof}
+\noindent Il coefficiente binomiale è strettamente connesso al 
+\end{document}
