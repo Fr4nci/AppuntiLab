@@ -193,5 +193,36 @@ Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è d
 		\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n!}{(n-k)!(n-(n-k))!} = \binom{n}{n-k}
 	$$
 \end{myproof}
-\noindent Il coefficiente binomiale è strettamente connesso al 
+\noindent Il coefficiente binomiale è strettamente connesso al triangolo di Pascal (o di Newton) e può essere anche caratterizzato attraverso la formula della potenza del binomio (o teorema binomiale):
+\thm{Teorema binomiale}{Lo sviluppo della potenza $n$-esima del binomio $x_1 + x_2$ è pari a
+\begin{equation}
+	(x_1 + x_2)^n = \sum_{k=0}^n \binom{n}{k} x_1^{n-k}x_2^k
+\end{equation}
+}
+\begin{myproof}
+si può procedere per induzione. Innanzitutto si osserva che, per $n=0$, si ha che
+$$
+	(x_1 + x_2)^0 = 1 = \sum_{k=0}^{0} \binom{n}{k} x_1^{n-k}x_2^k = \binom{0}{0} x_1^{0} x_2^0 = 1
+$$
+dunque per $n=0$ l'ipotesi è verificata. Mostriamo che $n \implies n+1$:
+$$
+	(x_1 + x_2)^{n+1} = (x_1 + x_2)^n (x_1 + x_2) = \sum_{k=0}^{n} \left[ x_1^{n-k}x_2^k \right] \cdot (x_1+x_2) = \sum_{k = 0}^{n} x_1^{n+1-k}x_2^k + \sum_{k = 0}^{n} x_1^{n-k}x_2^{k+1}
+$$
+Da qua soffermiamoci sul primo termine: si osserva che
+$$
+	\sum_{k=0}^{n} x_1^{n+1-k} x_2^k = \binom{n}{0} x_1^{n+1} + \sum_{k=1}^{n} \binom{n}{k} x_1^{n+1-k}x_2^k = \binom{n}{0} x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n}{k+1} x_1^{n+1-k-1} x_2^{k+1} = x_1^{n+1} + \sum_{k = 0}^{n-1} \binom{n}{k+1} x_1^{n}x_2^{k+1}
+$$
+in cui si è semplicemente effettuato un cambio di variabile di variabile $k' = k + 1$ (ma siccome gli indici sono muti abbiamo semplicemente indicato $k'$ sempre con $k$). Adesso andiamo al secondo termine:
+$$
+	\sum_{k=0}^{n} \binom{n}{k} x_1^{n-k}x_2^{k+1} = \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + \binom{n}{n} x_2^{n+1} = \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + x_2^{n+1}
+$$
+Tornando dunque alla relazione iniziale, si deve avere che
+$$
+	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k = 0}^{n-1} \binom{n}{k+1} x_1^{n}x_2^{k+1} + \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \left[ \binom{n}{k} + \binom{n}{k+1} \right] x_1^{n-k}x_2^{k+1} + x_2^{n+1}
+$$
+dunque, siccome per proprietà dei coefficienti binomiali si ha che $\binom{n+1}{k+1} = \binom{n}{k} + \binom{n}{k+1}$, allora
+$$
+	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n+1}{k+1} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=1}^{n} \binom{n+1}{k} x_1^{n+1-k}x_2^{k} + x_2^{n+1} = \sum_{k=0}^{n+1} \binom{n+1}{k} x_1^{n+1-k}x_2^{k}
+$$
+\end{myproof}
 \end{document}
