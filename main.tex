@@ -91,8 +91,8 @@
 	\end{myproof}
 	\cor{Limitatezza della probabilità di un sottoinsieme}{Se $E_1 \subset E_2 \implies P(E_1) \leq P(E_2)$}
 	\begin{myproof}
-		Se $E_1 \subset E_2 \implies E_2 = E_1 + (E_2 \setminus E_1)$ ma siccome $E_1 \cap (E_1 \setminus E_2) = \emptyset$:
-		$$P(E_2) = P(E_1) + P(E_1 \setminus E_2) \implies P(E_1) \leq P(E_2)$$
+		Se $E_1 \subset E_2 \implies E_2 = E_1 + (E_2 \setminus E_1)$ ma siccome $E_1 \cap (E_2 \setminus E_1) = \emptyset$:
+		$$P(E_2) = P(E_1) + P(E_2 \setminus E_1) \implies P(E_1) \leq P(E_2)$$
 	\end{myproof}
 	\thm{Addizione delle probabilità}{Dati due eventi $E_1$ ed $E_2$, si ha che:
 	\begin{equation}
@@ -193,7 +193,16 @@ Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è d
 		\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n!}{(n-k)!(n-(n-k))!} = \binom{n}{n-k}
 	$$
 \end{myproof}
-\noindent Il coefficiente binomiale è strettamente connesso al triangolo di Pascal (o di Newton) e può essere anche caratterizzato attraverso la formula della potenza del binomio (o teorema binomiale):
+\noindent Il coefficiente binomiale è strettamente connesso al triangolo di Pascal (o di Newton) e può essere anche caratterizzato attraverso la formula della potenza del binomio (o teorema binomiale). Per farlo però ci servirà il seguente lemma:
+\lemma{Proprietà fondamentale del coefficiente binomiale}{$$
+	\binom{n+1}{k+1} = \binom{n}{k} + \binom{n}{k+1}
+	$$
+}
+\begin{myproof}
+	\begin{align*}
+		&\binom{n}{k+1} + \binom{n}{k} = \frac{n!}{(k+1)!(n-k-1)!} + \frac{n!}{k!(n-k)!} = \frac{n!}{(k+1)k!(n-k-1)!} + \frac{n!}{k!(n-k)(n-k-1)!} \\ &= \frac{n!}{k!(n-k-1)!} \left( \frac{1}{k+1} + \frac{1}{n-k} \right) = \frac{n!}{k!(n-k-1)!} \left( \frac{n -k + k + 1}{(k+1)(n-k)} \right) = \frac{n!}{k!(n-k-1)!} \cdot \frac{(n+1)}{(k+1)(n-k)} \\ &= \frac{(n+1)!}{(k+1)!(n-k)!} = \binom{n+1}{k+1}
+	\end{align*}
+\end{myproof}
 \thm{Teorema binomiale}{Lo sviluppo della potenza $n$-esima del binomio $x_1 + x_2$ è pari a
 \begin{equation}
 	(x_1 + x_2)^n = \sum_{k=0}^n \binom{n}{k} x_1^{n-k}x_2^k
@@ -224,5 +233,86 @@ dunque, siccome per proprietà dei coefficienti binomiali si ha che $\binom{n+1}
 $$
 	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n+1}{k+1} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=1}^{n} \binom{n+1}{k} x_1^{n+1-k}x_2^{k} + x_2^{n+1} = \sum_{k=0}^{n+1} \binom{n+1}{k} x_1^{n+1-k}x_2^{k}
 $$
+Dunque la tesi è stata dimostrata 
 \end{myproof}
+\noindent Il coefficiente binomiale è comodo per calcolarsi le potenze del $2$ siccome se $x_1 = x_2 = 1$ si ha che
+$$
+2^n = \sum_{k = 0}^{n} \binom{n}{k} 1^{n-k} 1^{k} = \sum_{k=0}^{n} \binom{n}{k}
+$$
+Il coefficiente binomiale può anche essere generalizzato supponendo di voler dividere un insieme di $n$ elementi in $m$ sottoinsiemi disgiunti, ciascuno con un numero $k_i$ di elementi, la cui unione costituisca l'insieme di partenza, dunque si deve avere che $\sum_{i=1}^{m} k_i = n$
+Il numero di modi con cui si può effettuare tale suddivisione prende il nome di \textbf{coefficiente multinomiale $n$ su $k_1, \dots , k_m$}  e si basa sull'idea che abbiamo $n$ su $k_1$ modi per scegliere il primo sottoinsieme, $n-k_1$ su $k_2$ modi per scegliere il secondo sottoinsieme e così via, dunque:
+$$
+	\binom{n}{k_1, k_2, \dots, k_m} = \binom{n}{k_1} \binom{n-k_1}{k_2} + \dots + \binom{n-k_1 \dots - k_{m-1}}{k_m}
+$$
+Sempre come per il coefficiente binomiale, possiamo caratterizzare il coefficiente multinomiale come lo sviluppo per la potenza $n$ di un numero arbitrario di monomi nella seguente maniera:
+\begin{equation*}
+	(x_1 + x_2 + \dots + x_m)^n = \sum_{ \{ (k_1, k_2, \dots, k_m) : \sum\limits_{i=1}^{m} k_i = n \} } \binom{n}{k_1, \dots k_m} x_1^{k_1} x_2^{k_2} \dots x_m^{k_m}
+\end{equation*}
+\section{Probabilità condizionata}
+Tutto ciò che è stato mostrato nella sezione precedente può essere comodo per calcolare la probabilità di determinati eventi\footnote{usufruendo della definizione combinatoriale della probabilità} e consiglio caldamente di guardare gli esempi proposti da Baldini nel suo libro, su cui non mi soffermerò. Diamo delle definizioni
+\dfn{Probabilità condizionata}{Dati due eventi $E_1$ ed $E_2$, con $P(E_2) \neq 0$, definiamo la \emph{probabilità condizionata}  $P(E_1 | E_2)$ di $E_1$ dato $E_2$ (cioé la probabilità che si verifichi $E_1$ nel caso in cui sappiamo già che si verifica$E_2$) come
+	\begin{equation}
+		P(E_1 | E_2) = \frac{P(E_1 \cap E_2)}{P(E_2)}
+	\end{equation}
+}
+\nt{La probabilità condizionata può essere vista come una sorta di "misura" dell'intersezione $E_1 \cap E_2$ pesata a $E_2$. E' possibile inoltre dimostrare che la probabilità condizionata soddisfa tutti gli assiomi della probabilità siccome ogni ogni evento $E$ può essere visto come una probabilità condizionata alla probabilità dello spazio campionario $P(E | \Omega)$}
+\noindent L'utilità della probabilità condizionata è il fatto che possiamo calcolare la probabilità che due eventi $E_1$ ed $E_2$ si verifichino contemporaneamente nella seguente maniera:
+$$
+	P(E_1 \cap E_2) = P(E_1)P(E_2 | E_1) = P(E_2)P(E_1 | E_2)
+$$
+A questo punto diamo la definizione di \emph{eventi \textbf{indipendenti}}:
+\dfn{Eventi indipendenti}{Si dice che due eventi indipendenti $E_1$ ed $E_2$ sono indipendenti se il fatto che sia verificato $E_2$ non influenza la probabilità che si verifichi $E_1$, ovvero se
+\begin{equation}
+	P(E_1 | E_2) = P(E_1) \, \text{e} \, P(E_2 | E_1) = P(E_2)
+\end{equation}
+e per la definizione di probabilità condizionata possiamo riscrivere che
+\begin{equation}
+	P(E_1 \cap E_2) = P(E_1)P(E_2)
+\end{equation}
+}
+\nt{Non bisogna confondere il concetto di \emph{eventi indipendenti } con il concetto di \emph{eventi disgiunti} e, dunque, incompatibili: si rimanda all'esempio di Baldini sul libro, in cui si osserva proprio il classico esempio del mazzo da carte in cui viene inserito un jolly. Prima dell'aggiunta del jolly i due eventi $E_1$="pesco un re" ed $E_2$="pesco una carta di cuori" erano indipendenti pure avendo un'intersezione non nulla, dopo l'aggiunta del jolly non sono più indipendenti ma non sono nemmeno incompatibili}
+\section{Teorema di Bayes}
+La naturale conseguenza di tutto ciò che abbiamo detto sulla probabilità condizionata è il \textit{teorema di Bayes}, che lega tra loro la probabilità condizionata $P(E_1 | E_2)$ con la probabilità $P(E_2 | E_1)$
+\thm{Teorema di Bayes}{La probabilità condizionata di $E_1$ dato $E_2$ è pari a
+	\begin{equation}
+		P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{P(E_2)}
+	\end{equation}
+dove $P(E_2 | E_1)$ è la probabilità condizionata di $E_2$ dato $E_1$
+}
+\begin{myproof}
+	Dalla definizione di probabilità condizionata $P(E_1 | E_2)$ di $E_1$ dato $E_2$ sappiamo che
+	$$
+		P(E_1 | E_2) = \frac{P(E_1 \cap E_2)}{P(E_2)}
+	$$
+	con $P(E_2) \neq 0$, ma noi sappiamo pure che $P(E_1 \cap E_2) = P(E_2 | E_1)P(E_1)$, dunque si ottiene la tesi:
+	$$
+		P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{P(E_2)}
+	$$
+	La dimostrazione è dunque conclusa
+\end{myproof}
+\noindent Sfruttando inoltre il fatto che $E_1 \cup \bar{E_1} = \Omega$ allora $(E_1 \cap E_2) \cup (\bar{E_1} \cap E_2) = E_2 \cap (E_1 \cup \bar{E_1}) = E_2$, dunque:
+$$
+	P(E_2) = P(E_1 \cap E_2) + P(\bar{E_1} \cap E_2)
+$$
+(si ricorda che $(E_1 \cup E_2) \cup (\bar{E_1} \cup E_2) = \emptyset$ siccome se, per assurdo, $\exists c \in (E_1 \cap E_2) \cap (\bar{E_1} \cap E_2) \neq \emptyset \implies \{ c \in E_1 \cap E_2  \wedge c \in \bar{E_1} \cap E_2 \}$ ma ciò implica che $c \in E_1 \wedge c \in \bar{E_1}$ che è un assurdo; dunque possiamo usare il terzo assioma di Kolmogorov per stimare la probabilità di $E_2$). Ciò implica che
+\begin{equation}
+	P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{P(E_1 \cap E_2) + P(\bar{E_1} \cap E_2)}
+\end{equation}
+Più in generale, possiamo dire che se si dispone di un partizionamento dell'insieme $ \{ E_i \} $ (tali che $E_i \cap E_j = \emptyset \, \, \forall i, j, i \neq j$ e $\bigcup\limits_{i} E_i = \Omega$) allora possiamo generalizzare, per induzione su $i$, che $P(E_2) = \sum\limits_{i} P(E_2 | E_i)P(E_i)$, dunque:
+\begin{equation}
+	P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{\sum\limits_{i} P(E_2 | E_i)P(E_i)}
+\end{equation}
+Questo teorema, sebbene risulti a prima vista banale, in realtà è molto importante siccome lega la probabilità diretta al problema di probabilità inversa. Si rimanda sempre al libro di Baldini per degli esempi per comprendere meglio il teorema di Bayes, sebbene sia utile osservare una cosa: mentre lo statista, oppure il matematico, studia la probabilità in astratto, ovvero cerca di calcolare la probabilità di un determinato processo "contando"; il fisico, di professione, cerca di inferire sul calcolo della probabilità attraverso delle raccolte dati, dunque tramite queste relazioni possiamo eventualmente ricondurci alla probabilità inversa, tuttavia cambia l'approccio "metodologico".
+\section{Variabili casuali e funzioni di distribuzione}
+Iniziamo questa sezione introducendo il concetto di variabile casuale
+\dfn{Variabile casuale}{Una \emph{variabile casuale} o \emph{variabile aleatoria} è una variabile che rappresenta la realizzazione numerica di un processo causale, per cui il suo valore è soggetto a fluttuazioni casuali e non è noto a priori. Si distinguono in
+\begin{itemize}
+	\item \underline{discrete}, cioè variabili che possono assumere un numero finito o numerabile di valori;
+	\item \underline{continue}, cioè variabili che possono assumere tutti i valori compresi in un intervallo.
+\end{itemize}
+}
+\ex{}{\begin{itemize}
+	\item L'uscita del lancio di un dado a sei facce è una variabile casuale discreta che può assumere esattamente sei valori: ${1, 2, 3, 4, 5, 6}$
+	\item Il tempo necessario per arrivare da casa al luogo di lavoro è un esempio di variabile casuale continua
+\end{itemize}}
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.14)  6 MAY 2024 12:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.14)  6 MAY 2024 17:23
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1449,8 +1449,8 @@ Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
 \c@tcb@cnt@theorem=\count473
 \c@tcb@cnt@Corollary=\count474
 \c@tcb@cnt@corollary=\count475
-\c@tcb@cnt@Lenma=\count476
-\c@tcb@cnt@lenma=\count477
+\c@tcb@cnt@lemna=\count476
+\c@tcb@cnt@mlemma=\count477
 \c@tcb@cnt@Prop=\count478
 \c@tcb@cnt@prop=\count479
 \c@tcb@cnt@claim=\count480
@@ -1703,7 +1703,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--165
 
  []
 
-[7] [8] [9] (./main.aux)
+[7] [8] [9] [10] [11] [12] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
@@ -1713,11 +1713,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 52235 strings out of 478278
- 1200094 string characters out of 5850546
- 1702226 words of memory out of 5000000
- 69529 multiletter control sequences out of 15000+600000
- 510308 words of font info for 145 fonts, out of 8000000 for 9000
+ 52285 strings out of 478278
+ 1200844 string characters out of 5850546
+ 1702238 words of memory out of 5000000
+ 69553 multiletter control sequences out of 15000+600000
+ 512582 words of font info for 152 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  120i,11n,121p,974b,1730s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/tex
@@ -1729,22 +1729,23 @@ sfonts/cm/cmbx8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmbxti10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
 fb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/tex
 live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2021/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ss10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pf
-b><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2021/
-texmf-dist/fonts/type1/public/newpx/pxmiaX.pfb><c:/texlive/2021/texmf-dist/font
-s/type1/public/newpx/pxsys.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/c
-m-super/sfrm0900.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sf
-rm1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/t
-exlive/2021/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>
-Output written on main.pdf (10 pages, 280821 bytes).
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2021/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c
+:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><c:/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb><c:/texlive/2021/texmf-dist/
+fonts/type1/public/newpx/pxmiaX.pfb><c:/texlive/2021/texmf-dist/fonts/type1/pub
+lic/newpx/pxsys.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfr
+m0900.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+<c:/texlive/2021/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2021
+/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>
+Output written on main.pdf (13 pages, 312842 bytes).
 PDF statistics:
- 325 PDF objects out of 1000 (max. 8388607)
- 224 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 271 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 388 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 319 words of extra memory for PDF output out of 10000 (max. 10000000)
 
