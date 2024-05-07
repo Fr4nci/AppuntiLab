@@ -1,6 +1,7 @@
 \begin{theindex}
 
   \item approssimazione di Stirling, 8
+  \item assiomi di Kolmogorov, 4
 
   \indexspace
 
@@ -11,17 +12,26 @@
   \indexspace
 
   \item densità di probabilità, 13
+  \item deviazione standard, 15
   \item disposizione, 8
+  \item Disuguaglianza di Chebyshev, 16
+  \item disuguaglianza di Chebyshev, 16
 
   \indexspace
 
   \item errore massimo, 2
   \item errore relativo, 3
+  \item eventi indipendenti, 10, 11
 
   \indexspace
 
   \item fattoriale, 8
   \item funzione di distribuzione, 12
+  \item FWHM, 15
+
+  \indexspace
+
+  \item HWHM, 15
 
   \indexspace
 
@@ -41,7 +51,7 @@
 
   \indexspace
 
-  \item Teorema binomiale, 9
+  \item teorema binomiale, 9
   \item teorema di Bayes, 11
 
   \indexspace
@@ -50,5 +60,6 @@
   \item valore medio, 14
   \item variabile aleatoria, 12
   \item variabile casuale, 12
+  \item varianza, 15
 
 \end{theindex}
