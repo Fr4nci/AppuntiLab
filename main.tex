@@ -474,15 +474,15 @@ Generalizziamo alcune definizioni che abbiamo dato su alcuni parametri di una di
 	\mathcal{M}_n(x_0) = E[(x-x_0)^n] = \begin{cases} \sum\limits_{k} (x_k - x_0)^n P(x_k) \\ \int\limits_{-\infty}^{+\infty} (x-x_0)^n p(x)dx	\end{cases}
 \end{equation}
 }
-\noindent Hanno rilevanza particolare i \underline{momenti algebrici}\index{momenti algebrici} $\lambda_n$, ossia i momenti di ordine generico attorno al punto $x_0 = 0$
+\noindent Hanno rilevanza particolare i \underline{momenti algebrici}\index{momento algebrico} $\lambda_n$, ossia i momenti di ordine generico attorno al punto $x_0 = 0$
 $$
 	\lambda_n = \mathcal{M}_n(0)
 $$
-ed i \underline{momenti centrali} $\mu_n$, ossia i momenti di ordine generico attorno al valor medio $\mu$ di $x$
+ed i \underline{momenti centrali}\index{momento centrale} $\mu_n$, ossia i momenti di ordine generico attorno al valore medio $\mu$ di $x$
 $$
 	\mu_n = \mathcal{M}_n(\mu)
 $$
-dunque possiamo dire che il valor medio è il momento algebrico di ordine 1 e la varianza invece è il momento centrale di ordine 2. Oltre al valor medio e alla varianza, sono utili i momenti centrali di ordine 3 siccome sono i primi momenti di ordine dispari a non annullarsi e poiché misurano l'eventuale asimmetria della funzione di distribuzione, pesando con il segno le code a destra e a sinistra della media. Troviamo una forma più agevole per calcolare $\mu_3$
+dunque possiamo dire che il valor medio\index{valore medio} è il momento algebrico di ordine 1 e la varianza\index{varianza} invece è il momento centrale di ordine 2. Oltre al valor medio e alla varianza, sono utili i momenti centrali di ordine 3 siccome sono i primi momenti di ordine dispari a non annullarsi e poiché misurano l'eventuale asimmetria della funzione di distribuzione, pesando con il segno le code a destra e a sinistra della media. Troviamo una forma più agevole per calcolare $\mu_3$
 $$
 	\mu_3 = E[(x-\mu)^3] = E [ x^3 - \mu^3 -3x^2 \mu + 3x \mu^2 ] \implies E[x^3] - 3\mu E[x^2] + 3\mu^2 E[x] - \mu^3
 $$
@@ -527,6 +527,125 @@ e possiamo sempre definire il valore di aspettazione per una generica funzione $
 \begin{equation}
 	E[f(x_1, x_2)] = \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} f(x_1, x_2)p(x_1, x_2)dx_1dx_2
 \end{equation}
+Una domanda che ci potremmo porre è la seguente: come posso capire se due o più variabili $x_1, \dots, x_m$ sono \emph{indipendenti}? Si potrebbe pensare che questa caratteristica si dovrebbe, in qualche maniera, andare a "rintracciare" dalla funzione di densità di probabilità congiunta. \\ Per fare ciò potremmo pensare di far variare il valore di una variabile aleatoria (come ad esempio $x_1$ e di fissare quello delle altre variabili. Per esempio, nel caso di due variabili, $x_1$ e $x_2$, allora potremmo pensare di definire una funzione di densità di probabilità \emph{condizionata}, ovvero
+\begin{align*}
+	&p(x_1 | x_2 \, \text{fissato}) = p_1(x_1) & &p(x_2 | x_1 \, \text{fissato})
+\end{align*}
+Tuttavia come possiamo scrivere questa probabilità? Si potrebbe pensare che, in maniera abbastanza banale, questa probabilità condizionata si ottiene prendendo la funzione di densità di probabilità e fissando l'altra variabile. Tuttavia, come mostrano molto bene le figure e gli esempi riportati da Baldini (che consiglio di vedere), questa "forma" non è correttamente normalizzata; ma non tutto è da buttare, siccome basta dividere la densità di probabilità per un valore costante ovvero $\int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1$:
+\begin{equation*}
+	p(x_1 | x_2) = \frac{p(x_1, x_2)}{ \int\limits_{-\infty}^{+\infty} p(x_1, x_2) dx_1 }
+\end{equation*}
+
+\dfn{Probabilità condizionata di due variabili dipendenti\index{probabilità condizionata}}{La probabilità condizionata di $x_1$ relativamente a $x_2$ (fissato) è definita come
+\begin{equation} \label{eq:dipend_norm}
+	p(x_1 | x_2) = \frac{p(x_1, x_2)}{\int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1}
+\end{equation}
+Definiamo densità di probabilità marginale il denominatore della precedente formula (siccome dopo l'integrazione sarà esclusivamente in funzione di $x_2$ e non più di $x_1$)
+\begin{equation}
+	p_2(x_2) = \int_{-\infty}^{+\infty} p(x_1, x_2) dx_1
+\end{equation}
+(per la probabilità condizionata di $x_2$ relativo a $x_1$ e la corrispondente probabilità marginale basta sostituire $x_1$ al posto di $x_2$ e viceversa nelle precedenti relazioni).
+}
+\nt{Si può dimostrare che la forma~\ref{eq:dipend_norm} è correttamente normalizzata, siccome
+\begin{align*}
+	&p(x_1 | x_2 \, \text{fissato}) = \frac{p(x_1, x_2)}{\int\limits_{-\infty}^{+\infty} p(x_1, x_2 \, \text{fissato})dx_1} \implies \int\limits_{-\infty}^{+\infty} p(x_1 | x_2)dx_1 = \int\limits_{-\infty}^{+\infty} \frac{p(x_1, x_2)}{\int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1} dx_1 \\ &= \frac{1}{\int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1} \int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1 \implies p(x_1 | x_2) = 1
+\end{align*}
+ed è ragionevole portare fuori l'integrale $p_2(x_2) = \int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1$ dall'integrale siccome la densità di probabilità marginale non è più in funzione della variabile $x_2$ dunque si comporta come una costante rispetto a $x_1$ 
+}
+\noindent In maniera molto simile come per le distribuzioni univariate, diciamo che due variabili aleatorie $x_1$ e $x_2$ sono indipendenti se la densità di probabilità congiunta può essere fattorizzata come il prodotto delle due densità di probabilità marginali, ovvero
+\dfn{Indipendenza statistica di due variabili aleatorie}{\begin{equation}
+	p(x_1, x_2) = p_1(x_1)p_2(x_2)	
+\end{equation}
+}
+\noindent Dunque, rimettendo insieme con ciò che eravamo partiti, allora possiamo dire che
+\begin{align*}
+	&p(x_1 | x_2) = \frac{p_1(x_1)p_2(x_2)}{p_2(x_2)} = p_1(x_1) & &p(x_2 | x_1) = \frac{p_1(x_1)p_2(x_2)}{p_1(x_1)} = p_2(x_2)
+\end{align*}
+Una proprietà molto comoda delle variabili aleatorie è il fatto che, se due variabili $x_1$ e $x_2$ (ci restringiamo al caso in due variabili, ma ciò non è restrittivo) sono \textbf{indipendenti}, allora si dimostra, in maniera banale, che il valore di aspettazione del loro prodotto è uguale al prodotto dei valori di aspettazione, infatti:
+$$
+E[x_1 x_2] = \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} x_1 x_2 p(x_1, x_2)dx_1 dx_2 = \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} x_1 x_2 p_1(x_1)p_2(x_2)dx_1 dx_2
+$$ 
+è possibile applicare il teorema di Fubini, da cui
+$$
+E[x_1 x_2] = \int\limits_{-\infty}^{+\infty} dx_1 \int\limits_{-\infty}^{+\infty} x_1 p_1(x_1) x_2 p_2(x_2) dx_1dx_2 = \int\limits_{-\infty}^{+\infty} x_1 p_1(x_1) dx_1 \int\limits_{-\infty}^{+\infty} x_2 p_2(x_2) dx_2
+$$
+(nell'ultimo passaggio abbiamo portato fuori dei termini che sono solamente in funzione di $x_1$ e dunque si comportano come una costante rispetto a $x_2$). \\
+\dfn{Covarianza\index{covarianza}}{Date due variabili casuali $x_1$ e $x_2$ e dette $\mu_1$ e $\mu_2$ il momento algebrico\index{momento algebrico} di ordine 1 (ovvero sono il valore medio\index{valore medio} delle due distribuzioni) definiamo la covarianza $\text{Cov}(x_1, x_2)$ o $\sigma_{x_1x_2}$ come il valore di aspettazione delle relative fluttuazioni attorno al valore medio
+\begin{equation} \label{eq:cov}
+	\text{Cov}(x_1, x_2) = \sigma_{x_1 x_2} = E[(x_1 - \mu_1)(x_2 - \mu_2)]
+\end{equation}
+}
+\noindent Si può dimostrare banalmente che la \ref{eq:cov} può essere scritta come
+$$
+	\text{Cov}(x_1, x_2) = E[x_1 x_2] - \mu_2 E[x_1] - \mu_1 E[x_2] + \mu_1 \mu_2 = E[x_1 x_2] - E[x_1] E[x_2]
+$$
+dunque, si ha che se $E[x_1 x_2] = E[x_1] E[x_2] = 0 \iff \text{Cov}(x_1, x_2) = 0$. Dunque si osserva che, se due variabili aleatorie sono indipendenti, allora $\text{Cov}(x_1, x_2) = 0$ ma non è vero il contrario (riporto sotto l'esempio del Baldini).
+\ex{Covarianza nulla, variabili dipendenti}{Consideriamo una variabile casuale continua $x$ con una funzione di distribuzione $p(x)$ simmetrica rispetto a $0$, il che implica che tutti i momenti algebrici di ordine dispari sono nulli. Si ha banalmente
+$$
+	\text{Cov}(x, x^2) = E[x^3] - E[x]E[x^2] = 0
+$$
+siccome $E[x]$ e $E[x^3]$ sono nulli, tuttavia è ovvio che le due variabili non sia indipendenti statisticamente
+}
+\noindent Da un punto di vista matematico, possiamo dire che la covarianza è una \textbf{forma bilineare simmetrica}, nel senso che gode delle seguenti proprietà:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item $\text{Cov}(x_1, x_2) = \text{Cov}(x_2, x_1)$
+	\item $\text{Cov}(c_1x_1 + c_2x_2, x_3) = c_1\text{Cov}(x_1, x_3) + c_2\text{Cov}(x_2, x_3)$
+	\item $\text{Cov}(x_1, c_2x_2 + c_3x_3) = c_2\text{Cov}(x_1, x_2) + c_3\text{Cov}(x_1, x_3)$
+\end{enumerate}
+\noindent \begin{myproof} per la \circled{1} si osserva banalmente che
+$$
+	\text{Cov}(x_1, x_2) = E[x_1 x_2] - E[x_1]E[x_2] = E[x_2 x_1] - E[x_2]E[x_1] = \text{Cov}(x_2, x_1)
+$$
+Per la \circled{2} si osserva che
+\begin{align*}
+	&\text{Cov}(c_1 x_1 + c_3 x_3 , x_2) = E[(c_1 x_1 + c_3 x_3) x_2] - E[c_1 x_1 + c_3 x_3]E[x_2] = E[c_1 x_1 x_2] + E[ c_3 x_3 x_2] - E[c_1 x_1]E[x_2] - E[c_3 x_3]E[x_2] \\ 
+	&= c_1E[x_1x_2] - c_1E[x_1]E[x_2] + c_3E[x_3x_2] - c_3 E[x_3]E[x_2] = c_1 \text{Cov}(x_1, x_2) + c_3 \text{Cov}(x_3, x_2)
+\end{align*}
+mentre per la \circled{3} si osserva che, usando le due proprietà dimostrate prima
+\begin{align*}
+	&\text{Cov}(x_1, c_2x_2 + c_3 x_3) = \text{Cov}(c_2x_2 + c_3x_3, x_1) = c_2 \text{Cov}(x_2, x_1) + c_3 \text{Cov}(x_3, x_1) = c_2 \text{Cov}(x_1, x_2) + c_3 \text{Cov}(x_1, x_3)
+\end{align*}
+\end{myproof}
+\noindent Una proprietà minore è il fatto che $\text{Cov}(x_1, c) = 0$ con $c$ costante e, inoltre, possiamo definire la \emph{varianza}\index{varianza} di una variabile aleatoria come la covarianza della variabile con sé stessa, dunque
+\begin{equation}
+	\text{Cov}(x, x) = \text{Var}(x)
+\end{equation}
+\dfn{Matrice di covarianza\index{matrice di covarianza}}{La matrice di covarianza è la matrice simmetrica $n \times n$ che organizza le covarianze $\text{Cov}(x_i, x_j)$ di $n$ variabili
+\begin{align}
+	\Sigma =  \begin{bmatrix}
+		\text{Cov}(x_1, x_1) & \text{Cov}(x_1, x_2) & \cdots & \text{Cov}(x_1, x_n) \\
+		\text{Cov}(x_2, x_1) & \text{Cov}(x_2, x_2) & \cdots & \text{Cov}(x_2, x_n) \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\text{Cov}(x_n, x_1) & \text{Cov}(x_n, x_2) & \cdots & \text{Cov}(x_n, x_n)
+	\end{bmatrix}
+\end{align}
+}
+\dfn{Correlazione}{
+La correlazione\index{correlazione} è una versione \emph{riscalata} della covarianza
+\begin{equation}
+	\text{Corr}(x_1, x_2) = \rho_{x_1 x_2} = \frac{\text{Cov}(x_1, x_2)}{\sigma_1 \sigma_2}
+\end{equation}
+e possiede tutte le "proprietà" della matrice di covarianza.
+}
+La correlazione misura quanto sono \emph{correlate} fra loro due variabili aleatorie, siccome la correlazione assume tutti i valori compresi fra $1$ e $-1$. Formalmente, si può dimostrare che la correlazione agisce come una sorta di prodotto scalare mentre la norma come una norma, pertanto questa proprietà (che assume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

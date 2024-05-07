@@ -9,6 +9,8 @@
   \item coefficiente di asimmetria, 17
   \item coefficiente multinomiale, 10
   \item condizione di normalizzazione, 12, 13
+  \item correlazione, 20
+  \item covarianza, 19
 
   \indexspace
 
@@ -36,16 +38,18 @@
 
   \indexspace
 
+  \item matrice di covarianza, 20
   \item mediana, 14
   \item moda, 14
-  \item momenti algebrici, 16
+  \item momento algebrico, 16, 19
+  \item momento centrale, 16
   \item momento di ordine $n$, 16
 
   \indexspace
 
   \item probabilità, 4
   \item probabilità complementare, 5
-  \item probabilità condizionata, 10
+  \item probabilità condizionata, 10, 18
 
   \indexspace
 
@@ -60,9 +64,9 @@
   \indexspace
 
   \item valore di aspettazione, 13
-  \item valore medio, 14
+  \item valore medio, 14, 16, 19
   \item variabile aleatoria, 12
   \item variabile casuale, 12
-  \item varianza, 15
+  \item varianza, 15, 16, 20
 
 \end{theindex}
