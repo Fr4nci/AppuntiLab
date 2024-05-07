@@ -6,6 +6,7 @@
   \indexspace
 
   \item coefficiente binomiale, 8
+  \item coefficiente di asimmetria, 17
   \item coefficiente multinomiale, 10
   \item condizione di normalizzazione, 12, 13
 
@@ -14,7 +15,6 @@
   \item densità di probabilità, 13
   \item deviazione standard, 15
   \item disposizione, 8
-  \item Disuguaglianza di Chebyshev, 16
   \item disuguaglianza di Chebyshev, 16
 
   \indexspace
@@ -26,6 +26,7 @@
   \indexspace
 
   \item fattoriale, 8
+  \item funzione cumulativa, 17
   \item funzione di distribuzione, 12
   \item FWHM, 15
 
@@ -37,6 +38,8 @@
 
   \item mediana, 14
   \item moda, 14
+  \item momenti algebrici, 16
+  \item momento di ordine $n$, 16
 
   \indexspace
 

@@ -13,4 +13,7 @@
 \contentsline {section}{\numberline {2.4}Teorema di Bayes}{11}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Variabili casuali e funzioni di distribuzione}{12}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Valore di aspettazione, varianza e momenti di una distribuzione}{13}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Momenti di una distribuzione}{16}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Funzione cumulativa}{17}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Variabili multi-variate}{17}{section.2.9}%
 \contentsfinish 

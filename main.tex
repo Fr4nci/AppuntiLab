@@ -74,7 +74,7 @@
 		$$
 			P(\bar{E}) = 1 - P(E)
 		$$
-		dove $P(\bar{E})$ è detta \index{probabilità complementare} di $E$
+		dove $P(\bar{E})$ è detta probabilità complementare\index{probabilità complementare} di $E$
 	}
 	\begin{myproof}
 		Sapendo che $\bar{E} \cap E = \emptyset$ ma $\bar{E} \cup E = \Omega$:
@@ -329,7 +329,7 @@ Iniziamo questa sezione introducendo il concetto di variabile casuale
 \end{itemize}}
 \noindent Occupiamoci inizialmente di una variabile discreta $x$ che può assumere $n$ valori distinti $x_1, \dots, x_n$ e indichiamo con $P(x_k)$ la probabilità che assuma il valore $x_k$ e definiamo la \index{funzione di distribuzione}\footnote{in letteratura, si indica con questa espressione anche la funzione cumulativa di una distribuzione. Nel caso continuo, un termine che useremo sarà funzione di densità di probabilità} nella seguente maniera
 \dfn{Funzione di distribuzione di $x$}{La \emph{funzione di densità di probabilità} è la funzione che associa ad ogni valore di $x_k$ della variabile la sua probabilità $P(x_k)$}
-\noindent In questo contesto il secondo assioma di Kolmogorov si scrive nella forma di una \emph{\index{condizione di normalizzazione}}, che tutte le distribuzioni di distribuzione devono rispettare:
+\noindent In questo contesto il secondo assioma di Kolmogorov si scrive nella forma di una \emph{condizione di normalizzazione}\index{condizione di normalizzazione}, che tutte le distribuzioni di distribuzione devono rispettare:
 $$
 	\sum_k P(x_k) = 1
 $$
@@ -349,7 +349,7 @@ e, dunque, la probabilità che assuma un valore compreso nell'intervallo chiuso 
 \begin{equation}
 	P(x_1, x_2) = \int_{x_1}^{x_2} p(x)dx
 \end{equation}
-In questo caso la \index{condizione di normalizzazione}, nel caso di una variabile aleatoria continua, si scrive come
+In questo caso la \emph{condizione di normalizzazione}\index{condizione di normalizzazione}, nel caso di una variabile aleatoria continua, si scrive come
 \begin{equation}
 	\int_{-\infty}^{+\infty} p(x)dx = 1
 \end{equation}
@@ -397,8 +397,8 @@ $$
 $$
 	\int\limits_{-\infty}^{\mu_{\frac{1}{2}}} p(x)dx = \int\limits_{\mu_{\frac{1}{2}}}^{+\infty} p(x)dx = \frac{1}{2}
 $$
-Per una variabile discreta non è detto che questo valore esista e sia univocamente determinato (proprio per questo la mediana è rilevante per le distribuzioni continue) e, proprietà degna di nota, è il fatto che se la funzione di distribuzione è simmetrica rispetto al valore medio, allora la media coincide con la mediana. Definiamo adesso la \index{moda}
-\dfn{Moda}{La \textbf{moda}\index{moda} di una variabile casuale $x$ è il valore della variabile casuale (se \textbf{esiste} ed è \textbf{unico}) in corrispondenza del quale la funzione ha un massimo}. \\
+Per una variabile discreta non è detto che questo valore esista e sia univocamente determinato (proprio per questo la mediana è rilevante per le distribuzioni continue) e, proprietà degna di nota, è il fatto che se la funzione di distribuzione è simmetrica rispetto al valore medio, allora la media coincide con la mediana. Definiamo adesso la \emph{moda}\index{moda} di una distribuzione
+\dfn{Moda}{La \textbf{moda} di una variabile casuale $x$ è il valore della variabile casuale (se \textbf{esiste} ed è \textbf{unico}) in corrispondenza del quale la funzione ha un massimo}. \\
 Come caratterizziamo quanto si disperde la funzione di distribuzione attorno al valore medio? Si fa definendo una funzione  il cui valore di aspettazione definisce in media quanto si disperde rispetto al valore medio, dunque "pesiamo" la dispersione rispetto al valore medio con la probabilità che la variabile aleatoria assume quello specifico valore. \\
 Che funzione possiamo prendere? Una funzione del tipo $f(x) = x - \mu$ non va bene siccome:
 $$
@@ -451,8 +451,8 @@ prende il nome di {\it half width at half maximum}\index{HWHM}\ignorespaces
 	\text{HWHM} = c \sigma
 \end{equation}
 con $c$ dell'ordine delle unità.
-\nt{In un certo senso possiamo affermare che geometricamente la deviazione standard rappresenta una sorta di \emph{larghezza della distribuzione} che stiamo considerando, anche se la disuguaglianza di Chebyshev \index{disuguaglianza di Chebyshev}\ignorespaces che andremo a considerare fra poco lo renderà ancora più chiaro}
-\thm{Disuguaglianza di Chebyshev\index{Disuguaglianza di Chebyshev}\ignorespaces}{Sia $x$ una variabile casuale tale che esistano finiti la media $\mu$ e la varianza $\sigma^2$; preso $c \in \mathbb{R}^+$ si ha che
+\nt{In un certo senso possiamo affermare che geometricamente la deviazione standard rappresenta una sorta di \emph{larghezza della distribuzione} che stiamo considerando, anche se la \emph{disuguaglianza di Chebyshevv} che andremo a considerare fra poco lo renderà ancora più chiaro}
+\thm{Disuguaglianza di Chebyshev\index{disuguaglianza di Chebyshev}\ignorespaces}{Sia $x$ una variabile casuale tale che esistano finiti la media $\mu$ e la varianza $\sigma^2$; preso $c \in \mathbb{R}^+$ si ha che
 \begin{equation}
 	P(|x-\mu| \geq c\sigma) \leq \frac{1}{c^2} 
 \end{equation}
@@ -467,6 +467,70 @@ $$
 	c^2 \cancel{\sigma^2} P(|x-\mu| \geq c\sigma) \leq \cancel{\sigma^2} \implies P(|x-\mu| \geq c\sigma) \leq \frac{1}{c^2}
 $$
 \end{myproof}
+\section{Momenti di una distribuzione}
+Generalizziamo alcune definizioni che abbiamo dato su alcuni parametri di una distribuzione introducendo il concetto di \emph{momento di ordine $n$}\index{momento di ordine $n$} di una variabile casuale $x$ attorno ad un punto $x_0$
+\dfn{Momento di ordine $n$ attorno al punto $x_0$}{Il momento di ordine $n$ di una variabile casuale $x$ attorno al punto $x_0$ si definisce come il valore di aspettazione di $f(x) = (x-x_0)^n$, dunque
+\begin{equation}
+	\mathcal{M}_n(x_0) = E[(x-x_0)^n] = \begin{cases} \sum\limits_{k} (x_k - x_0)^n P(x_k) \\ \int\limits_{-\infty}^{+\infty} (x-x_0)^n p(x)dx	\end{cases}
+\end{equation}
+}
+\noindent Hanno rilevanza particolare i \underline{momenti algebrici}\index{momenti algebrici} $\lambda_n$, ossia i momenti di ordine generico attorno al punto $x_0 = 0$
+$$
+	\lambda_n = \mathcal{M}_n(0)
+$$
+ed i \underline{momenti centrali} $\mu_n$, ossia i momenti di ordine generico attorno al valor medio $\mu$ di $x$
+$$
+	\mu_n = \mathcal{M}_n(\mu)
+$$
+dunque possiamo dire che il valor medio è il momento algebrico di ordine 1 e la varianza invece è il momento centrale di ordine 2. Oltre al valor medio e alla varianza, sono utili i momenti centrali di ordine 3 siccome sono i primi momenti di ordine dispari a non annullarsi e poiché misurano l'eventuale asimmetria della funzione di distribuzione, pesando con il segno le code a destra e a sinistra della media. Troviamo una forma più agevole per calcolare $\mu_3$
+$$
+	\mu_3 = E[(x-\mu)^3] = E [ x^3 - \mu^3 -3x^2 \mu + 3x \mu^2 ] \implies E[x^3] - 3\mu E[x^2] + 3\mu^2 E[x] - \mu^3
+$$
+e siccome $\sigma^2 = E[x^2] - \mu^2 \implies E[x^2] = \sigma^2 + \mu^2$ allora
+$$
+	\mu_3 = E[x^3] - 3 \mu (\sigma^2 + \mu^2) + 3 \mu^3 - \mu^3 = E[x^3] - 3 \sigma^2 \mu - \mu^3
+$$
+A questo punto, definiamo il \emph{coefficiente di asimmetria} $\gamma_1$\index{coefficiente di asimmetria}
+\dfn{Coefficiente di asimmetria $\gamma_1$}{Il coefficiente di asimmetria si definisce come il rapporto fra il momento algebrico di ordine $n=3$ ($\mu_3$) e la deviazione standard al cubi ($\sigma^3$)
+\begin{equation}
+	\gamma_1 = \frac{\mu_3}{\sigma^3}
+\end{equation}
+e si tratta di una quantità adimensionale che vale zero per le distribuzioni simmetriche rispetto al valore medio e che è diversa da zero se la funzione di distribuzione presenta una coda più lunga dell'altra: nel caso in cui di $\gamma_1 > 0 \implies$ la coda a destra è più lunga.
+}
+\section{Funzione cumulativa}
+Data una variabile casuale $x$ la \emph{funzione cumulativa} è definita come
+\dfn{Funzione cumulativa}{La \textbf{funzione cumulativa}\index{funzione cumulativa} è definita come
+\begin{equation}
+	F(x') = P(x \leq x')
+\end{equation}
+e si indica solitamente con lo stesso nome della funzione di distribuzione siccome ha il suo stesso dominio. In maniera operativa, possiamo affermare che
+\begin{equation}
+	F(x) = \begin{cases} \sum\limits_{x_k \leq x} P(x_k) \\ \int\limits_{-\infty}^{x} p(t)dt \end{cases}
+\end{equation}
+}
+\noindent La funzione cumulativa è una funzione \textbf{monotona crescente} e, per la condizione di normalizzazione, si deve avere che
+\begin{align*}
+	&\lim_{x \to -\infty} F(x) = 0 & &\lim_{x \to +\infty} F(x) = 1
+\end{align*}
+Inoltre, siccome è strettamente crescente e continua, è invertibile, dunque esiste uno ed un solo valore di $x$ per cui $F(x) = q$. E' possibile quindi definire un inverso della funzione cumulativa che viene chiamata \emph{funzione di distribuzione inversa}
+\section{Variabili multi-variate}
+La nostra discussione, fino ad adesso, si è concentrata sulla variabili casuali singolo. Come possiamo caratterizzare un insieme di variabili casuali $x_1, \dots, x_n$? In maniera più banale di quanto si creda, si potrebbe pensare di considera la funzione di distribuzione congiunta che, ad ogni punto del polirettangolo $A_1 \cup A_2 \cup \dots \cup A_n$, associa la probabilità che le variabili assumano quel \emph{set} di valori. \\
+Consideriamo, per semplicità, due variabili casuali continue $x_1$ e $x_2$ descritta dalla densità di probabilità congiunta $p(x_1, x_2)$ tale che
+\begin{equation}
+	p(x_1, x_2) \geq 0 \wedge \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} p(x_1, x_2) dx_1dx_2 = 1
+\end{equation}
+La probabilità che la coppia ordinata $(x_1, x_2) \subset A$ è pari a
+\begin{equation}
+	\iint_A p(x_1, x_2) dx_1dx_2
+\end{equation}
+e possiamo sempre definire il valore di aspettazione per una generica funzione $f(x_1, x_2)$ come
+\begin{equation}
+	E[f(x_1, x_2)] = \int\limits_{-\infty}^{+\infty} \int\limits_{-\infty}^{+\infty} f(x_1, x_2)p(x_1, x_2)dx_1dx_2
+\end{equation}
+
+
+
+
 
 \pagebreak
 \printindex
