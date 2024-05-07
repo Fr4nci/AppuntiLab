@@ -627,8 +627,32 @@ La correlazione\index{correlazione} è una versione \emph{riscalata} della covar
 \end{equation}
 e possiede tutte le "proprietà" della matrice di covarianza.
 }
-La correlazione misura quanto sono \emph{correlate} fra loro due variabili aleatorie, siccome la correlazione assume tutti i valori compresi fra $1$ e $-1$. Formalmente, si può dimostrare che la correlazione agisce come una sorta di prodotto scalare mentre la norma come una norma, pertanto questa proprietà (che assume
-
+\nt{La correlazione misura quanto sono \emph{correlate} fra loro due variabili aleatorie, siccome la correlazione assume tutti i valori compresi fra $1$ e $-1$. Formalmente, si può dimostrare che la correlazione agisce come una sorta di prodotto scalare mentre la norma come una norma, pertanto questa proprietà (ovvero quella che assume i valori compresi in $[-1;1]$ deriva da Cauchy-Schwartz)}
+\noindent Due variabili $x_1$ e $x_2$ sono \emph{scorrelate} se $\text{Corr}(x_1, x_2) = 0$, altrimenti diciamo che se $\text{Corr}(x_1, x_2) > 0 \implies x_1, x_2$ sono \emph{positivamente correlate} altrimenti sono \emph{negativamente correlate}. Assume il valore di $1$ (o $-1$) quando dipendono linearmente una dall'altra: infatti se
+$$
+	x_2 = mx_1 + q \implies \text{Corr}(x_1, x_2) = \frac{\text{Cov}(x_1, x_2)}{\sigma_{x_1}\sigma_{x_2}} = \frac{\text{Cov}(x_1, mx_1 + q)}{\sigma_{x_1}\sigma_{mx_1 + q}}
+$$
+tuttavia si ha che $\sigma_{x_2} = \sqrt{E[(mx_1 + 	q - m\mu - q)^2]} = |m|\sigma_1$, dunque
+$$
+	\text{Corr}(x_1, x_2) = \frac{\text{Cov}(x_1, mx_1 + q)}{|m|\sigma_{x_1}^2} = \frac{\text{Cov}(x_1, mx_1) + \text{Cov}(x_1, q)}{|m|\sigma_{x_1}^2} = \frac{m\sigma_{x_1}^2}{|m|\sigma_{x_1}^2} = \frac{m}{|m|} = \pm 1
+$$
+Analogamente alla covarianza, si definisce anche una \emph{matrice di correlazione}\index{matrice di correlazione} come
+\dfn{Matrice di correlazione}{
+\begin{align}
+\mathcal{R} = \begin{bmatrix}
+	\text{Corr}(x_1, x_1) & \text{Corr}(x_1, x_2) & \ldots & \text{Corr}(x_1, x_n) \\
+	\text{Corr}(x_2, x_1) & \text{Corr}(x_2, x_2) & \ldots & \text{Corr}(x_2, x_n) \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\text{Corr}(x_n, x_1) & \text{Corr}(x_n, x_2) & \ldots & \text{Corr}(x_n, x_n)
+\end{bmatrix} = \begin{bmatrix}
+	1 & \text{Corr}(x_1, x_2) & \ldots & \text{Corr}(x_1, x_n) \\
+	\text{Corr}(x_2, x_1) & 1 & \ldots & \text{Corr}(x_2, x_n) \\
+	\vdots & \vdots & \ddots & \vdots \\
+	\text{Corr}(x_n, x_1) & \text{Corr}(x_n, x_2) & \ldots & 1
+\end{bmatrix}
+\end{align}}
+\chapter{Variabili campione e propagazione dell'errore statistico}
+Ritorniamo però al motivo per cui abbiamo voluto introdurre degli strumenti statistici: ci siamo accorti che l'errore massimo non è adatto per descrivere le incertezze che si compiono effettuando una misura di una determinata grandezza fisica. Adesso però guardiamo la questione da un punto di vista "nuovo": infatti possiamo immaginare che quando misuriamo una grandezza fisica, in particolare quando il valore della misura fluttua, possiamo pensare che il valore stesso sia una variabile aleatoria con una particolare distribuzione (che a priori \textbf{non} è nota) che chiamiamo \emph{distribuzione generatrice}\index{distribuzione generatrice}. \\
 
 
 
