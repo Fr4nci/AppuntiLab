@@ -722,12 +722,51 @@ Tuttavia torniamo alla questione originale: se abbiamo una serie di misure $x_i 
 	E[m] = E \left[ \frac{1}{n} \sum_{i = 1} x_i \right] = \frac{1}{n} \sum_{i = 1} E[x_i] = \frac{1}{n} \cdot n\mu = \mu
 \end{equation*}
 e un estimatore che soddisfa questa proprietà si dice \emph{imparziale}. \\
-La questione della varianza 
-
-
-
-
-
+La questione della varianza è più complicata siccome l'analogo per la varianza sarebbe la seguente
+\begin{equation}
+	s^2 = \frac{1}{n} \sum_{i = 1}^n (x_i - \mu)^2
+\end{equation}
+che si tratta di un estimatore imparziale, siccome si osserva che
+$$
+	E[s^2] = E \left[ \frac{1}{n} \sum_{i = 1} (x_i - \mu)^2 \right] = \frac{1}{n} E \left[(x_i - \mu)^2 \right] = \sigma^2
+$$
+ma a priori non conosciamo $\mu$. Come migliore stima della varianza potremmo considerare dunque la \emph{varianza campione}
+\begin{equation}
+	s_n^2 = \frac{1}{n} \sum_{i = 1}^n (x_i - m)^2
+\end{equation}
+E quindi ci potremmo chiedere se il valore di aspettazione della varianza campione sia ancora pari a $\sigma$. Facendo la derivata rispetto ad una generica stima della media, si osserva che
+\begin{equation*}
+	\frac{d}{d \xi} s_n^2 = -\frac{1}{n} \sum_{i = 1} 2 (x_i - \xi) = \frac{2}{n} \left( \sum_{i=1} x_i - \sum_{i = 1} \xi \right) = \frac{2}{n}(nm - n\xi) = 2(m - \xi)
+\end{equation*}
+dunque la media campionaria è la media che minimizza la stima della varianza campione, dunque questo ci dice che, in media, $s_n^2$ è una sottostima di $\sigma^2$. Calcoliamo il valore di aspettazione di $s_n^2$, che risulta essere pari a
+\begin{equation*}
+	E[s_n^2] = E \left[ \frac{1}{n}\sum_{i = 1}^n (x_i - m)^2 \right] = \frac{1}{n} \sum_{i=1}^n E \left[x_i^2 + m^2 -2mx_i \right] = \frac{1}{n} \sum_{i=1}^n \left( E[x_i^2] + E[m^2] - 2E[mx_i] \right)
+\end{equation*}
+Sapendo che $E[x_i^2] = \sigma^2 + \mu^2$, ci resta da calcolare solo $E[m^2]$ e $E[mx_i]$. Si osserva che $E[m^2]$
+\begin{align*}
+	&E[m^2] = E \left[ \left( \frac{1}{n}\sum_{i=1}^n x_i \right)^2 \right] = \frac{1}{n^2} E \left[ \left(\sum_{i, j = 1}^n x_ix_j \right) \right] = \frac{1}{n^2} E \left[ \left(\sum_{i = 1}^n x_i^2 + \sum_{i = 1}^n \sum_{j \neq i}^n x_ix_j \right) \right] = \frac{1}{n^2} \left( E \left[ \sum_{i=1}^n x_i^2 \right] + E \left[ \sum_{i=1}^n \sum_{j \neq i}^n x_i x_j \right] \right) = \\
+	&= \frac{1}{n^2} \left( n(\sigma^2 + \mu^2) + E \left[ \sum_{i = 1}^n \sum_{j \neq i} x_i x_j \right] \right)
+\end{align*}
+Si osserva però che la sommatoria $E \left[\sum\limits_{i=1}^n \sum\limits_{j \neq i} x_i x_j \right]$, tramite linearità dell'operatore di aspettazione, può essere trasformata come
+$$
+E \left[ \sum_{i=1}^n \sum_{j \neq i} x_i x_j \right] = \sum_{i = 1}^n \sum_{j \neq i}^n E[x_i]E[x_j] = \sum_{i = 1}^n (n-1)\mu^2 = n(n-1)\mu^2
+$$
+dunque, abbiamo che
+$$
+	E[m^2] = \frac{1}{n^2}[n(\sigma^2 + \mu^2) + n(n-1)\mu^2] = \frac{1}{n^2}[n \sigma^2 + n \mu^2 + n^2 \mu -n \mu^2] = \frac{1}{n}\sigma^2 + \mu^2
+$$
+Per quando riguarda il valore di aspettazione di $E[mx_i]$ si ha che
+$$
+E[mx_i] = E \left[ \frac{1}{n} \sum_{j=1}^n x_j x_i \right] = \frac{1}{n} E \left[x_i^2 + \sum_{j\neq i} x_i x_j \right] = \frac{1}{n} \left(E[x_i^2] + \sum_{j \neq i} E[x_i]E[x_j] \right) = \frac{1}{n} \left[\sigma^2 + \mu^2 + (n-1)\mu^2 \right] = \frac{\sigma^2}{n} + \mu^2 
+$$
+Rimettendo tutto insieme si osserva che nessuno di questi valori dipende dall'indice i, dunque
+$$
+E[s_n^2] = \frac{1}{n} \sum_{i=1}^n E[x_i^2] + E[m^2] - 2E[mx_i] = \frac{1}{n} \cdot n \left( \frac{\sigma^2}{n} + \mu^2 - 2\frac{\sigma^2}{n} - 2\mu^2 + \sigma^2 + \mu^2 \right) = \frac{n-1}{n}\sigma^2
+$$
+Tuttavia si osserva che $s_{n}^2$ non è uno stimatore imparziale, ma solo asintoticamente (e.g. se $n \to +\infty$ si ha che $\frac{n-1}{n} \sim 1$) dunque per ovviare a ciò si moltiplica il nostro stimatore $s_n$ per il fattore correttivo $\frac{n}{n-1}$ trasformandolo nello stimatore $s_{n-1}^2$
+\begin{equation}
+	s_{n-1}^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - m)^2
+\end{equation}
 
 
 
