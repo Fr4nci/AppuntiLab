@@ -536,11 +536,11 @@ Tuttavia come possiamo scrivere questa probabilità? Si potrebbe pensare che, in
 	p(x_1 | x_2) = \frac{p(x_1, x_2)}{ \int\limits_{-\infty}^{+\infty} p(x_1, x_2) dx_1 }
 \end{equation*}
 
-\dfn{Probabilità condizionata di due variabili dipendenti\index{probabilità condizionata}}{La probabilità condizionata di $x_1$ relativamente a $x_2$ (fissato) è definita come
+\dfn{Probabilità condizionata di due variabili dipendenti\index{probabilità condizionata}}{La \textbf{probabilità condizionata} di $x_1$ relativamente a $x_2$ (fissato) è definita come
 \begin{equation} \label{eq:dipend_norm}
 	p(x_1 | x_2) = \frac{p(x_1, x_2)}{\int\limits_{-\infty}^{+\infty} p(x_1, x_2)dx_1}
 \end{equation}
-Definiamo densità di probabilità marginale il denominatore della precedente formula (siccome dopo l'integrazione sarà esclusivamente in funzione di $x_2$ e non più di $x_1$)
+Definiamo \textbf{densità di probabilità marginale}\index{densità di probabilità marginale} il denominatore della precedente formula (siccome dopo l'integrazione sarà esclusivamente in funzione di $x_2$ e non più di $x_1$)
 \begin{equation}
 	p_2(x_2) = \int_{-\infty}^{+\infty} p(x_1, x_2) dx_1
 \end{equation}
@@ -654,17 +654,75 @@ Analogamente alla covarianza, si definisce anche una \emph{matrice di correlazio
 \chapter{Variabili campione e propagazione dell'errore statistico}
 Ritorniamo però al motivo per cui abbiamo voluto introdurre degli strumenti statistici: ci siamo accorti che l'errore massimo non è adatto per descrivere le incertezze che si compiono effettuando una misura di una determinata grandezza fisica. Adesso però guardiamo la questione da un punto di vista "nuovo": infatti possiamo immaginare che quando misuriamo una grandezza fisica, in particolare quando il valore della misura fluttua, possiamo pensare che il valore stesso sia una variabile aleatoria con una particolare distribuzione (che a priori \textbf{non} è nota) che chiamiamo \emph{distribuzione generatrice}\index{distribuzione generatrice}. \\
 In questo schema concettuale fare $n$ misure di una stessa grandezza fisica in condizioni di ripetitività equivale a \emph{campionare} $n$ volte la distribuzione generatrice che caratterizza quel determinato misurando. E' ovvio che non potremo \underline{mai} conoscere completamente la forma della distribuzione generatrice, ma in maniera intuitiva possiamo pensare che, effettuando sempre più misurazioni, inizieremo ad acquisire progressivamente sempre più informazioni su di essa: se pensiamo di fare un numero molto grande di misure (e.g. $n \to +\infty$) e riportiamo i risultati di queste misure in un istogramma allora ci aspettiamo che la forma di questo diventi sempre più simile a quello della distribuzione generatrice.   \\
-Possiamo quindi intravedere un nuovo modo per operare, ovvero quello di scrivere il risultato di una misura come il valore centrale e di un'incertezza ad esso associato
-
-
-
-
-
-
-
-
-
-
+Possiamo quindi intravedere un nuovo modo per operare, ovvero quello di scrivere come migliore stima della grandezza il valore centrale della distribuzione e come incertezza la deviazione standard. \\
+Il nuovo errore si presenterà dunque in questa maniera:
+\begin{equation} \label{misura}
+	x = \hat{x} \pm \sigma_x \, [ \text{unità di misura} ]
+\end{equation}
+\section{Campionamenti singoli e ripetuti}
+\subsection{Campionamenti singoli}
+Se conosciamo a priori la deviazione standard $\sigma$ della distribuzione generatrice del misurando (ma anche avendone una stima) che stiamo, per appunto, \emph{misurando} allora una singola misura (ovvero un singolo campionamento) è sufficiente per definire tutte le componenti della~\ref{misura}: prenderemo il singolo valore misurato come valore centrale e $\sigma$ come incertezza associata. \\
+Se conosciamo inoltre la forma della distribuzione possiamo anche determinare il livello di confidenza associato ad una deviazione standard, oppure utilizzare come stima dell'incertezza un multiplo o sottomultiplo della deviazione standard per ottenere un livello di confidenza fissato a priori. \\
+\ex{Esempi di campionamenti singoli sapendo la deviazione standard a priori}{\begin{itemize}
+	\item Supponiamo di avere un pesi $m$ di un oggetto con una bilancia digitale con una risoluzione di $1 \, \si{\gram}$. Se il valore indicato dal display è $58 \, \si{\gram}$, possiamo assumere che, in assenza di errori sistematici, la distribuzione generatrice del misurando sia uniforme tra $57.5 \, \si{\gram}$ e $58.5 \, \si{\gram}$ e possiamo utilizzare la deviazione standard della funzione uniforme che risulta essere pari a $\sigma = \sqrt{\text{Var}(x)} = \sqrt{\frac{1}{12}} \, \si{\gram}$ e il livello di confidenza (ovvero la probabilità che la variabile disti meno di una deviazione standard) è pari al $58 \%$, dunque
+	$$
+		m = 58.00 \pm 0.29 \, \si{\gram} \, \, (58 \% \, CL)
+	$$
+	\item Il ragionamento che abbiamo fatto prima si applica alla misura di una lunghezza con il metro a nastro e, più in generale a tutti gli strumenti digitali (se decidiamo di non interpolare tra le divisioni)
+	\item In generale gli strumenti si possono \emph{calibrare} tramite misure ripetute di grandezze di riferimento oppure tramite uno strumento di misura più accurato (o usando un metodo indipendente)
+\end{itemize}
+}
+\subsection{Interludio: somma di variabili aleatorie}
+\noindent Il problema si pone quando non conosciamo a priori la deviazione standard della nostra misura: come possiamo fare in tal caso?
+In primis dobbiamo sapere che cosa accade quando sommiamo due o più variabili casuali: in generale non è banale individuare qual è la "forma" della funzione di distribuzione di $x = \sum\limits_i x_i$, tuttavia possiamo determinare abbastanza facilmente alcuni parametri che caratterizzano la variabile aleatoria $x$, infatti:
+$$
+	E[x] = E \left[ \sum_i x_i \right] = \sum_i E[x_i] = \sum_i \mu_i
+$$
+La varianza è più complicata (e ci limiteremo quindi al caso, generalizzabile, di due variabili aleatorie)
+\begin{align*}
+	&\text{Var}(x) = E[(x-\mu)^2] = E[x^2] - 2\mu E[x] + E[\mu^2] = E[(x_1 + x_2)^2] - 2(\mu_1 + \mu_2)^2 + (\mu_1 + \mu_2)^2 & \\
+	&= E[x_1^2] + E[x_2^2] + 2E[x_1 x_2] - (\mu_1 + \mu_2)^2 = \\  &= E[x_1^2] + E[x_2^2] + 2\text{Cov}(x_1, x_2) - \mu_1^2 - \mu_2^2 - 2\mu_1 \mu_2 = E[x_1^2] - \mu_1^2 + E[x_2^2] - \mu_2^2 + 2\text{Cov}(x_1, x_2) = \text{Var}(x_1) + \text{Var}(x_2) + 2\text{Cov}(x_1, x_2)
+\end{align*}
+Nel caso in cui $x_1$ e $x_2$ siano variabili aleatorie indipendenti, sappiamo che $\text{Cov}(x_1, x_2) = 0$ siccome si ha necessariamente che $E[x_1 x_2] = E[x_1]E[x_2]$, dunque:
+\mprop{Valore medio e varianza della somma di variabili indipendenti}{Sia $x = \sum_i x_i$ con $p(x_i)p(x_j)=p(x_i \cap x_j) \forall i \neq j$($x$ è somma di eventi indipendenti) allora
+\begin{align*}
+	&\mu = \sum_{i = 1} E[x_i] \, &\text{e} \, &\text{Var}(x) = \sqrt{\sum_{i=1} \sigma_i^2}
+\end{align*}
+}
+\begin{myproof}
+Si procede per induzione su $n$. Per $n=1$ si osserva che
+$$ E[x] = \sum_{i = 1} E[x_i] = \mu_1 $$
+adesso mostriamo che $n \implies n+1$:
+$$
+	E[x] = \sum_{i = 1}^{n+1} E[x_i] = \sum_{i=1}^{n} E[x_i] + \mu_{n+1} = \mu_n + \mu_{n+1} = \sum_{i = 1}^{n+1} \mu_i
+$$
+Per la varianza si procede alla stessa maniera, sapendo che $\text{Cov}(x_{n}, x_{n+1}) = 0$
+\end{myproof}
+\noindent Comunque si osservi che
+\begin{equation}
+	\sqrt{\sum_{i = 1} \sigma_i^2} \leq \sum_{i = 1} \sigma_i
+\end{equation}
+\begin{myproof}
+	Si osservi che siccome $\sigma_i^2 + \sigma_j^2 \leq \sigma_i^2 + \sigma_j^2 + 2\sigma_i \sigma_j = (\sigma_i + \sigma_j)^2$ si deve avere che
+	$$
+		\sqrt{\sum_{i} \sigma_i^2} \leq \sqrt{ \left( \sum_{i=1} \sigma_i \right)^2} = \sum_{i=1} \sigma_i
+	$$
+\end{myproof}
+\noindent Abbiamo dunque dimostrato che \emph{date $n$ variabili casuali indipendenti la \textbf{media della somma} è uguale alla \textbf{somma delle medie} e la \textbf{varianza della somma} è uguale alla \textbf{somma delle varianze}}
+\nt{Un esempio interessante che può essere visto, soprattutto perché utile quando tratteremo la distribuzione di Cauchy, è il cosiddetto \emph{random walk}}
+\subsection{Misure ripetute}
+Tuttavia torniamo alla questione originale: se abbiamo una serie di misure $x_i \wedge i \in I={1, \ldots, n}$ indipendenti di una stessa grandezza $x$ fatte in condizione di ripetitività, quali sono le migliori stime che possiamo dare della media $\mu$ e della varianza $\sigma^2$ della distribuzione generatrice? Come stima della media possiamo pensare di prendere la media aritmetica delle misure, chiamata \emph{media campione}:
+\dfn{Media campione\index{media campione}}{
+\begin{equation}
+	m = \frac{1}{n} \sum_{i = 1}^{n} x_i
+\end{equation}
+}
+\noindent La media campione ha la proprietà che il suo valore di aspettazione è uguale alla media della distribuzione generatrice:
+\begin{equation*}
+	E[m] = E \left[ \frac{1}{n} \sum_{i = 1} x_i \right] = \frac{1}{n} \sum_{i = 1} E[x_i] = \frac{1}{n} \cdot n\mu = \mu
+\end{equation*}
+e un estimatore che soddisfa questa proprietà si dice \emph{imparziale}. \\
+La questione della varianza 
 
 
 
