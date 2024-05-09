@@ -21,4 +21,6 @@
 \contentsline {subsection}{\numberline {3.1.1}Campionamenti singoli}{22}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Interludio: somma di variabili aleatorie}{23}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Misure ripetute}{24}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Covarianza e correlazione campione}{26}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Media e varianza di una funzione a variabili casuali}{27}{section.3.3}%
 \contentsfinish 

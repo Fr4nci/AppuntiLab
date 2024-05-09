@@ -668,6 +668,7 @@ Se conosciamo inoltre la forma della distribuzione possiamo anche determinare il
 	$$
 		m = 58.00 \pm 0.29 \, \si{\gram} \, \, (58 \% \, CL)
 	$$
+	si osserva infatti che la probabilità che si trovi entro una deviazione standard è pari a $\int\limits_{58-\frac{1}{\sqrt{12}}}^{58+\frac{1}{12}} \frac{1}{(58.5-57.5) \, \si{\gram}} dm \approx 0.577$
 	\item Il ragionamento che abbiamo fatto prima si applica alla misura di una lunghezza con il metro a nastro e, più in generale a tutti gli strumenti digitali (se decidiamo di non interpolare tra le divisioni)
 	\item In generale gli strumenti si possono \emph{calibrare} tramite misure ripetute di grandezze di riferimento oppure tramite uno strumento di misura più accurato (o usando un metodo indipendente)
 \end{itemize}
@@ -767,8 +768,73 @@ Tuttavia si osserva che $s_{n}^2$ non è uno stimatore imparziale, ma solo asint
 \begin{equation}
 	s_{n-1}^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - m)^2
 \end{equation}
-
-
+\nt{Una domanda che può sorgere è quale delle due stimatori sia più giusto: si tratta di una domanda non banale, tuttavia sappiamo che per un numero molto grande di campioni sono asintoticamente imparziali entrambi, mentre per campioni piccoli la domanda non è scontata. Dai grafici riportati nelle dispense del Baldini si osserva che per $n > 10$ i due stimatori sono compatibili entro il $10 \, \%$ tuttavia per un numero di campioni ancora più basso la domanda è ancora presente. \\
+Si deve osservare che il fattore correttivo fa in modo per campioni piccolo lo stimatore $s_n^2$ sia più corretto di quello imparziale, oltre al fatto che rende la coda di destra ancora più pronunciata. Un'altra considerazione che si può fare deriva dal fatto che lo stimatore $s_{n-1}^2$ è uno stimatore imparziale per $\sigma^2$ ma non per $\sigma$
+}
+\noindent Dunque, dopo essersi dilungati anche fin troppo sugli estimatori statistici, ritorniamo alla domanda iniziale: come posso scrivere il risultato di una misura? \\
+Il candidato ideale per il valore centrale sarebbe la media campionaria, mentre per l'incertezza associata non possiamo utilizzare la varianza campione, siccome essa rappresenta le fluttuazione della singola misura (rispetto al valore medio) ma non quella del valore centrale.  \\
+Tuttavia la media campione, essendo somma di variabili aleatorie, sarà anch'essa una variabile casuale, dunque se siamo interessati alle sue fluttuazioni
+$$
+	\text{Var}(m) = \text{Var} \left( \frac{1}{n} \sum_{i = 1}^n x_i \right) = \frac{1}{n^2} \text{Var} \left( \sum_{i=1}^n x_i \right) = \frac{1}{n^2} \cdot n\sigma^2 = \frac{\sigma^2}{n} 
+$$
+Banalmente, la deviazione standard della media risulta quindi essere
+\begin{equation}
+	\sigma_m = \sqrt{\frac{\sigma^2}{n}} = \frac{\sigma}{\sqrt{n}}
+\end{equation}
+e utilizzando la stima della varianza campione possiamo dire che
+\begin{equation}
+	s_m = \sqrt{\frac{1}{n(n-1)}\sum_{i=1}^n (x_i-m)^2}
+\end{equation}
+dunque la nostra misura possiamo scriverla come
+$$
+	x = m \pm s_m
+$$
+\section{Covarianza e correlazione campione}
+Supponiamo di avere una serie di campionamenti $x_i$ ed $y_i$ con $i \in I={1, \ldots, n}$ di due variabili aleatorie $x, y$, ovverosia abbiamo di fatto misurato $n$ coppie ordinate $(x_i, y_i)$. Se indichiamo le medie campionarie, rispettivamente, dalla variabile $x$ e della variabile $y$ con
+\begin{align*}
+	&m_x = \frac{1}{n} \sum_{i = 1}^n x_i \, &\text{e} \, &m_y  = \frac{1}{n} \sum_{i = 1}^n y_i
+\end{align*}
+possiamo stimare la covarianza, proprio come abbiamo fatto con la varianza, tramite la covarianza del campione
+\begin{equation}
+	q_{xy} = \frac{1}{n-1} \sum_{i=1}^n (x_i - m_x)(y_i - m_y)
+\end{equation}
+\nt{Il termine $n-1$ deriva sempre dalla cosiddetta "\emph{correzione di Bessel}" ovvero quello che abbiamo fatto prima riguardo allo stimatore statistico della varianza campione}
+\noindent Dunque la stima delle correlazione $r_{xy}$ campionaria si scrive tramite le stime della varianza campione delle due variabili $x$ e $y$:
+\begin{align*}
+	&s_x^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - m_x)^2 \, &\text{e} \, &s_y^2 = \frac{1}{n-1} \sum_{i=1}^n (y_i - m_y)^2
+\end{align*}
+dunque
+\begin{equation}
+	r_{xy} = \frac{q_{xy}}{s_x s_y} = \frac{\frac{1}{n-1}\sum\limits_{i=1}^n (x_i-m_x)(y_i-m_y)}{\sqrt{\frac{1}{n-1} \sum\limits_{i=1}^n (x_i - m_x)^2 \frac{1}{n-1} \sum\limits_{i=1}^n (y_i - m_y)^2}} = \frac{\sum\limits_{i=1}^n (x_i - m_x)(y_i - m_y)}{\sqrt{\sum\limits_{i=1}^n (x_i - m_x) \sum\limits_{i=1}^n (y_i - m_y)^2}}
+\end{equation}
+e talvolta viene chiamato anche come \emph{coefficiente di correlazione lineare} o \emph{indice di correlazione di Pearson}: infatti uno dei metodi più semplici per verificare se sussiste una correlazione tra due variabili di un campione è quello di riportare i dati in un grafico di dispersione.
+La cosa interessante è il fatto che è possibile, in questa maniera, andare a scrivere la covarianza campione fra due misure come
+\begin{equation}
+	q_{xy} = r_{xy} s_x s_y
+\end{equation}
+\section{Media e varianza di una funzione a variabili casuali}
+Se abbiamo una generica funzione $f(x)$ come possiamo stimare media e varianza? In generale ci aspettiamo che i valori di $x$ tendano a concentrarsi maggiormente attorno al valore medio, dunque possiamo partire dall'approssimare la funzione tramite sviluppo di Taylor al primo ordine:
+$$
+	f(x) \approx f(\mu) + \frac{df}{dx}{\Big |}_{x=\mu} (x-\mu)
+$$
+quindi, si ha che
+$$
+\mu_f = E[f(x)] \approx E \left[ f(\mu) + \frac{df}{dx}{\Big |}_{x=\mu} (x-\mu) \right] = E[f(\mu)] + E \left[ \frac{df}{dx}{\Big |}_{x=\mu} (x-\mu) \right] = f(\mu) + \frac{df}{dx}{\Big |}_{x = \mu} E[x-\mu] = f(\mu)
+$$
+dunque abbiamo che
+\begin{equation*}
+	\mu_f \approx f(\mu)
+\end{equation*}
+La stima della varianza è leggermente più complicata, ma nel caso ad una singola variabile rimane comunque banale siccome
+\begin{align*}
+	\sigma_f^2 = E[(f(x) - f(\mu))^2] \approx E \left[ \left( \frac{df}{dx}{\Big |}_{x=\mu}(x-\mu) \right)^2 \right] = \left( \frac{df}{dx} {\Big |}_{x = \mu} \right)^2 E[(x-\mu)^2] = \left( \frac{df}{dx}{\Big |}_{x=\mu} \right)^2 \sigma_x^2
+\end{align*}
+\dfn{Media e varianza di una generica funzione $f(x)$}{Sia $f(x)$ una generica funzione e $x$ variabile aleatoria, il valore medio di $f(x)$ e la varianza sono rispettivamente
+\begin{align*}
+	&\mu_f \approx f(\mu) & &\sigma_f^2 \approx \left( \frac{df}{dx} {\Big |}_{x=\mu} \right)^2 \sigma_x^2
+\end{align*}
+}
+Nel caso di funzioni che dipendono da un certo numero di variabili casuali $x_1$, $x_2, \, \ldots, \, x_n$
 
 
 
