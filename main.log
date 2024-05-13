@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.14)  9 MAY 2024 16:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.14)  13 MAY 2024 22:08
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1685,6 +1685,8 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
 )
 \tf@toc=\write6
 \openout6 = `main.toc'.
@@ -1749,15 +1751,49 @@ Overfull \hbox (68.46217pt too wide) detected at line 686
 []
  []
 
-[23]
-Overfull \hbox (9.2429pt too wide) detected at line 750
+[23] [24]
+Overfull \hbox (9.2429pt too wide) detected at line 752
 []
  []
 
-[24] [25] [26] [27]
+[25] [26] [27]
+Underfull \hbox (badness 10000) in paragraph at lines 862--864
+
+ []
+
+[28]
+Capitolo 4.
+[29
+
+] [30]
+Overfull \hbox (3.44334pt too wide) detected at line 961
+[][][]\OML/npxmi/m/it/10 E\LMS/npxsy/m/n/10 »\OML/npxmi/m/it/10 k[]\LMS/npxsy/m
+/n/10 ¼ \U/npxmia/m/it/10 = \OML/npxmi/m/it/10 p\LMS/npxsy/m/n/10 ¹\OT1/cmr/m/n
+/10 1 \LMS/npxsy/m/n/10 ^^@ \OML/npxmi/m/it/10 p\LMS/npxsy/m/n/10 º[]\OML/npxmi
+/m/it/10 E\LMS/npxsy/m/n/10 »\OML/npxmi/m/it/10 k[]\LMS/npxsy/m/n/10 ¼ Ï \OML/n
+pxmi/m/it/10 npE\LMS/npxsy/m/n/10 »\OML/npxmi/m/it/10 k[]\LMS/npxsy/m/n/10 ¼ \U
+/npxmia/m/it/10 = \OML/npxmi/m/it/10 p\LMS/npxsy/m/n/10 ¹\OT1/cmr/m/n/10 1 \LMS
+/npxsy/m/n/10 ^^@ \OML/npxmi/m/it/10 p\LMS/npxsy/m/n/10 º[]»\OML/npxmi/m/it/10 
+np\LMS/npxsy/m/n/10 ¹\OML/npxmi/m/it/10 np \LMS/npxsy/m/n/10 ^^@ \OML/npxmi/m/i
+t/10 p \LMS/npxsy/m/n/10 Ï \OT1/cmr/m/n/10 1\LMS/npxsy/m/n/10 º¼ Ï \OML/npxmi/m
+/it/10 np\LMS/npxsy/m/n/10 »\OML/npxmi/m/it/10 p\LMS/npxsy/m/n/10 ¹\OML/npxmi/m
+/it/10 n \LMS/npxsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\LMS/npxsy/m/n/10 º Ï \OT1/cmr/
+m/n/10 1\LMS/npxsy/m/n/10 ¼ \U/npxmia/m/it/10 = \OML/npxmi/m/it/10 np\LMS/npxsy
+/m/n/10 ¹\OT1/cmr/m/n/10 1 \LMS/npxsy/m/n/10 ^^@ \OML/npxmi/m/it/10 p\LMS/npxsy
+/m/n/10 º¹\OT1/cmr/m/n/10 1 \LMS/npxsy/m/n/10 ^^@ \OT1/cmr/m/n/10 2\OML/npxmi/m
+/it/10 p\LMS/npxsy/m/n/10 º Ï \OT1/cmr/m/n/10 3\OML/npxmi/m/it/10 n[]p[]\LMS/np
+xsy/m/n/10 ¹\OT1/cmr/m/n/10 1 \LMS/npxsy/m/n/10 ^^@ \OML/npxmi/m/it/10 p\LMS/np
+xsy/m/n/10 º Ï \OML/npxmi/m/it/10 n[]p[]
+ []
+
+[31]
+Capitolo 5.
+[32
+
+]
 runsystem(makeindex main.idx)...executed.
 
- (./main.ind) [28
+ (./main.ind) [33
 
 
 ] (./main.aux)
@@ -1768,12 +1804,15 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 52713 strings out of 478278
- 1208534 string characters out of 5850546
- 1716274 words of memory out of 5000000
- 69856 multiletter control sequences out of 15000+600000
+ 52776 strings out of 478278
+ 1209498 string characters out of 5850546
+ 1716547 words of memory out of 5000000
+ 69889 multiletter control sequences out of 15000+600000
  518369 words of font info for 171 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  120i,20n,121p,974b,1730s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1801,10 +1840,10 @@ ys.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:
 /texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2
 021/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2021/texmf-dist/f
 onts/type1/public/txfonts/txsya.pfb>
-Output written on main.pdf (29 pages, 433723 bytes).
+Output written on main.pdf (34 pages, 457542 bytes).
 PDF statistics:
- 662 PDF objects out of 1000 (max. 8388607)
- 496 compressed objects within 5 object streams
- 168 named destinations out of 1000 (max. 500000)
- 527 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 758 PDF objects out of 1000 (max. 8388607)
+ 577 compressed objects within 6 object streams
+ 198 named destinations out of 1000 (max. 500000)
+ 595 words of extra memory for PDF output out of 10000 (max. 10000000)
 

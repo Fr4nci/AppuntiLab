@@ -732,9 +732,11 @@ $$
 	E[s^2] = E \left[ \frac{1}{n} \sum_{i = 1} (x_i - \mu)^2 \right] = \frac{1}{n} E \left[(x_i - \mu)^2 \right] = \sigma^2
 $$
 ma a priori non conosciamo $\mu$. Come migliore stima della varianza potremmo considerare dunque la \emph{varianza campione}
+\dfn{Varianza campione\index{varianza campione}}{
 \begin{equation}
 	s_n^2 = \frac{1}{n} \sum_{i = 1}^n (x_i - m)^2
 \end{equation}
+}
 E quindi ci potremmo chiedere se il valore di aspettazione della varianza campione sia ancora pari a $\sigma$. Facendo la derivata rispetto ad una generica stima della media, si osserva che
 \begin{equation*}
 	\frac{d}{d \xi} s_n^2 = -\frac{1}{n} \sum_{i = 1} 2 (x_i - \xi) = \frac{2}{n} \left( \sum_{i=1} x_i - \sum_{i = 1} \xi \right) = \frac{2}{n}(nm - n\xi) = 2(m - \xi)
@@ -794,14 +796,16 @@ Supponiamo di avere una serie di campionamenti $x_i$ ed $y_i$ con $i \in I={1, \
 \begin{align*}
 	&m_x = \frac{1}{n} \sum_{i = 1}^n x_i \, &\text{e} \, &m_y  = \frac{1}{n} \sum_{i = 1}^n y_i
 \end{align*}
-possiamo stimare la covarianza, proprio come abbiamo fatto con la varianza, tramite la covarianza del campione
+possiamo stimare la covarianza, proprio come abbiamo fatto con la varianza, tramite la covarianza del campione\index{covarianza campione}
+\dfn{Covarianza campione}{
 \begin{equation}
 	q_{xy} = \frac{1}{n-1} \sum_{i=1}^n (x_i - m_x)(y_i - m_y)
 \end{equation}
+}
 \nt{Il termine $n-1$ deriva sempre dalla cosiddetta "\emph{correzione di Bessel}" ovvero quello che abbiamo fatto prima riguardo allo stimatore statistico della varianza campione}
 \noindent Dunque la stima delle correlazione $r_{xy}$ campionaria si scrive tramite le stime della varianza campione delle due variabili $x$ e $y$:
 \begin{align*}
-	&s_x^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - m_x)^2 \, &\text{e} \, &s_y^2 = \frac{1}{n-1} \sum_{i=1}^n (y_i - m_y)^2
+	&s_x^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - m_x)^2  & &\text{e} & \, &s_y^2 = \frac{1}{n-1} \sum_{i=1}^n (y_i - m_y)^2
 \end{align*}
 dunque
 \begin{equation}
@@ -834,11 +838,144 @@ La stima della varianza è leggermente più complicata, ma nel caso ad una singo
 	&\mu_f \approx f(\mu) & &\sigma_f^2 \approx \left( \frac{df}{dx} {\Big |}_{x=\mu} \right)^2 \sigma_x^2
 \end{align*}
 }
-Nel caso di funzioni che dipendono da un certo numero di variabili casuali $x_1$, $x_2, \, \ldots, \, x_n$
+\noindent Nel caso di funzioni che dipendono da un certo numero di variabili casuali $x_1$, $x_2, \, \ldots, \, x_n$ con medie $\mu_1, \mu_2, \ldots, \mu_n$ e varianza $\sigma_1^2, \sigma_2^2, \ldots, \sigma_n^2$ la questione diventa più complicata, siccome ritorna in gioco l'indipendenza statistica fa variabili aleatorie. \\
+Supponiamo ad esempio di guardare il caso di una funzione $f(x_1, x_2)$ ovvero dipendente da due variabili aleatorie e basta. Innanzitutto, si osserva che attorno al punto medio possiamo approssimare la funzione tramite lo sviluppo di Taylor in due variabili troncato al primo ordine:
+$$
+f(x_1, x_2) \approx f(\mu_1, \mu_2) + \frac{\partial f}{\partial x_1}{\Big |}_{x_1=\mu_1, x_2=\mu_2}(x_1 - \mu_1) + \frac{\partial f}{\partial x_2}{\Big |}_{x_2=\mu_2, x_2=\mu_2}(x_2 - \mu_2)
+$$
+dunque possiamo sviluppare il valore medio al primo ordine nella seguente maniera:
+\begin{align*}
+&\mu_f = E[f(x_1, x_2)] \\
+&= E[f(\mu_1, \mu_2)] + \frac{\partial f}{\partial x_1}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}E[x_1 - \mu_1] + \frac{\partial f}{\partial x_2}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}E[x_2 - \mu_2] \\
+&= f(\mu_1, \mu_2)
+\end{align*}
+per la varianza la questione è un po' più complicata siccome:
+\begin{align*}
+&\text{Var}(f(x_1, x_2)) = E[(f(x_1, x_2) - f(\mu_1, \mu_2))^2] = E\left[(\frac{\partial f}{\partial x_1}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}(x_1 - \mu_1) + \frac{\partial f}{\partial x_2}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}(x_2 - \mu_2))^2\right] \\
+&= \left(\frac{\partial f}{\partial x_1}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}\right)^2 E[(x_1 - \mu_1)^2] - 2 \frac{\partial f}{\partial x_1}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}} \frac{\partial f}{\partial x_2}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}} E[(x_1 - \mu_1)(x_2 - \mu_2)] + \left(\frac{\partial f}{\partial x_2}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}\right)^2 E[(x_2 - \mu_2)^2] = \\
+&= \left(\frac{\partial f}{\partial x_1}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}\right)^2 \text{Var}(x_1) + \left(\frac{\partial f}{\partial x_2}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}}\right)^2 \text{Var}(x_2)  - 2 \frac{\partial f}{\partial x_1}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}} \frac{\partial f}{\partial x_2}\bigg|_{\substack{x_1=\mu_1\\x_2=\mu_2}} \text{Cov}(x_1, x_2)
+\end{align*}
+Naturalmente si semplifica enormemente la formula se $x_1, x_2$ sono variabili fra loro indipendenti, ergo $\text{Cov}(x_1, x_2) = 0$. Si può generalizzare a funzioni dipendenti da $n$ parametri indipendenti che
+\begin{equation}
+	\sigma_f^2 \approx \sum_{i = 1}^n \left( \frac{\partial f}{\partial x_i} \bigg|_{\substack{x_1=\mu_1 \\ \vdots \\ x_n = \mu_n}})^2 \sigma_i^2 \right)
+	\label{eq:prop_stat}
+\end{equation}
+Questo argomento verrà ripreso più avanti. \\
+\section{Propagazione dell'errore statistico}\index{propagazione dell'errore statistico}
+Nella teoria dei campioni si è visto che l'incertezza di misura ha il significato di stima della deviazione standard della distribuzione generatrice. Siccome sappiamo calcolare, con le formule che abbiamo visto nella sezione precedente media la deviazione standard di una funzione arbitraria di variabili casuali, date le deviazioni standard delle variabili stesse, siamo adesso in grado di propagare gli errori in maniera statisticamente corretta: supponiamo di avere dunque $n$ grandezze misurare $x_i = \hat{x_i} \pm \sigma_i$ ed una generica funzione $f(x_1, \ldots, x_n)$ e partiamo dal caso più semplice, ovvero quello in cui le grandezze di partenza sono tutte indipendenti. La formula, nella \emph{forma}, è equivalente alla~\ref{eq:prop_stat}, infatti
+\dfn{Propagazione dell'errore statistico con variabili indipendenti}{
+\begin{equation}
+	\sigma_f^2 \approx \sum_{i=1}^n \left( \frac{\partial f}{\partial x_i}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} \right)^2 \sigma_i^2
+\end{equation}
+}
+sebbene, per quanto riguarda la forma, come ho già detto questa scrittura è equivalente con la~\ref{eq:prop_stat}, dal punto di vista logico non lo sono siccome nella~\ref{eq:prop_stat} le $\sigma_i$ rappresentano in generale le nostre migliori stime delle deviazioni standard delle distribuzioni generatrici e non i valori calcolati a partire dalla forma analitica delle funzioni di distribuzione stesse. \\
+Possiamo generalizzare ancora di più: infatti se noi effettuiamo la stima dell'indice di correlazione possiamo dire che
+\dfn{Propagazione dell'errore statistico con variabili dipendenti}{
+\begin{equation}
+	\sigma_f^2 \approx \sum_{i=1}^n \sum_{j = 1}^n \frac{\partial f}{\partial x_i}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} \frac{\partial f}{\partial x_i}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} r_{ij}\sigma_i \sigma_j
+\end{equation}
+}
+\chapter{Distribuzioni uni-variate di uso comune}
+\section{La distribuzione binomiale}
+Supponiamo di considera un esperimento che abbia solamente \textbf{due esiti possibili distinti}, $E_1$ ed $E_2$, con probabilità pari a $p$ e $1-p$ rispettivamente. La domanda che può sorgere spontanea è la seguente: \emph{qual è la probabilità di ottenere $k$ volte l'esito $E_1$ ripetendo l'esperimento $n$ volte e assumendo che le realizzazioni siano indipendenti}? \\
+Inizialmente potremmo essere tentati di dire $p^k(1-p)^{n-k}$ ma noi siamo interessati ad una qualunque combinazione degli esiti $E_1$ ed $E_2$, fintanto che avvengano $k$ occorrenze dell'evento $E_1$, pertanto il nostro risultato va moltiplicato per il numero possibile delle combinazioni, pari a $\binom{n}{k}$ (che coincide con il numero di sottoinsiemi di $k$ che è possibile formare in un insieme di $n$ elementi). Possiamo sfruttare il fatto che le probabilità per eventi disgiunti si sommano e possiamo scrivere la probabilità cercata come:
+\begin{equation}
+	\mathcal{B}(k; n, p) = \binom{n}{k} p^k (1-p)^{n-k}
+\end{equation}
+\nt{Il punto e virgola nella parentesi degli argomenti di una funzione di distribuzione separa le variabili casuali dai parametri esterni che sono determinati univocamente a priori dal problema}
+\subsection{Normalizzazione, media e varianza}
+Si dimostra facilmente che la condizione di normalizzazione \index{condizione di normalizzazione} è rispettata.
+\thm{Condizione di normalizzazione della distribuzione binomiale}{La distribuzione binomiale rispetta la condizione di normalizzazione, dunque:
+\begin{equation}
+	\sum_{k=0}^n \mathcal{B}(k;n,p)=1
+\end{equation}
+}
+\begin{myproof}
+si osserva banalmente che la sommatoria di $k$ fino ad $n$ rappresenta lo sviluppo della potenza $n$-esima del binomio $p+(1-p)$:
+$$
+\sum_{k=0}^n \mathcal{B}(k;n,p) = \sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k} = (p + 1 - p)^{n} = 1
+$$
+La tesi è dunque ottenuta
+\end{myproof}
+\noindent Enunciamo adesso qualche fatto facilmente dimostrabile
+\thm{Valore atteso della distribuzione $\mathcal{B}(k; n, p)$}{Il valore atteso della distribuzione binomiale è
+	\begin{equation}
+		\mu = np
+	\end{equation}
+}
+\begin{myproof} 
 
-
-
-
+\begin{align*}
+	\mu = \sum_{k=0}^n k \mathcal{B}(k;n,p) = \sum_{k=0}^n k \cdot \frac{n!}{k!(n-k)!} p^k (1-p)^{n-k} = \sum_{k=0}^n \frac{n(n-1)!}{(k-1)!(n-k)!}p^k(1-p)^{n-k}
+\end{align*}
+Si osserva che possiamo far partire la sommatoria da $k=1$ siccome il primo termine non contribuisce alla somma ed effettuiamo un banale cambio di indice: definiamo $h=k-1$ e dunque la sommatoria si fermerà a $m=n-1$:
+\begin{align*}
+	\sum_{k=1}^{n} np \frac{(n-1)!}{(k-1)!(n-k)!}p^k (1-p)^{n-k} = np\sum_{h=0}^{m} \frac{m!}{h!(m-h)!}p^h (1-p)^{m-h}
+\end{align*}
+Si riconosce nella sommatoria di $\sum\limits_{h=0}^m \frac{m!}{h!(m-h)!}p^h(1-p)^{m-h}$ la condizione di normalizzazione, dunque
+$$
+	\mu = np\sum_{h=0}^m \frac{m!}{h!(m-h)!} p^h (1-p)^{m-h} = np
+$$
+\end{myproof}
+\thm{Varianza della distribuzione $\mathcal{B}(k;n, p)$}{La varianza della distribuzione binomiale risulta essere
+\begin{equation}
+	\sigma^2 = np(1-p)
+\end{equation}
+}
+\begin{myproof}
+si utilizza la relazione~\ref{calcolo_sigma} per stimare la varianza:
+\begin{align*}
+&E[k^2] = \sum_{k=0}^n k^2 \mathcal{B}(k;n,p) = \sum_{k=0}^n k^2 \frac{n!}{k!(n-k)!}p^k (1-p)^{n-k} = \sum_{k=1}^n k^2 \frac{n!}{k!(n-k)!}p^k (1-p)^{n-k} \\
+&= \sum_{k=1}^n np \frac{(n-1)!}{(k-1)!(n-k)!}p^{k-1}(1-p)^{n-k} = = np\sum_{h=0}^m (h+1)\frac{m!}{h!(m-k)!}p^{h}(1-p)^{m-k} \\
+&= np \sum_{h=0}^m h\frac{m!}{h!(m-k)!}p^h (1-p)^{m-k} + np\sum_{h=0}^m \frac{m!}{h!(m-k)!}p^h (1-p)^{m-k} = np(mp + 1) = np(np-p+1)
+\end{align*}
+dunque, si ha che
+$$
+\text{Var}(k) = E[k^2]-\mu^2 = np(np-p+1) - n^2p^2 = np(1-p)
+$$
+La dimostrazione è dunque conclusa.
+\end{myproof}
+La distribuzione binomiale è asimmetrica generalmente, dunque ha senso chiedere quanto vale la \emph{skewness}. Ricaviamo un'identità molto utile:
+\lemma{Momenti di ordine superiore per la $\mathcal{B}(k;n,p)$}{I momento di ordine superiore rispetto la seguente identità:
+\begin{equation}
+	E[k^{m+1}]=p(1-p)\frac{d}{dp}E[k^m] + npE[k^m]
+\end{equation}
+}
+\begin{myproof}
+	\begin{align*}	
+	&\frac{d}{dp} E[k^m] = \frac{d}{dp} \sum_{k=0}^n k^m \binom{n}{k}p^k(1-p)^{n-k} = \\
+	&=\sum_{k=0}^n k^m \binom{n}{k} \left[ kp^{k-1} (1-p)^{n-k} - p^{k}(n-k)(1-p)^{n-k-1} \right] \\
+	&= \sum_{k=0}^n k^{m+1} \binom{n}{k} p^{k-1}(1-p)^{n-k} - \sum_{k=0}^n k^{m} \binom{n}{k} \frac{n-k}{1-p}p^k(1-p)^{n-k} = \\ 
+	&= \sum_{k=0}^n k^{m+1} \binom{n}{k} \frac{1}{p} p^{k}(1-p)^{n-k} - \sum_{k=0}^n k^{m} \binom{n}{k} \frac{n}{1-p} p^k(1-p)^{n-k} + \sum_{k=0}^n k^{m+1} \binom{n}{k} p^k(1-p)^{n-k}	= \\
+	&= \frac{1}{p} \sum_{k=0}^n k^{m+1} + \sum_{k=0}^n k^{m+1}\binom{n}{k}p^k (1-p)^{n-k} = \\
+	&= (\frac{1}{p} + \frac{1}{1-p})E[k^{m+1}] -\frac{n}{1-p}E[k^m]
+	\end{align*}
+	dunque otteniamo che
+	\begin{align*}
+	\frac{d}{dp}E[k^m] + \frac{n}{1-p}E[k^m] = \frac{1}{p(1-p)}E[k^{m+1}] \implies E[k^{m+1}] = p(1-p)\frac{d}{dp} E[k^m] + npE[k^m]
+	\end{align*}
+\end{myproof}
+\noindent Tramite questo semplice lemma, possiamo calcolare i momenti superiori al secondo:
+\begin{equation}
+E[k^3] = p(1-p)\frac{d}{dp}E[k^2] + npE[k^2] = p(1-p)\frac{d}{dp}[np(np - p +1)] + np[p(n-1)+1] = np(1-p)(1-2p)+3n^2p^2(1-p)+n^3p^3
+\end{equation}
+Dunque, il momento centrale di ordine $3$ risulta essere pari a:
+\begin{equation}
+	\mu_3 = E[(k-\mu)^3] = E[k^3] - 3\mu\sigma^2 - \mu^3 = np(1-p)(1-2p)+3n^2p^2(1-p) + n^3p^3-3n^2p^2(1-p)-n^3p^3 = np(1-p)(1-2p)
+\end{equation}
+dunque si ha che la \emph{skewness} $\gamma_1$:
+$$
+\gamma_1 = \frac{\mu_3}{\sigma^3} = \frac{1-2p}{\sqrt{np(1-p)}}
+$$
+\section{La distribuzione di Poisson}
+Formalmente la distribuzione di Poisson può essere ottenuta come limite della binomiale per $p \to 0$ e per $np =  \mu$ (dunque si ha che $p=\frac{\mu}{n}$ dunque il numero di ripetizioni $n$ dev'essere molto grande.
+\chapter{Funzioni di probabilità di funzioni qualunque} 
+\section{}
+Nel momento in cui si considera $f(x)$ dove $x$ è una variabile aleatoria, la funzione di distribuzione che caratterizza la funzione $f(x)$, nel caso in cui $f$ risulti biunivoca, è, banalmente, pari a
+$$
+	p(y)=p(x)
+$$
+tuttavia nel caso di funzioni iniettive, la questione si complica.
 \pagebreak
 \printindex
 \end{document}

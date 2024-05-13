@@ -23,4 +23,11 @@
 \contentsline {subsection}{\numberline {3.1.3}Misure ripetute}{24}{subsection.3.1.3}%
 \contentsline {section}{\numberline {3.2}Covarianza e correlazione campione}{26}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Media e varianza di una funzione a variabili casuali}{27}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Propagazione dell'errore statistico}{28}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Distribuzioni uni-variate di uso comune}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}La distribuzione binomiale}{29}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Normalizzazione, media e varianza}{29}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}La distribuzione di Poisson}{31}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Funzioni di probabilità di funzioni qualunque}{32}{chapter.5}%
+\contentsline {section}{\numberline {5.1}}{32}{section.5.1}%
 \contentsfinish 

@@ -8,9 +8,10 @@
   \item coefficiente binomiale, 8
   \item coefficiente di asimmetria, 17
   \item coefficiente multinomiale, 10
-  \item condizione di normalizzazione, 12, 13
+  \item condizione di normalizzazione, 12, 13, 29
   \item correlazione, 20
   \item covarianza, 19
+  \item covarianza campione, 26
 
   \indexspace
 
@@ -54,6 +55,7 @@
   \item probabilità, 4
   \item probabilità complementare, 5
   \item probabilità condizionata, 10, 18
+  \item propagazione dell'errore statistico, 28
 
   \indexspace
 
@@ -72,5 +74,6 @@
   \item variabile aleatoria, 12
   \item variabile casuale, 12
   \item varianza, 15, 16, 20
+  \item varianza campione, 24
 
 \end{theindex}
