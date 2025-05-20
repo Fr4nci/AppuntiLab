@@ -57,7 +57,7 @@
 	\end{enumerate}		
 	}
 \noindent Possiamo utilizzare il terzo assioma di Kolgomorov all'unione numerabili di eventi \emph{disgiunti} (ovvero eventi per cui la loro intersezione è nulla)
-	\cor{Unione numerabili di eventi disgiunti}{$P(\bigcup\limits_{i}^n E_i) = \sum\limits_{i}^n P(E_i)$ se $E_1 = E_2 = \cdots = E_n = 0$}
+	\cor{Unione numerabili di eventi disgiunti}{$P(\bigcup\limits_{i}^n E_i) = \sum\limits_{i}^n P(E_i)$ se gli eventi sono tutti disgiunti fra loro (formalmente, $\forall 1 \leq i < j \leq n, E_i \cap E_j = \emptyset$)}
 	\begin{myproof}
 	Si procede per induzione su $n$. Per $n = 1$ è banale, siccome:
 	$$
@@ -87,7 +87,7 @@
 		$$
 		ma siccome $\Omega \cap \emptyset = \emptyset$ allora
 		$$
-			P(\Omega \cup \emptyset) = P(\Omega) + P(\emptyset) = P(\Omega) \implies 1 + P(\emptyset) = 1 \implies P(\emptyset) = 0
+			P(\Omega) = P(\Omega \cup \emptyset) = P(\Omega) + P(\emptyset)\implies 1 + P(\emptyset) = 1 \implies P(\emptyset) = 0
 		$$
 		La dimostrazione è dunque conclusa.
 	\end{myproof}
@@ -872,7 +872,7 @@ sebbene, per quanto riguarda la forma, come ho già detto questa scrittura è eq
 Possiamo generalizzare ancora di più: infatti se noi effettuiamo la stima dell'indice di correlazione possiamo dire che
 \dfn{Propagazione dell'errore statistico con variabili dipendenti}{
 \begin{equation}
-	\sigma_f^2 \approx \sum_{i=1}^n \sum_{j = 1}^n \frac{\partial f}{\partial x_i}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} \frac{\partial f}{\partial x_i}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} r_{ij}\sigma_i \sigma_j
+	\sigma_f^2 \approx \sum_{i=1}^n \sum_{j = 1}^n \frac{\partial f}{\partial x_i}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} \frac{\partial f}{\partial x_j}\bigg|_{\substack{x_1=\hat{x}_1 \\ \vdots \\ x_n=\hat{x}_n}} r_{ij}\sigma_i \sigma_j
 \end{equation}
 }
 \chapter{Distribuzioni uni-variate di uso comune}
@@ -901,6 +901,7 @@ La tesi è dunque ottenuta
 \thm{Valore atteso della distribuzione $\mathcal{B}(k; n, p)$}{Il valore atteso della distribuzione binomiale è
 	\begin{equation}
 		\mu = np
+		\label{eq:val_att_binom}
 	\end{equation}
 }
 \begin{myproof} 
@@ -936,7 +937,7 @@ $$
 La dimostrazione è dunque conclusa.
 \end{myproof}
 La distribuzione binomiale è asimmetrica generalmente, dunque ha senso chiedere quanto vale la \emph{skewness}. Ricaviamo un'identità molto utile:
-\lemma{Momenti di ordine superiore per la $\mathcal{B}(k;n,p)$}{I momento di ordine superiore rispetto la seguente identità:
+\lemma{Momenti di ordine superiore per la $\mathcal{B}(k;n,p)$}{I momento di ordine superiore rispettano la seguente identità:
 \begin{equation}
 	E[k^{m+1}]=p(1-p)\frac{d}{dp}E[k^m] + npE[k^m]
 \end{equation}
@@ -968,7 +969,77 @@ $$
 \gamma_1 = \frac{\mu_3}{\sigma^3} = \frac{1-2p}{\sqrt{np(1-p)}}
 $$
 \section{La distribuzione di Poisson}
-Formalmente la distribuzione di Poisson può essere ottenuta come limite della binomiale per $p \to 0$ e per $np =  \mu$ (dunque si ha che $p=\frac{\mu}{n}$ dunque il numero di ripetizioni $n$ dev'essere molto grande.
+Formalmente la distribuzione di Poisson può essere ottenuta come limite della binomiale per $p \to 0$ e $n \to \infty$, facendo in modo che $np =  \mu$. Osserviamo infatti che
+$$
+\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \binom{n}{k} p^k (1-p)^{n-k}
+$$
+Usando l'equazione \ref{eq:val_att_binom} possiamo scrivere che $p = \frac{\mu}{n}$, da cui abbiamo che
+$$
+	\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \binom{n}{k} \left( \frac{\mu}{n} \right)^k \left( 1-\frac{\mu}{n} \right)^{n-k}.
+$$
+Osservando che $\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n(n-1) \ldots (n-k+1)}{k!}$ abbiamo che
+$$
+	\lim_{n \to \infty} \binom{n}{k} \left( \frac{\mu}{n} \right)^k \left( 1-\frac{\mu}{n} \right)^{n-k} = \lim_{n \to \infty} \frac{n(n-1)\ldots (n-k+1)}{n^k} \frac{\mu^k}{k!} \left( 1 - \frac{\mu}{n} \right)^{n-k}.
+$$
+Dobbiamo adesso procedere in maniera \emph{cauta}: infatti, noi vorremmo dire qualcosa su $k$ ma non si tratta di un "numero" ma di una variabile aleatoria. Questo vuol dire che, a priori, può assumere tutti i valori compresi fra 0 e $n$, quindi non possiamo a priori servirci del suo valore per determinare il comportamento asintotico (per $n \to \infty$) di questo limite. Possiamo, tuttavia, introdurre una variabile aleatoria ridotta
+\begin{equation}
+	\xi = \frac{k - np}{n},
+	\label{eq:xi_cas_rid}
+\end{equation}
+che quantifica quanto si discosta $k$ dal valore atteso della nostra distribuzione binomiale, confrontandolo con $n$. Per il teorema di Chebyshev, sappiamo che è poco "probabile" che la $k$ si discosti dal valore atteso più una quantità molto grande di $\sigma = \sqrt{np(1-p)}$, conseguentemente
+$$
+	\xi = \frac{k - np}{n} \leq \frac{\sqrt{np(1-p)}}{n} \to 0,
+$$
+quindi, per confronto, abbiamo che $\xi \to 0$. Riscrivendo il limite in termini della nuova variabile e raccogliendo $n$ da ogni fattore presente al numeratore, abbiamo che
+\begin{align*}
+	&\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \frac{n(n-1)\ldots (n-k+1)}{n^k} \frac{\mu^k}{k!}(1 - \frac{\mu}{n})^{n-k} = \\
+	&= \lim_{n \to \infty} \frac{n^k(1 - \frac{1}{n})(1 - \frac{2}{n}) \ldots (1 - p - \xi + \frac{1}{n})}{n^k} \frac{\mu^k}{k!} \left(1 - \frac{\mu}{n} \right)^{n(1 - p - \xi)} = \lim_{n \to \infty} \frac{\mu^k}{k!} (1 - \frac{\mu}{n})^k,
+\end{align*}
+dove si è usato dalla \ref{eq:xi_cas_rid} che $\frac{k}{n} = \xi + p$ e il fatto che $p \to 0, \xi \to 0$ per giustificare il fatto che $(1 - \frac{1}{n})(1 - \frac{2}{n}) \ldots (1 - p - \xi + \frac{1}{n}) \sim 1$ e $(1 -\frac{\mu}{n})^{n(1 - p - \xi)} \sim (1 - \frac{\mu}{n})^{n}$. Ricordando adesso che $\lim\limits_{n \to \infty} (1 - \frac{\mu}{n})^n \to e^{-\mu}$, possiamo affermare il limite precedente converge a
+\begin{equation}
+	\lim_{n \to \infty} \mathcal{B}(k; n, p) \to \frac{\mu^k}{k!} e^{-\mu}.
+	\label{eq:poisson_fin}
+\end{equation}
+Già dall'espressione finale ottenuta nella \ref{eq:poisson_fin} si vedono due sostanziali differenze fra la distribuzione binomiale e quella di Poisson:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item la distribuzione binomiale dipende da due parametri, $n$ e $p$, che contribuiscono entrambi a determinare l'espressione (e, conseguentemente, il valore) del valore medio e la varianza della distribuzione. D'altro canto, la distribuzione di Poisson dipende esclusivamente da un parametro, ovvero la media che coincide pure con la varianza;
+	\item nella distribuzione binomiale la variabile $k \leq n$, mentre nella distribuzione poissoniana può assumere qualunque valore intero da $0$ a $\infty$. Questo è un buon indicatore per capire se un processo è \emph{poissoniano} o \emph{binomiale}: il numero delle occorrenze è fissato? A seconda della risposta, è lecito modellizzare un fenomeno con una delle distribuzione invece che l'altra (poi, chiaramente, la natura non è né perfettamente poissoniana e né perfettamente binomiale).
+\end{enumerate}
+Ora, prima di procedere a studiare la normalizzazione e i momenti della distribuzione, è educativo studiare le caratteristiche di un \emph{processo poissoniano}, prima menzionato, e ricavare in maniera per lo più euristica la forma della distribuzioni. Facciamo le seguenti ipotesi sul processo studiato:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item \textbf{indipendenza}: gli eventi elementari sono indipendenti, ovvero il verificarsi di un evento ad un determinato istante non influenza la probabilità che un altro evento si verifichi (o non si verifichi) ad un istante successivo;
+	\item \textbf{stazionarietà}: il numero medio di eventi per unità di tempo è lo stesso in qualsiasi intervallo;
+	\item \textbf{non simultaneità}: non si possono verificare due o più eventi nello stesso istante.
+\end{enumerate} 
+Consideriamo un intervallo $\Delta t$ che dividiamo in $n$ intervalli più piccoli di lunghezza $dt = \frac{\Delta t}{n}$: 
+
+\subsection{Normalizzazione, media e varianza}
+Siccome la distribuzione di Poisson è ottenuta come limite della binomiale, la media $np \to \mu$ e la varianza $np(1-p) \to \mu$, quindi si potrebbe anche non verificare esplicitamente, partendo dalla forma della distribuzione, i loro valori. In ogni caso, non è difficile ricavarli dalla definizione di media e momento: procediamo con ordine, partendo dalla condizione di normalizzazione.
+\thm{Condizione di normalizzazione della distribuzione poissoniana}{La distribuzione di Poisson rispetta la condizione di normalizzazione, ovvero
+$$
+\sum_{k=0}^{\infty} \mathcal{P}(k; \mu) = 1.
+$$}
+\begin{myproof}
+Procediamo con il calcolo:
+$$
+	\sum_{k=0}^{\infty} \mathcal{P}(k; \mu) = \sum_{k=0}^{\infty} \frac{\mu^k}{k!} e^{-\mu} = e^{- \mu} \sum_{k=0}^{\infty} \frac{\mu^k}{k!} = e^{-\mu} e^{\mu} = 1,
+$$
+dove abbiamo riconosciuto la serie esponenziale nell'espressione (si ricorda al lettore che $e^x = \sum_{k=0}^{\infty} \frac{x^k}{k!}$). 
+\end{myproof}
+Passiamo alla media:
+\thm{Valore atteso della distribuzione poissoniana}{
+	Il valore atteso della distribuzione poissoniana $\mathcal{P}(k; \mu)$ è pari a $\mu$
+}
+\begin{myproof}
+Sappiamo, per definizione, che la media è data da
+$$
+E[k] = \sum_{k=0}^{\infty} k \mathcal{P}(k; \mu) = e^{-\mu} \sum_{k=0}^{\infty} k \frac{\mu^k}{k!} = e^{-\mu} \sum_{k=1}^{\infty} k \frac{\mu^k}{k!},
+$$
+dove si è osservato che il termine con $k=0$ non contribuisce alla somma, per cui abbiamo fatto iniziare la somma da $k=1$. A questo punto, poniamo $k = h + 1$ dunque
+$$
+E[k] = e^{-\mu} \sum_{h=0}^{\infty} \frac{\mu^{h+1}}{h!} = \mu e^{-\mu} \sum_{h=0}^{\infty} \frac{\mu^h}{h!} = \mu e^{-\mu} e^{\mu} = \mu.
+$$
+\end{myproof}
 \chapter{Funzioni di probabilità di funzioni qualunque} 
 \section{}
 Nel momento in cui si considera $f(x)$ dove $x$ è una variabile aleatoria, la funzione di distribuzione che caratterizza la funzione $f(x)$, nel caso in cui $f$ risulti biunivoca, è, banalmente, pari a
