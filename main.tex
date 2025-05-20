@@ -432,7 +432,7 @@ Dimostriamo una formula equivalente per il calcolo della varianza
 dunque
 \begin{equation}
 	\sigma^2 = E[x^2] - \mu^2
-	\label{calcolo_sigma}
+	\label{eq:calcolo_sigma}
 \end{equation}
 Un concetto utile che si applica alle funzioni di distribuzione di variabile continua (ma ha senso per lo più se si tratta di una distribuzione unimodale) è quello di semilarghezza a metà altezza, ovvero la distanza fra le ascisse $x_a$ e $x_b$ dei punti intersecati dalla retta orizzontale che interseca l'asse delle ordinate in corrispondenza della metà del valore della moda della distribuzione, ovvero il valore massimo assunto da essa. 
 \dfn{FWHM e HWHM}{
@@ -484,12 +484,13 @@ $$
 $$
 dunque possiamo dire che il valor medio\index{valore medio} è il momento algebrico di ordine 1 e la varianza\index{varianza} invece è il momento centrale di ordine 2. Oltre al valor medio e alla varianza, sono utili i momenti centrali di ordine 3 siccome sono i primi momenti di ordine dispari a non annullarsi e poiché misurano l'eventuale asimmetria della funzione di distribuzione, pesando con il segno le code a destra e a sinistra della media. Troviamo una forma più agevole per calcolare $\mu_3$
 $$
-	\mu_3 = E[(x-\mu)^3] = E [ x^3 - \mu^3 -3x^2 \mu + 3x \mu^2 ] \implies E[x^3] - 3\mu E[x^2] + 3\mu^2 E[x] - \mu^3
+	\mu_3 = E[(x-\mu)^3] = E [ x^3 - \mu^3 -3x^2 \mu + 3x \mu^2 ] = E[x^3] - 3\mu E[x^2] + 3\mu^2 E[x] - \mu^3
 $$
 e siccome $\sigma^2 = E[x^2] - \mu^2 \implies E[x^2] = \sigma^2 + \mu^2$ allora
-$$
+\begin{equation}
 	\mu_3 = E[x^3] - 3 \mu (\sigma^2 + \mu^2) + 3 \mu^3 - \mu^3 = E[x^3] - 3 \sigma^2 \mu - \mu^3
-$$
+	\label{eq:mom_alg_terzo}
+\end{equation}
 A questo punto, definiamo il \emph{coefficiente di asimmetria} $\gamma_1$\index{coefficiente di asimmetria}
 \dfn{Coefficiente di asimmetria $\gamma_1$}{Il coefficiente di asimmetria si definisce come il rapporto fra il momento algebrico di ordine $n=3$ ($\mu_3$) e la deviazione standard al cubi ($\sigma^3$)
 \begin{equation}
@@ -924,7 +925,7 @@ $$
 \end{equation}
 }
 \begin{myproof}
-si utilizza la relazione~\ref{calcolo_sigma} per stimare la varianza:
+si utilizza la relazione~\ref{eq:calcolo_sigma} per stimare la varianza:
 \begin{align*}
 &E[k^2] = \sum_{k=0}^n k^2 \mathcal{B}(k;n,p) = \sum_{k=0}^n k^2 \frac{n!}{k!(n-k)!}p^k (1-p)^{n-k} = \sum_{k=1}^n k^2 \frac{n!}{k!(n-k)!}p^k (1-p)^{n-k} \\
 &= \sum_{k=1}^n np \frac{(n-1)!}{(k-1)!(n-k)!}p^{k-1}(1-p)^{n-k} = = np\sum_{h=0}^m (h+1)\frac{m!}{h!(m-k)!}p^{h}(1-p)^{m-k} \\
@@ -969,11 +970,44 @@ $$
 \gamma_1 = \frac{\mu_3}{\sigma^3} = \frac{1-2p}{\sqrt{np(1-p)}}
 $$
 \section{La distribuzione di Poisson}
-Formalmente la distribuzione di Poisson può essere ottenuta come limite della binomiale per $p \to 0$ e $n \to \infty$, facendo in modo che $np =  \mu$. Osserviamo infatti che
+Formalmente la distribuzione di Poisson può essere ottenuta come limite della binomiale per $p \to 0$ e $n \to \infty$, facendo in modo che $np =  \mu$.
+Ora, prima di procedere a mostrarlo formalmente, è educativo studiare le caratteristiche di un \emph{processo poissoniano}, prima menzionato, e ricavare in maniera per lo più euristica la forma della distribuzioni. Facciamo le seguenti ipotesi sul processo studiato:
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item \textbf{indipendenza}: gli eventi elementari sono indipendenti, ovvero il verificarsi di un evento ad un determinato istante non influenza la probabilità che un altro evento si verifichi (o non si verifichi) ad un istante successivo;
+	\item \textbf{stazionarietà}: il numero medio di eventi per unità di tempo è lo stesso in qualsiasi intervallo;
+	\item \textbf{non simultaneità}: non si possono verificare due o più eventi nello stesso istante.
+\end{enumerate} 
+Consideriamo un intervallo $\Delta t$ che dividiamo in $n$ intervalli più piccoli di lunghezza $dt = \frac{\Delta t}{n}$: il numero medio di eventi per unità di tempo $\lambda$ è il parametro che determina il numero medio $\mu = \lambda \Delta t$ di eventi nell'intervallo, da cui segue che il numero medio di eventi in uno qualunque degli intervallini è dato esplicitando $\lambda dt$ nella precedente formula, ricordando che $\Delta t = n dt$, 
+$$\mu = \lambda n dt \implies \lambda dt = \frac{\mu}{n}.$$
+Se chiamiamo $p$ la probabilità che si verifichi un evento all'interno di un intervallino e ricordando l'ipotesi di non simultaneità, abbiamo che all'interno di un $dt$ si possono verificare $0$ o $1$ evento, il che ci consente di dire che la probabilità che si verifichi un solo evento è dato da
 $$
-\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \binom{n}{k} p^k (1-p)^{n-k}
+0 \times (1-p) + 1 \times p = \frac{\mu}{n} = \lambda dt,
 $$
-Usando l'equazione \ref{eq:val_att_binom} possiamo scrivere che $p = \frac{\mu}{n}$, da cui abbiamo che
+dove fra il primo termine e il successivo abbiamo usato la definizione combinatoriale della probabilità, affermando che la probabilità che un evento avvenga in un intervallo è pari a $\frac{\mu}{n}$, ovvero il numero medio di eventi nell'intervallo $\Delta t$ diviso il numero di intervalli. Abbiamo quindi ottenuto che $\lambda dt$ è esattamente pari alla \emph{probabilità che un evento si verifichi esattamente in uno qualsiasi dei sottointervalli}. Questo ci consente subito di determinare la forma della distribuzione del processo: possiamo infatti chiederci quale sia la probabilità $P(0; \mu)$ di osservare $0$ eventi nell'intervallo $\Delta t$ quando in media sappiamo che se ne verificano $\mu$? Ragionando come già fatto per un processo a due esiti, abbiamo che la probabilità che non si verifichi in un evento in un intervallino è proprio pari a $(1-p)^n$, pertanto
+$$
+	P(0; \mu) = \lim_{n \to \infty} (1 - p)^n = \lim_{n \to \infty} (1 - \frac{\mu}{n})^n = e^{-\mu}. 
+$$
+La probabilità di osservare un solo evento? Il calcolo è identico, tuttavia bisogna considerare che l'occorrenza dell'evento può avvenire in uno qualunque degli intervalli, quindi è necessario moltiplicare per $n$ per tenere conto di ciò: ne consegue che
+$$
+	P(1; \mu) = \lim_{n \to \infty} np(1-p)^{n-1} = \lim_{n \to \infty} n \frac{\mu}{n} (1 - \frac{\mu}{n})^{n-1} = \lim_{n \to \infty} \mu (1 - \frac{\mu}{n})^n (1 - \frac{\mu}{n}) = \mu e^{-\mu}.
+$$
+Ma osserviamo proprio che stiamo proprio riderivando la distribuzione binomiale nel caso di $n$ tendente all'infinito. Questo fissa che la distribuzione poissoniana ha la seguente forma
+\begin{equation}
+	\mathcal{P}(k; \mu) = \frac{\mu^k}{k!} e^{-\mu}.
+	\label{eq:poisson_fin}
+\end{equation}
+\subsection{La poissoniana come limite della distribuzione binomiale}
+\thm{Distribuzione di Poisson come limite della distribuzione binomiale}{La distribuzione poissoniana può essere ottenuta come limite della distribuzione binomiale con $n \to \infty$, $p \to 0$ in modo che la media $\mu = np$ rimanga costante.
+\begin{equation}
+	\lim_{n \to \infty} \mathcal{B}(k; n, p) = P(k; \mu)
+\end{equation}
+}
+\begin{myproof}
+Osserviamo che
+$$
+\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \binom{n}{k} p^k (1-p)^{n-k},
+$$
+e, usando l'equazione \ref{eq:val_att_binom}, possiamo scrivere che $p = \frac{\mu}{n}$, da cui abbiamo che
 $$
 	\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \binom{n}{k} \left( \frac{\mu}{n} \right)^k \left( 1-\frac{\mu}{n} \right)^{n-k}.
 $$
@@ -981,15 +1015,16 @@ Osservando che $\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n(n-1) \ldots (n-k+1)
 $$
 	\lim_{n \to \infty} \binom{n}{k} \left( \frac{\mu}{n} \right)^k \left( 1-\frac{\mu}{n} \right)^{n-k} = \lim_{n \to \infty} \frac{n(n-1)\ldots (n-k+1)}{n^k} \frac{\mu^k}{k!} \left( 1 - \frac{\mu}{n} \right)^{n-k}.
 $$
-Dobbiamo adesso procedere in maniera \emph{cauta}: infatti, noi vorremmo dire qualcosa su $k$ ma non si tratta di un "numero" ma di una variabile aleatoria. Questo vuol dire che, a priori, può assumere tutti i valori compresi fra 0 e $n$, quindi non possiamo a priori servirci del suo valore per determinare il comportamento asintotico (per $n \to \infty$) di questo limite. Possiamo, tuttavia, introdurre una variabile aleatoria ridotta
+Dobbiamo adesso procedere con \emph{cautela}: infatti, noi vorremmo dire qualcosa su $k$ ma non si tratta di un "numero" ma di una variabile aleatoria. Questo vuol dire che, a priori, può assumere tutti i valori compresi fra 0 e $n$, quindi non possiamo a priori servirci del suo valore per determinare il comportamento asintotico (per $n \to \infty$) di questo limite. Possiamo, tuttavia, introdurre una variabile aleatoria ridotta
 \begin{equation}
 	\xi = \frac{k - np}{n},
 	\label{eq:xi_cas_rid}
 \end{equation}
 che quantifica quanto si discosta $k$ dal valore atteso della nostra distribuzione binomiale, confrontandolo con $n$. Per il teorema di Chebyshev, sappiamo che è poco "probabile" che la $k$ si discosti dal valore atteso più una quantità molto grande di $\sigma = \sqrt{np(1-p)}$, conseguentemente
-$$
-	\xi = \frac{k - np}{n} \leq \frac{\sqrt{np(1-p)}}{n} \to 0,
-$$
+\begin{align*}
+    -&\frac{\sqrt{np(1-p)}}{n} \leq \frac{k - np}{n} \leq \frac{\sqrt{np(1-p)}}{n} \\
+    &\, \, \, \, \, \, \, \, \, \, \, \, \underset{0}{\downarrow} \phantom{\leq} \phantom{\frac{k - np}{n}} \phantom{\leq} \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \, \underset{0}{\downarrow}
+\end{align*}
 quindi, per confronto, abbiamo che $\xi \to 0$. Riscrivendo il limite in termini della nuova variabile e raccogliendo $n$ da ogni fattore presente al numeratore, abbiamo che
 \begin{align*}
 	&\lim_{n \to \infty} \mathcal{B}(k; n, p) = \lim_{n \to \infty} \frac{n(n-1)\ldots (n-k+1)}{n^k} \frac{\mu^k}{k!}(1 - \frac{\mu}{n})^{n-k} = \\
@@ -998,20 +1033,13 @@ quindi, per confronto, abbiamo che $\xi \to 0$. Riscrivendo il limite in termini
 dove si è usato dalla \ref{eq:xi_cas_rid} che $\frac{k}{n} = \xi + p$ e il fatto che $p \to 0, \xi \to 0$ per giustificare il fatto che $(1 - \frac{1}{n})(1 - \frac{2}{n}) \ldots (1 - p - \xi + \frac{1}{n}) \sim 1$ e $(1 -\frac{\mu}{n})^{n(1 - p - \xi)} \sim (1 - \frac{\mu}{n})^{n}$. Ricordando adesso che $\lim\limits_{n \to \infty} (1 - \frac{\mu}{n})^n \to e^{-\mu}$, possiamo affermare il limite precedente converge a
 \begin{equation}
 	\lim_{n \to \infty} \mathcal{B}(k; n, p) \to \frac{\mu^k}{k!} e^{-\mu}.
-	\label{eq:poisson_fin}
 \end{equation}
-Già dall'espressione finale ottenuta nella \ref{eq:poisson_fin} si vedono due sostanziali differenze fra la distribuzione binomiale e quella di Poisson:
+\end{myproof}
+Dall'espressione della \ref{eq:poisson_fin} si vedono due sostanziali differenze fra la distribuzione binomiale e quella di Poisson:
 \begin{enumerate}[label=\protect\circled{\arabic*}]
 	\item la distribuzione binomiale dipende da due parametri, $n$ e $p$, che contribuiscono entrambi a determinare l'espressione (e, conseguentemente, il valore) del valore medio e la varianza della distribuzione. D'altro canto, la distribuzione di Poisson dipende esclusivamente da un parametro, ovvero la media che coincide pure con la varianza;
 	\item nella distribuzione binomiale la variabile $k \leq n$, mentre nella distribuzione poissoniana può assumere qualunque valore intero da $0$ a $\infty$. Questo è un buon indicatore per capire se un processo è \emph{poissoniano} o \emph{binomiale}: il numero delle occorrenze è fissato? A seconda della risposta, è lecito modellizzare un fenomeno con una delle distribuzione invece che l'altra (poi, chiaramente, la natura non è né perfettamente poissoniana e né perfettamente binomiale).
 \end{enumerate}
-Ora, prima di procedere a studiare la normalizzazione e i momenti della distribuzione, è educativo studiare le caratteristiche di un \emph{processo poissoniano}, prima menzionato, e ricavare in maniera per lo più euristica la forma della distribuzioni. Facciamo le seguenti ipotesi sul processo studiato:
-\begin{enumerate}[label=\protect\circled{\arabic*}]
-	\item \textbf{indipendenza}: gli eventi elementari sono indipendenti, ovvero il verificarsi di un evento ad un determinato istante non influenza la probabilità che un altro evento si verifichi (o non si verifichi) ad un istante successivo;
-	\item \textbf{stazionarietà}: il numero medio di eventi per unità di tempo è lo stesso in qualsiasi intervallo;
-	\item \textbf{non simultaneità}: non si possono verificare due o più eventi nello stesso istante.
-\end{enumerate} 
-Consideriamo un intervallo $\Delta t$ che dividiamo in $n$ intervalli più piccoli di lunghezza $dt = \frac{\Delta t}{n}$: 
 
 \subsection{Normalizzazione, media e varianza}
 Siccome la distribuzione di Poisson è ottenuta come limite della binomiale, la media $np \to \mu$ e la varianza $np(1-p) \to \mu$, quindi si potrebbe anche non verificare esplicitamente, partendo dalla forma della distribuzione, i loro valori. In ogni caso, non è difficile ricavarli dalla definizione di media e momento: procediamo con ordine, partendo dalla condizione di normalizzazione.
@@ -1040,7 +1068,253 @@ $$
 E[k] = e^{-\mu} \sum_{h=0}^{\infty} \frac{\mu^{h+1}}{h!} = \mu e^{-\mu} \sum_{h=0}^{\infty} \frac{\mu^h}{h!} = \mu e^{-\mu} e^{\mu} = \mu.
 $$
 \end{myproof}
-\chapter{Funzioni di probabilità di funzioni qualunque} 
+Passiamo ai momenti di ordine superiore
+\lemma{Relazione ricorsiva fra i momenti algebrici di ordine superiore per la $\mathcal{P}(k; \mu)$}{Abbiamo che i momenti algebrici di ordine superiore della $\mathcal{P}(k; \mu)$ soddisfano la seguente relazione ricorsiva
+\begin{equation}
+	E[k^{m+1}] = \mu \left( \frac{d}{d\mu} E[k^m] + E[k^m] \right). 
+\end{equation}
+}
+\begin{myproof}
+	Partiamo dal calcolare $\frac{d}{d\mu} E[k^m]$:
+	\begin{align*}
+		\frac{d}{d\mu} E[k^m] &= \frac{d}{d\mu} \sum_{k=0}^{+\infty} k^m \frac{\mu^k}{k!}e^{-\mu} = \sum_{k=0}^{\infty} \frac{k^m}{k!} \frac{d}{d\mu}[\mu^k e^{-\mu}] = \sum_{k=0}^{\infty} \frac{k^m}{k!}[k\mu^{k-1}e^{-\mu} - \mu^k e^{-\mu}] = \\
+		&= \sum_{k=0}^{\infty} k^{m+1} \frac{\mu^{k-1}}{k!}e^{-\mu} - \sum_{k=0}^{\infty} k^m \frac{\mu^k}{k!}e^{-\mu} = \sum_{k=0}^{\infty} k^{m+1} \frac{\mu}{\mu} \frac{\mu^{k-1}}{k!}e^{-\mu} - \sum_{k=0}^{\infty} k^m \frac{\mu^k}{k!}e^{-\mu} = \\
+		&= \frac{1}{\mu} \sum_{k=0}^{\infty} k^{m+1} \frac{\mu^k}{k!} e^{-\mu} - \sum_{k=0}^{\infty} k^m \frac{\mu^k}{k!} = \frac{1}{\mu} E[k^{m+1}] - E[k^m].
+	\end{align*}
+	Ma allora abbiamo ottenuto la tesi, siccome ciò implica, con un banale riarrangiamento, che
+	$$
+		E[k^{m+1}] = \mu \left( \frac{d}{d\mu} E[k^m] + E[k^m] \right).
+	$$
+\end{myproof}
+Tramite questo lemma, è possibile calcolare la Varianza
+\thm{Varianza della distribuzione $\mathcal{P}(k; \mu)$}{La varianza della distribuzione di Poisson $\mathcal{P}(k; \mu)$ è pari a
+$$
+	\sigma^2 = \mu^2
+$$
+}
+\begin{myproof}
+Calcoliamo il momento algebrico di ordine $2$ della distribuzione
+$$
+	E[k^2] = \mu(\frac{d}{d\mu}E[k] + E[k]) = \mu(\frac{d}{d\mu}(\mu) + \mu) = \mu(1 + \mu) = \mu^2 + \mu,
+$$
+a questo punto sappiamo che
+$$
+	\sigma^2 = E[k^2] - \mu^2 = \mu^2 + \mu - \mu^2 = \mu.
+$$
+\end{myproof}
+Sempre tramite questo lemma è possibile calcolare il coefficiente di \emph{skewness}: si ha, infatti, che
+$$
+	E[k^3] = \mu(\frac{d}{d\mu}E[k^2] + E[k^2]) = \mu(\frac{d}{d\mu}(\mu^2 + \mu) + \mu) = \mu(2 \mu + 1 + \mu^2 + \mu) = \mu^3 + 3 \mu^2 + \mu.
+$$
+e, usando la \ref{eq:mom_alg_terzo}, abbiamo che
+$$
+\mu_3 = E[k^3] - 3\mu \sigma^2 - \mu^3 = \mu^3 + 3 \mu^2 + \mu - 3\mu^2 - \mu^3 = \mu,
+$$
+da cui possiamo concludere che
+\begin{equation}
+	\gamma_1 = \frac{\mu_3}{\sigma^3} = \frac{1}{\sqrt{\mu}}.
+\end{equation}
+Era possibile ottenerla sempre come limite della distribuzione binomiale per $p \to 0$ ricordando che $\mu = np$.
+\subsection{Somma di variabili poissoniane}
+Consideriamo due variabili Poissoniane (indipendenti) $l$ e $m$ con medie $\mu_l$ e $\mu_m$ rispettivamente. Vogliamo adesso capire come si distribuisce la loro somma $k = m+l$: formalmente, per ogni valore di $k$, dobbiamo sommare per tutte le coppie $(l,m)$ tali che la loro somma è proprio pari a $k$, moltiplicando (essendo indipendenti) la probabilità che esca $l$ e la probabilità che esca $m$. Questo si traduce in
+$$
+\sum_{l=0}^k \mathcal{P}(l; \mu_l) \mathcal{P}(k - l; \mu_m),
+$$
+dove abbiamo usato il fatto che se $k = l + m \implies m = k - l$, per ricondurci ad una singola sommatoria. Abbiamo allora che
+$$
+	P(k) = \sum_{l=0}^k \frac{\mu_l^l}{l!} e^{-\mu_l} \cdot \frac{\mu_m^{k-l}}{(k-l)!}e^{-\mu_m} = e^{-(\mu_l+\mu_m)} \sum_{l=0}^{k} \frac{\mu_l^l \mu_m^{k-l}}{l!(k-l)!} = e^{-(\mu_l + \mu_m)} \sum_{l=0} \frac{k!}{k!} \frac{\mu_l^l \mu_m^{k-l}}{l!(k-l)!} = \frac{e^{-(\mu_l + \mu_m)}}{k!} \sum_{l=0}^{\infty} \sum_{l=0}^k \binom{k}{l} \mu^l_l \mu^{k-l}_{m},
+$$
+dove nell'ultimo passaggio abbiamo riconosciuto che $\frac{k!}{l!(k-l)!} = \binom{k}{l}$. Osserviamo che l'ultima sommatoria coincide con la potenza di un binomio, dunque
+$$
+	P(k) = \frac{(\mu_l + \mu_m)^k}{k!} e^{-(\mu_m + \mu_l)}.
+$$
+Abbiamo scoperto che la somma di due variabili poissoniane è ancora una variabile poissoniana.
+
+
+\section{La distribuzione uniforme}
+La distribuzione uniforme è l'esempio più semplice di una funzione di distribuzione di variabile casuale continua: la densità di probabilità è costante entro un intervallo finito e nulla fuori
+$$
+u(x; a, b) = \begin{cases}
+	\frac{1}{b-a} & a \leq x \leq b \\
+	0 & x < a; x > b
+\end{cases}
+$$
+\subsection{Normalizzazione, media, varianza e asimmetria}
+\thm{Condizione di normalizzazione della distribuzione uniforme}{La distribuzione uniforme rispetta la condizione di normalizzazione
+$$
+	\int_{-\infty}^{\infty} u(x; a, b) dx = 1
+$$}
+\begin{myproof}
+	Basta svolgere questo semplice integrale
+	$$
+		\int_{-\infty}^{a} u(x;a,b)dx + \int_{a}^b u(x; a, b)dx + \int_b^{+\infty} u(x; a, b)dx = 0 + \int_a^b u(x; a, b)dx + 0 = \int_a^b \frac{1}{b-a}dx = (b-a) \frac{1}{b-a} = 1.
+	$$
+\end{myproof}
+Passiamo alla media
+\thm{Media della distribuzione uniforme}{La media della distribuzione uniforme è pari a
+$$
+\mu = \frac{b+a}{2}
+$$}
+\begin{myproof}
+	Per definizione la media è data dal valore di aspettazione della distribuzione:
+	$$
+	\int_{-\infty}^{\infty} xu(x; a, b)dx = \frac{1}{b-a} \int_{a}^b xdx = \frac{1}{b-a} \frac{x^2}{2}\bigg|^b_a = \frac{b^2 - a^2}{2(b-a)} = \frac{(b+a)\cancel{(b-a)}}{2\cancel{(b-a)}} = \frac{b+a}{2}.
+	$$
+\end{myproof}
+\thm{Varianza della distribuzione uniforme}{La varianza della distribuzione uniforme è pari a
+$$
+\sigma^2 = \frac{(b-a)^2}{12}
+$$}
+\begin{myproof}
+	Usiamo la relazione \ref{eq:calcolo_sigma}, quindi procediamo a calcolare $E[x^2]$:
+	$$
+		E[x^2] = \int_{-\infty}^{\infty} x^2 u(x; a, b)dx = \frac{1}{b-a} \int_a^b x^2 dx = \frac{1}{(b-a)}\frac{x^3}{3}\bigg|^b_a = \frac{b^3 - a^3}{3(b-a)} = \frac{(b-a)(b^2 + ab + a^2)}{3(b-a)} = \frac{b^2 + ab + a^2}{3},
+	$$
+	da cui
+	$$
+	\sigma^2 = E[x^2] - \mu^2 = \frac{b^2 + ab + a^2}{3} - \frac{(b+a)^2}{4} = \frac{4b^2 + 4ab + 4a^2 - 3b^2 - 3a^2 - 6ab}{12} = \frac{b^2 - 2ab + a^2}{12} = \frac{(b-a)^2}{12}.
+	$$
+\end{myproof}
+Il coefficiente di \emph{skewness} risulta nullo siccome la distribuzione è simmetria.
+\section{La distribuzione esponenziale}
+La distribuzione esponenziale è una distribuzione che, spesso, è incontrata per la prima volta quando ci si sofferma a studiare la distribuzione del tempo $t$ che intercorre fra due eventi di un processo poissoniano. In primis si osserva che $t$ è una variabile aleatoria: se così non fosse, allora tutti gli eventi sarebbero equispaziati e, quindi, il numero di eventi in un intervallo $\Delta t$ non fluttuerebbe ma sarebbe determinato a priori, il che sarebbe un assurdo col fatto che stiamo considerando un processo poissoniano. Ora riprendiamo l'idea del suddividere l'intervallo $\Delta t$ in tanti intervallini: osserviamo che la media del tempo fra due eventi è allora data dal rapporto $\frac{\Delta t}{\mu} = \frac{\Delta t}{\lambda \Delta t} = \frac{1}{\lambda}$, dove si è usato che $\mu = \lambda \Delta t$. Tenendo a mente che stiamo lavorando con un processo poissoniano, la probabilità infinitesima che l'evento successivo si verifichi entro un intervallino (infinitesimo) di durata $dt$ ad una distanza temporale $t$ è dato dal prodotto della probabilità che non si verifichi un evento all'istante $t$ con la probabilità che l'evento si verifichi un intervallo $dt$, pari, rispettivamente, a $e^{-\lambda t}$ (si ripensi alla probabilità di osservare $0$ eventi in un processo poissoniano) e $\lambda dt$. Dunque
+$$
+	dP(t, dt) = e^{-\lambda t} \times \lambda dt \implies \frac{dP(t, dt)}{dt} = \lambda e^{-\lambda t}.
+$$
+Ricordando la definizione di densità di probabilità, abbiamo che
+$$
+	p(t; \lambda) = \lambda e^{- \lambda t}.
+$$
+Definiamo quindi la distribuzione esponenziale con parametro $\lambda > 0$ come
+$$
+\varepsilon(x; \lambda) = \begin{cases}
+	\lambda e^{-\lambda x} & 0 \leq x \leq +\infty \\
+	0 & x < 0.
+\end{cases}
+$$
+\subsection{Normalizzazione, media, varianza e asimmetria}
+\thm{Condizione di normalizzazione della distribuzione esponenziale}{La distribuzione esponenziale rispetta la condizione di normalizzazione
+$$
+\int_{-\infty}^{+\infty} \varepsilon(x; \lambda) dx = 1. 
+$$}
+\begin{myproof}
+	Svolgendo l'integrale abbiamo che
+	$$
+	\int_{-\infty}^{+\infty} \varepsilon(x; \lambda) = \int_0^{+\infty} \lambda e^{-\lambda x} = - e^{-\lambda x}\bigg|^{+\infty}_{0} = 1.
+	$$
+\end{myproof}
+Per quanto riguarda media e varianza, si ha che
+\thm{Media della distribuzione esponenziale}{La media della distribuzione esponenziale è pari a
+$$
+	\mu = \frac{1}{\lambda}.
+$$
+}
+\begin{myproof}
+	Per definizione la media è data dal valore di aspettazione della distribuzione esponenziale
+	$$
+	\mu = E[x] = \int_0^{+\infty} x \varepsilon(x; \lambda)dx = \int_0^{+\infty} \lambda x e^{-\lambda x}dx.  
+	$$
+	Facendo il cambio di variabile $t = \lambda x \implies dt = \lambda dx$ e gli estremi di integrazione rimangono immutati, pertanto
+	$$
+	\mu = \int_0^{+\infty} x e^{-\lambda x} \lambda dx = \int_0^{+\infty} \frac{t}{\lambda} e^{-t} dt = \frac{1}{\lambda} \int_0^{+\infty} te^{-t}dt. 
+	$$
+	Procedendo per un'integrazione per parti, prendendo $e^{-t}$ come funzione da integrare, si ha che
+	$$
+		\int_0^{+\infty} te^{-t} dt = -te^{-t}\bigg|^{+\infty}_0 + \int_0^{+\infty} e^{-t}dt = 0 + \int_0^{+\infty} e^{-t}dt = -e^{-t}\bigg|^{+\infty}_0 = 1. 
+	$$
+	Segue allora che
+	$$
+		\mu = \frac{1}{\lambda} \int_0^{+\infty} te^{-t}dt = \frac{1}{\lambda}.
+	$$
+\end{myproof}
+\thm{Varianza della distribuzione esponenziale}{La varianza della distribuzione esponenziale è pari a
+$$
+	\sigma^2 = \frac{1}{\lambda^2}.
+$$}
+\begin{myproof}
+	Usiamo sempre la \ref{eq:calcolo_sigma}, pertanto procediamo a calcolare $E[x^2]$:
+	$$
+		E[x^2] = \int_0^{+\infty} x^2 \varepsilon(x; \lambda)dx = \int_0^{+\infty} \lambda x^2 e^{-\lambda x}dx,
+	$$
+	ed effettuiamo sempre il solito cambio di variabile $t = \lambda x \implies dt = \lambda dx$, dunque
+	$$
+		E[x^2] = \int_0^{+\infty} x^2 e^{-\lambda x} \lambda dx = \frac{1}{\lambda^2} \int_0^{+\infty} t^2 e^{-t} dt.
+	$$
+	Concentrandoci su quest'ultimo integrale, procediamo effettuando due integrazioni per parti prendendo sempre $e^{-t}$ come funzione da integrare, pertanto:
+	$$
+	\int_0^{+\infty} t^2 e^{-t}dt = -t^2 e^{-t}\bigg|^{+\infty}_0 + 2\int^{+\infty}_0 te^{-t}dt = 0 + 2(-te^{-t}\bigg|^{+\infty}_0 + \int_0^{+\infty} e^{-t}dt) = - 2e^{-t}\bigg|^{+\infty}_0 = 1.
+	$$
+	Si ottiene la tesi, siccome
+	$$
+	\sigma^2 = E[x^2] - \mu^2 = \frac{1}{\lambda^2} \int_0^{+\infty} t^2 e^{-t}dt - \mu^2 = \frac{2}{\lambda^2} - \frac{1}{\lambda^2} = \frac{1}{\lambda^2}.
+	$$
+\end{myproof}
+\lemma{Momenti algebrici di ordine superiore per la distribuzione $\varepsilon(x; \lambda)$}{I momenti algebrici di ordine superiore per la distribuzione $\varepsilon(x; \lambda)$ soddisfano la seguente relazione ricorsiva
+$$
+E[x^n] = \frac{n}{\lambda} E[x^{n-1}]
+$$
+}
+\begin{myproof}
+	Osserviamo che, effettuando un'integrazione per parti nel calcolo del momento algebrico di ordine $n$ riconoscendo che $\lambda e^{-\lambda x} = \frac{d}{dx}(-e^{\lambda x})$, si ha che
+	\begin{align*}
+	E[x^n] &= \int_0^{+\infty} x^n \lambda e^{-\lambda x}dx = - x^n e^{-\lambda x}\bigg|^{+\infty}_0 + n \int_0^{+\infty} x^{n-1} e^{-\lambda x}dx = 0 + n \int_0^{+\infty} x^{n-1} \frac{\lambda}{\lambda} e^{-\lambda x}dx = \\
+	&= \frac{n}{\lambda} \int_0^{+\infty} x^{n-1} \lambda e^{-\lambda x}dx = \frac{n}{\lambda} E[x^{n-1}].   
+	\end{align*}
+\end{myproof}
+Calcoliamo anche qua il coefficiente di \emph{skewness}: si calcola sempre il momento algebrico di ordine $3$
+$$
+	E[x^3] = \frac{3}{\lambda} E[x^2] = \frac{3}{\lambda^3}
+$$
+e ci calcoliamo $\mu_3 = E[x^3] - 3\mu \sigma^2 - \mu^3 = \frac{6}{\lambda^3} - 3 \frac{1}{\lambda} \frac{1}{\lambda^2} - \frac{1}{\lambda^3} = \frac{2}{\lambda^3}.$ Da cui segue che
+$$
+	\gamma_1 = \frac{\mu_3}{\sigma^3} = \frac{\frac{2}{\lambda^3}}{\frac{1}{\lambda^3}} = 2
+$$
+\subsection{Funzione cumulativa}
+Possiamo facilmente calcolare la funzione cumulativa di questa distribuzione
+$$
+	F(x) = \int^x_0 \lambda e^{-\lambda t}dt = - e^{-\lambda t}\bigg|^x_0 = 1 - e^{-\lambda x} \text{ per } x \geq 0.
+$$
+che può essere invertita, esplicitando la $x$, ottendo che
+$$
+	F(x) - 1 = - e^{-\lambda x} \implies 1 - F(x) = e^{-\lambda x} \implies F^{-1}(y) = -\frac{\ln{1-y}}{\lambda}
+$$
+\subsection{Assenza di memoria}
+Una caratteristica molto peculiare della distribuzione esponenziale è costituita dal fatto che
+$$
+	P(x \geq x_1 + x_2) = \int_{x_1 + x_2}^{+\infty} \varepsilon(x; \lambda)dx = \lambda \int_{x_1 + x_2}^{+\infty} e^{-\lambda x}dx = e^{-\lambda(x_1 + x_2)} = P(x \geq x_1) P(x \geq x_2)
+$$
+Per definizione di probabilità condizione, abbiamo che
+$$
+	P(x \geq x_1 + x_2) = P(x \geq x_1 + x_2 | x \geq x_1) P(x \geq x_1) = P(x \geq x_2) P(x \geq x_1) \implies P(x \geq x_1 + x_2 | x \geq x_1) = P(x \geq x_2).
+$$
+Una variabile casuale che goda di questa proprietà si dice \emph{senza memoria}.
+\section{Distribuzione di Gauss}
+La distribuzione di Gauss può essere formalmente ottenuta come limite della distribuzione poissoniana per $\mu \to +\infty$ oppure direttamente come limite della distribuzione binomiale per $n \to +\infty$ senza porre alcuna condizione su $p$. La sua importanza deriva certamente dal ruolo che essa gioca nel teorema centrale del limite, ma anche perché sarà il prototipo di distribuzione degli errori delle grandezze su cui vorremo effettuare il bestfit. 
+\thm{Distribuzione di Gauss come limite}{La distribuzione di Gauss $\mathcal{N}(x; \mu, \sigma)$ può essere ottenuta come limite della distribuzione poissoniana per $\mu \to 0$}
+\begin{myproof}
+	Consideriamo la distribuzione poissoniana $\mathcal{P}(k; \mu)$ e prendiamone il logaritmo
+	$$
+		\ln{\mathcal{P}(k; \mu)} = \ln{\frac{\mu^k}{k!}e^{-\mu}} = k \ln{\mu} - \ln{k!} - \mu.
+	$$
+	Vorremmo adesso approssimare il fattoriale: ciò viene effettuato considerando l'approssimazione di Stirling. Dobbiamo procedere, però, con \emph{cautela}: sempre per le solite ragioni esposte quando è stato effettuato il limite della binomiale, ottenendo la poissoniana, si devono fare i conti col fatto che $k$ non è un numero, ma una variabile aleatoria. Possiamo introdurre la variabile casuale ridotta
+	$$
+		\delta = \frac{k-\mu}{\mu}.
+	$$
+	Tramite il teorema di Chebyshev, sappiamo che le fluttuazioni di $k$ rispetto al valor medio $\mu$ non distano più di $\sigma = \sqrt{\mu}$: per confronto si ha allora che
+	\[
+	\begin{aligned}
+    	&-\frac{\sqrt{\mu}}{\mu} \leq \delta \leq \frac{\sqrt{\mu}}{\mu} \\
+    	&\, \, \, \, \, \, \, \underset{0}{\downarrow} \phantom{\leq \leq} \, \, \, \, \, \, \, \, \, \, \, \, \,\underset{0}{\downarrow}
+	\end{aligned}
+	\]
+	quindi $\delta \to 0$. Questo ci consente di scrivere che $k = \mu(1 + \delta)$ e siamo quindi autorizzati ad utilizzare l'approssimazione di Stirling all'interno della precedente espressione.
+\end{myproof}
+
+
+
+
+
+\chapter{Funzioni di probabilità di funzioni qualunque}
 \section{}
 Nel momento in cui si considera $f(x)$ dove $x$ è una variabile aleatoria, la funzione di distribuzione che caratterizza la funzione $f(x)$, nel caso in cui $f$ risulti biunivoca, è, banalmente, pari a
 $$
