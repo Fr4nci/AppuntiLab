@@ -8,3 +8,6 @@ main.synctex.gz
 main.toc
 preamble.toc
 capitolo1.tex
+main.fdb_latexmk
+main.fls
+main.ilg
