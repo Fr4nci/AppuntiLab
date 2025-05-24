@@ -8,16 +8,61 @@
 \makeindex
 \begin{document}
 	\maketitle
+	\chapter*{Formulario}
+    Riporto qui di seguito un breve formulario
+    \begin{itemize}
+        \item $P(E) = \frac{n}{N}$, dove $n$ è il numero di casi favorevoli e $N$ il numero di casi possibili;
+        \item $P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)$;
+        \item $P(\bar{E}) = 1 - P(E)$ dove $\bar{E}$ è il complementare di $E$;
+        \item $P(\emptyset) = 0$;
+        \item $P(\Omega) = 1$ con $\Omega$ spazio campionario.
+        \item $P(E_1 | E_2) = \frac{P(E_2 | E_1)P(E_1)}{P(E_2)}$, teorema di Bayes;
+        \item $m = \frac{1}{n} \sum\limits_{i=1}^n x_i$ media campione;
+        \item $s_n^2 = \frac{1}{n}\sum\limits_{i=1}^n (x_i - m)^2$ varianza campione (stimatore non imparziale);
+        \item $s_{n-1}^2 = \frac{1}{n-1}\sum\limits_{i=1}^n (x_i - m)^2$ varianza campione (stimatore imparziale);
+        \item $s_{n-1, m}^2 = \frac{1}{n(n-1)} \sum\limits_{i=1}^n (x_i - m)^2$ varianza della media campione;
+    \end{itemize}
+\section*{Distribuzioni principali}
+
+\begin{table}[H]
+    \begin{tabular}{c c c c}
+        \toprule
+        \textbf{Distribuzione} & \textbf{Funzione di probabilità / Densità di probabilità} & \textbf{Media} & \textbf{Varianza} \\
+        \midrule
+        Binomiale & $\binom{n}{k} p^k (1 - p)^{n-k}, k = 0,1,\dots,n$ & $np$ & $np(1 - p)$ \\
+        Poisson & $\frac{\lambda^k e^{-\lambda}}{k!}, k = 0,1,2,\dots$ & $\lambda$ & $\lambda$ \\
+        Uniforme continua & $\frac{1}{b - a}, x \in [a,b]$ & $\frac{a + b}{2}$ & $\frac{(b - a)^2}{12}$ \\
+        Esponenziale & $\lambda e^{-\lambda x}, x \geq 0$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ \\
+        Normale & $\frac{1}{\sigma \sqrt{2 \pi}} e^{- \frac{1}{2}(\frac{x-\mu}{\sigma})^2}, x \in \mathbb{R}$ & $\mu$ & $\sigma^2$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+	
+	\chapter*{Notazioni e proprietà}
+	Riporto alcune notazioni usate all'interno del documento:
+	\begin{itemize}
+		\item $k!$: fattoriale del numero $k$;
+		\item $\binom{n}{k}$: coefficiente binomiale di $n$ su $k$;
+		\item $D_{n, k}$: disposizione di $n$ elementi con $k$ classi;
+		\item $\wedge$: congiunzione logica;
+		\item $\int_a^b$: integrale fra $a$ e $b$;
+	\end{itemize}
+	Riporto alcune delle proprietà usate maggiormente:
+	\begin{itemize}
+		\item $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$;
+		\item $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+	\end{itemize}
 	\tableofcontents
 	\newpage
 	%\input{capitolo1.tex}
 	\chapter{Probabilità}
 	Grazie al matematico Kolmogorov abbiamo la prima costruzione rigorosa della teoria della probabilità, in una struttura che, sostanzialmente, sopravvive ancora oggi nei manuali moderni. \\
-	La struttura di base su cui si fonda la struttura assiomatica della probabilità parte dal definire lo spazio campionario
+	La struttura assiomatica della probabilità si basa sulla definizione dello spazio campionario
 	\dfn{Spazio campionario $\Omega$}{Lo spazio campionario\index{spazio campionario} $\Omega$ è l'insieme (numerabile) di tutte le possibili realizzazioni elementari di un dato fenomeno e lo spazio degli eventi\index{spazio degli eventi} $\mathcal{F}$ l'insieme di tutti i sottoinsiemi di $\Omega$ tale che:
 	$$
 		\# \mathcal{F} = 2^{\# \Omega}
 	$$}
+	\ex{Lancio di un dado}{Supponiamo di voler studiare il fenomeno del lancio di un dado a sei facce. In questo caso lo spazio campionario è dato da $\Omega = \{1, 2, 3, 4, 5, 6 \}$ mentre lo spazio campionario è dato da $\mathcal{F} = \mathcal{P}(\Omega) = \{ \{1\}, \{2\}, \{3\}, \{4\}, \{5\}, \{6\}, \{1, 2\}, \{1, 3\}, \ldots \}$}
 \noindent L'idea di Kolmogorov è quella di definire la probabilità\index{probabilità} direttamente sullo spazio degli eventi-cioè possiamo assegnare una probabilità non solo ad ogni elemento dello spazio campionario, ma anche ad uno qualsiasi dei suoi sottoinsiemi.
 	Definiamo adesso il concetto di probabilità:
 	\dfn{Probabilità}{Definiamo probabilità una misura P su $\mathcal{F}$ che associ univocamente ad ogni elemento E di $\mathcal{F}$ un numero reale $P(E)$ che soddisfa le seguenti tre proprietà (o \textbf{assiomi di Kolmogorov}\index{assiomi di Kolmogorov}\ignorespaces):
@@ -30,15 +75,15 @@
 \noindent Possiamo utilizzare il terzo assioma di Kolgomorov all'unione numerabili di eventi \emph{disgiunti} (ovvero eventi per cui la loro intersezione è nulla)
 	\cor{Unione numerabili di eventi disgiunti}{$P(\bigcup\limits_{i}^n E_i) = \sum\limits_{i}^n P(E_i)$ se gli eventi sono tutti disgiunti fra loro (formalmente, $\forall 1 \leq i < j \leq n, E_i \cap E_j = \emptyset$)}
 	\begin{myproof}
-	Si procede per induzione su $n$. Per $n = 1$ è banale, siccome:
+	si procede per induzione su $n$. Per $n = 1$ è banale, siccome:
 	$$
 		P \left( \bigcup_i^1 E_i \right) = P(E_1) = \sum_i^1 P(E_i) = P(E_i)
 	$$
 	Adesso mostriamo $n \implies n+1$:
 	$$
-		\sum_i^{n+1} P(E_i) = P(E_1) + \cdots + P(E_{n+1}) = \text{(ip. induttiva)} \, P \left(\bigcup_i^n E_i \right) + P(E_{n+1}) = P \left( \sum_{i}^{n+1} E_i \right)
+		\sum_i^{n+1} P(E_i) = P(E_1) + \cdots + P(E_{n+1}) = \text{(ip. induttiva)} \, P \left(\bigcup_i^n E_i \right) + P(E_{n+1}) = P \left( \bigcup_{i}^{n+1} E_i \right),
 	$$
-	Siccome possiamo vedere nell'ultimo passaggio la somma fra due eventi che sono fra loro disgiunti, ovvero fra l'evento $E_1 \cup \E_2 \cdots \cup E_n$ e l'evento $E_{n+1}$ e per ipotesi sappiamo che $E_i \cap E_j = \emptyset \, \forall i,j$. \\
+	dove nell'ultimo passaggio possiamo riconoscere la somma della probabilità due eventi che sono fra loro disgiunti: l'evento $E_1 \cup \E_2 \cdots \cup E_n$ e l'evento $E_{n+1}$, quindi è stato possibile applicare il terzo assioma di Kolgomorov. \\
 	La dimostrazione è dunque conclusa.
 	\end{myproof}
 	\cor{Probabilità complementare}{Dato un evento E e detto $\bar{E}$ il suo complementare in $\mathcal{F}$, si ha che:
@@ -48,8 +93,8 @@
 		dove $P(\bar{E})$ è detta probabilità complementare\index{probabilità complementare} di $E$
 	}
 	\begin{myproof}
-		Sapendo che $\bar{E} \cap E = \emptyset$ ma $\bar{E} \cup E = \Omega$:
-		$$ 1 = P(\Omega) = P(\bar{E} + E) = P(\bar{E}) + P(E) \implies P(\bar{E}) = 1 - P(E)$$
+		sapendo che $\bar{E} \cap E = \emptyset$ ma $\bar{E} \cup E = \Omega$:
+		$$ 1 = P(\Omega) = P(\bar{E} \cup E) = P(\bar{E}) + P(E) \implies P(\bar{E}) = 1 - P(E)$$
 	\end{myproof}
 	\cor{Probabilità dell'insieme nullo}{$P(\emptyset) = 0$}
 	\begin{myproof}
@@ -64,8 +109,9 @@
 	\end{myproof}
 	\cor{Limitatezza della probabilità di un sottoinsieme}{Se $E_1 \subset E_2 \implies P(E_1) \leq P(E_2)$}
 	\begin{myproof}
-		Se $E_1 \subset E_2 \implies E_2 = E_1 + (E_2 \setminus E_1)$ ma siccome $E_1 \cap (E_2 \setminus E_1) = \emptyset$:
-		$$P(E_2) = P(E_1) + P(E_2 \setminus E_1) \implies P(E_1) \leq P(E_2)$$
+		se $E_1 \subset E_2 \implies E_2 = E_1 + (E_2 \setminus E_1)$ ma siccome $E_1 \cap (E_2 \setminus E_1) = \emptyset$:
+		$$P(E_2) = P(E_1) + P(E_2 \setminus E_1) \implies P(E_1) \leq P(E_2), $$
+		siccome $\forall E \in \mathcal{F}, P(E) \geq 0$.
 	\end{myproof}
 	\thm{Addizione delle probabilità}{Dati due eventi $E_1$ ed $E_2$, si ha che:
 	\begin{equation}
@@ -73,15 +119,15 @@
 	\end{equation}			
 	}
 	\begin{myproof}
-		Possiamo scrivere gli insiemi $E_1$ ed $E_2$ come unione di eventi disgiunti, infatti:
+		possiamo scrivere gli insiemi $E_1$ ed $E_2$ come unione di eventi disgiunti
 		$$
-			E_2 = E_2 \cap \Omega = E_2 \cap (E_1 \cup \bar{E_1}) = (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1})
+			E_2 = E_2 \cap \Omega = E_2 \cap (E_1 \cup \bar{E_1}) = (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1}),
 		$$
-		ma siccome $(E_2 \cap E_1) \cap (E_2 \cap \bar{E_1}) = \emptyset$ (altrimenti si giungerebbe ad un assurdo, visto che se $E_2 \cap E_1$ avesse degli elementi in comune con $E_2 \cap \bar{E_1}$ implicherebbe, visto che l'intersezione fra insieme è un'operazione che gode di proprietà associativa e commutativa, che $E_1 \cap \bar{E_1} \cap E_2 \cap E_2 \neq \emptyset$ ma $E_1 \cap \bar{E_1} = \emptyset$, dunque assurdo). Tornando alla dimostrazione:
+		dunque possiamo scrivere la probabilità di $E_2$ come
 		\begin{equation}
 			P(E_2) = P \left( (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1}) \right) = P(E_2 \cap E_1) + P(E_2 \cap \bar{E_1})
 		\end{equation}
-		d'altra parte abbiamo che
+		dove abbiamo usato il terzo assioma di Kolgomorov, in quanto $E_2 \cap E_1$ e $E_2 \cap \bar{E_1}$ sono disgiunti\footnote{se avessero degli elementi in comune allora, per definizione di intersezione, implicherebbe che $E_1 \cap \bar{E_1} \neq \emptyset$}. D'altra parte abbiamo che
 		$$
 			E_1 \cup E_2 = (E_1 \cup E_2) \cap \Omega = (E_1 \cup E_2) \cap (E_1 \cup \bar{E_1}) = (E_1 \cap E_1) \cup (E_1 \cap \bar{E_1}) \cup (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1})
 		$$ = $E_1 \cup (E_2 \cap E_1) \cup (E_2 \cap \bar{E_1})$
@@ -137,7 +183,7 @@
 	All'interno della scuola soggettivista vi sono diversi approcci distinti per derivare le regole fondamentali della probabilità in un modo logicamente consistente (sebbene, con questo \emph{approccio}, gli assiomi non sono tali, ma regole che si ricavano da un principio più formale): il più popolare di questi approcci è il principio della \textbf{scommessa coerente}, il quale afferma che \emph{una volta assegnata la probabilità ad un evento dovremo essere disposti ad accettare scommesse sul verificarsi dell'evento stesso con un rapporto tra puntata e vincita determinato dalla probabilità stessa}\footnote{il senso è che se diciamo che due eventi sono equiprobabili allora dobbiamo essere pronti ad accettare scommesse 1:1, ovvero che una \emph{scommessa} è coerente se e solo se non determina \textbf{a priori} una perdita per il banco o per lo scommettitore, dunque è equivalente anche se i ruoli fossero scambiati} \\
 	\section{Elementi di calcolo combinatorio}
 	La combinatoria è quella branca della matematica che si occupa del \emph{contare}, dunque è strettamente connessa alla probabilità. \\
-	Introduciamo il fattoriale\index{fattoriale}\ignorespaces di un numero nella seguente maniera
+	Introduciamo il fattoriale\index{fattoriale} di un numero nella seguente maniera
 	\dfn{Fattoriale}{Dato un numero $n \in \mathbb{N}$, indichiamo con $n!$
 		\begin{equation}
 			n! = \prod_{k=1}^{n} k = n(n-1) \cdots 1	
@@ -161,7 +207,7 @@ Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è d
 }
 \cor{}{$$ \binom{n}{k} = \binom{n}{n-k} $$}
 \begin{myproof}
-	Banalmente, si osserva che
+	si osserva che
 	$$
 		\binom{n}{k} = \frac{n!}{k!(n-k)!} = \frac{n!}{(n-k)!(n-(n-k))!} = \binom{n}{n-k}
 	$$
@@ -184,29 +230,29 @@ Il numero di modi con cui è possibile scegliere  $k$ elementi non ordinati è d
 \begin{myproof}
 si può procedere per induzione. Innanzitutto si osserva che, per $n=0$, si ha che
 $$
-	(x_1 + x_2)^0 = 1 = \sum_{k=0}^{0} \binom{n}{k} x_1^{n-k}x_2^k = \binom{0}{0} x_1^{0} x_2^0 = 1
+	(x_1 + x_2)^0 = 1 = \sum_{k=0}^{0} \binom{n}{k} x_1^{n-k}x_2^k = \binom{0}{0} x_1^{0} x_2^0 = 1,
 $$
 dunque per $n=0$ l'ipotesi è verificata. Mostriamo che $n \implies n+1$:
 $$
-	(x_1 + x_2)^{n+1} = (x_1 + x_2)^n (x_1 + x_2) = \sum_{k=0}^{n} \left[ x_1^{n-k}x_2^k \right] \cdot (x_1+x_2) = \sum_{k = 0}^{n} x_1^{n+1-k}x_2^k + \sum_{k = 0}^{n} x_1^{n-k}x_2^{k+1}
+	(x_1 + x_2)^{n+1} = (x_1 + x_2)^n (x_1 + x_2) = \sum_{k=0}^{n} \binom{n}{k} \left[ x_1^{n-k}x_2^k \right] \cdot (x_1+x_2) = \sum_{k = 0}^{n} \binom{n}{k} x_1^{n+1-k}x_2^k + \sum_{k = 0}^{n} \binom{n}{k} x_1^{n-k}x_2^{k+1}.
 $$
 Da qua soffermiamoci sul primo termine: si osserva che
 $$
-	\sum_{k=0}^{n} x_1^{n+1-k} x_2^k = \binom{n}{0} x_1^{n+1} + \sum_{k=1}^{n} \binom{n}{k} x_1^{n+1-k}x_2^k = \binom{n}{0} x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n}{k+1} x_1^{n+1-k-1} x_2^{k+1} = x_1^{n+1} + \sum_{k = 0}^{n-1} \binom{n}{k+1} x_1^{n}x_2^{k+1}
+	\sum_{k=0}^{n} x_1^{n+1-k} x_2^k = \binom{n}{0} x_1^{n+1} + \sum_{k=1}^{n} \binom{n}{k} x_1^{n+1-k}x_2^k = \binom{n}{0} x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n}{k+1} x_1^{n+1-k-1} x_2^{k+1} = x_1^{n+1} + \sum_{k = 0}^{n-1} \binom{n}{k+1} x_1^{n}x_2^{k+1},
 $$
 in cui si è semplicemente effettuato un cambio di variabile di variabile $k' = k + 1$ (ma siccome gli indici sono muti abbiamo semplicemente indicato $k'$ sempre con $k$). Adesso andiamo al secondo termine:
 $$
-	\sum_{k=0}^{n} \binom{n}{k} x_1^{n-k}x_2^{k+1} = \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + \binom{n}{n} x_2^{n+1} = \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + x_2^{n+1}
+	\sum_{k=0}^{n} \binom{n}{k} x_1^{n-k}x_2^{k+1} = \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + \binom{n}{n} x_2^{n+1} = \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + x_2^{n+1}.
 $$
 Tornando dunque alla relazione iniziale, si deve avere che
 $$
-	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k = 0}^{n-1} \binom{n}{k+1} x_1^{n}x_2^{k+1} + \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \left[ \binom{n}{k} + \binom{n}{k+1} \right] x_1^{n-k}x_2^{k+1} + x_2^{n+1}
+	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k = 0}^{n-1} \binom{n}{k+1} x_1^{n}x_2^{k+1} + \sum_{k=0}^{n-1} \binom{n}{k} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \left[ \binom{n}{k} + \binom{n}{k+1} \right] x_1^{n-k}x_2^{k+1} + x_2^{n+1},
 $$
 dunque, siccome per proprietà dei coefficienti binomiali si ha che $\binom{n+1}{k+1} = \binom{n}{k} + \binom{n}{k+1}$, allora
 $$
-	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n+1}{k+1} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=1}^{n} \binom{n+1}{k} x_1^{n+1-k}x_2^{k} + x_2^{n+1} = \sum_{k=0}^{n+1} \binom{n+1}{k} x_1^{n+1-k}x_2^{k}
+	(x_1 + x_2)^{n+1} = x_1^{n+1} + \sum_{k=0}^{n-1} \binom{n+1}{k+1} x_1^{n-k}x_2^{k+1} + x_2^{n+1} = x_1^{n+1} + \sum_{k=1}^{n} \binom{n+1}{k} x_1^{n+1-k}x_2^{k} + x_2^{n+1} = \sum_{k=0}^{n+1} \binom{n+1}{k} x_1^{n+1-k}x_2^{k}.
 $$
-Dunque la tesi è stata dimostrata 
+La tesi è, dunque, dimostrata.
 \end{myproof}
 \noindent Il coefficiente binomiale è comodo per calcolarsi le potenze del $2$ siccome se $x_1 = x_2 = 1$ si ha che
 $$
@@ -215,7 +261,7 @@ $$
 Il coefficiente binomiale può anche essere generalizzato supponendo di voler dividere un insieme di $n$ elementi in $m$ sottoinsiemi disgiunti, ciascuno con un numero $k_i$ di elementi, la cui unione costituisca l'insieme di partenza, dunque si deve avere che $\sum_{i=1}^{m} k_i = n$
 Il numero di modi con cui si può effettuare tale suddivisione prende il nome di \textbf{\index{coefficiente multinomiale} $n$ su $k_1, \dots , k_m$}  e si basa sull'idea che abbiamo $n$ su $k_1$ modi per scegliere il primo sottoinsieme, $n-k_1$ su $k_2$ modi per scegliere il secondo sottoinsieme e così via, dunque:
 $$
-	\binom{n}{k_1, k_2, \dots, k_m} = \binom{n}{k_1} \binom{n-k_1}{k_2} + \dots + \binom{n-k_1 \dots - k_{m-1}}{k_m}
+	\binom{n}{k_1, k_2, \dots, k_m} = \binom{n}{k_1} \binom{n-k_1}{k_2} \dots \binom{n-k_1 \dots - k_{m-1}}{k_m}
 $$
 Sempre come per il coefficiente binomiale, possiamo caratterizzare il coefficiente multinomiale come lo sviluppo per la potenza $n$ di un numero arbitrario di monomi nella seguente maniera:
 \begin{equation*}
@@ -253,7 +299,7 @@ La naturale conseguenza di tutto ciò che abbiamo detto sulla probabilità condi
 dove $P(E_2 | E_1)$ è la probabilità condizionata di $E_2$ dato $E_1$
 }
 \begin{myproof}
-	Dalla definizione di probabilità condizionata $P(E_1 | E_2)$ di $E_1$ dato $E_2$ sappiamo che
+	dalla definizione di probabilità condizionata $P(E_1 | E_2)$ di $E_1$ dato $E_2$ sappiamo che
 	$$
 		P(E_1 | E_2) = \frac{P(E_1 \cap E_2)}{P(E_2)}
 	$$
@@ -278,7 +324,7 @@ $$
 $$
 }
 \begin{myproof}
-	Si ha che $\bigcup\limits_i E_i = \mathcal{F}$ e siccome l'evento $A = A \cap \mathcal{F} = A \cap \bigcup\limits_i E_i = A \cap (E_1 \cup E_2 \dots E_m) = (A \cap E_1) \cup (A \cap E_2) \dots (A \cap E_m) = \bigcup\limits_i (A \cap E_i)$. Dimostriamo che gli $(A \cap E_i)$ sono tutti insiemi disgiunti $\forall i$: infatti se, per assurdo, $\exists c \in \mathcal{F} : \exists \tilde{i}, \tilde{d} \in I | (A \cap E_{\tilde{i}}) \cap (A \cap E_{\tilde{d}}) = c \neq \emptyset \implies (c \in (A \cap E_{\tilde{i}}) \wedge c \in (A \cap E_{\tilde{d}}))$ ma, per la definizione dell'operazione $\cap$, implica che $c \in E_{\tilde{i}} \wedge c \in E_{\tilde{d}}$ il che è un assurdo siccome gli $\{ E_i \}$ sono un partizionamento dell'insieme e, dunque, disgiunti.
+	si ha che $\bigcup\limits_i E_i = \mathcal{F}$ e siccome l'evento $A = A \cap \mathcal{F} = A \cap \bigcup\limits_i E_i = A \cap (E_1 \cup E_2 \dots E_m) = (A \cap E_1) \cup (A \cap E_2) \dots (A \cap E_m) = \bigcup\limits_i (A \cap E_i)$. Dimostriamo che gli $(A \cap E_i)$ sono tutti insiemi disgiunti $\forall i$: infatti se, per assurdo, $\exists c \in \mathcal{F} : \exists \tilde{i}, \tilde{d} \in I | (A \cap E_{\tilde{i}}) \cap (A \cap E_{\tilde{d}}) = c \neq \emptyset \implies (c \in (A \cap E_{\tilde{i}}) \wedge c \in (A \cap E_{\tilde{d}}))$ ma, per la definizione dell'operazione $\cap$, implica che $c \in E_{\tilde{i}} \wedge c \in E_{\tilde{d}}$ il che è un assurdo siccome gli $\{ E_i \}$ sono un partizionamento dell'insieme e, dunque, disgiunti.
 	La dimostrazione è dunque conclusa
 \end{myproof}
 \noindent Andiamo adesso a scrivere il teorema di Bayes alla luce del corollario qua sopra
@@ -381,7 +427,7 @@ dunque questo valore di aspettazione non ci fornisce niente di utile, siccome le
 \int\limits_{-\infty}^{+\infty} (x-\mu)^2 p(x)dx
  \end{cases}
 \end{equation}
-Definiamo dunque la variazione di una distribuzione come:
+Definiamo dunque la varianza di una distribuzione come:
 \dfn{Varianza di una distribuzione}{Si definisce \textbf{varianza}	\index{varianza} $\sigma^2$ di una distribuzione il valore di aspettazione di $(x-\mu)^2$, dunque:
 \begin{equation}
 	\sigma^2 = E[(x-\mu)^2]
@@ -398,7 +444,7 @@ $$
 $$
 Dimostriamo una formula equivalente per il calcolo della varianza
 \begin{equation*}
-	\sigma^2 = E[(x - \mu)?2] = E[x^2 - 2 \mu x + \mu^2] = E[x^2] - 2 \mu E[x] + E[\mu^2] = E[x^2] - 2 \mu^2 + \mu^2 = E[x^2] - \mu^2
+	\sigma^2 = E[(x - \mu)^2] = E[x^2 - 2 \mu x + \mu^2] = E[x^2] - 2 \mu E[x] + E[\mu^2] = E[x^2] - 2 \mu^2 + \mu^2 = E[x^2] - \mu^2
 \end{equation*}
 dunque
 \begin{equation}
@@ -431,7 +477,7 @@ con $c$ dell'ordine delle unità.
 \begin{myproof}
 	senza perdita di generalità consideriamo $x$ come una variabile continua (sebbene la dimostrazione nel caso discreto è analoga).
 \begin{align*}
-\sigma^2 = \int\limits_{-\infty}^{+\infty} (x-\mu)^2 p(x)dx \geq \int\limits_{|x-\mu| \geq c\sigma} (x-\mu)^2 p(x)dx \geq \int\limits_{|x-\mu| \geq c\sigma} c^2 \sigma^2 p(x)dx = c^2 \sigma^2 \int\limits_{|x-\mu| \geq c\sigma} \geq c^2\sigma^2P(|x-\mu| \geq c\sigma)
+\sigma^2 = \int\limits_{-\infty}^{+\infty} (x-\mu)^2 p(x)dx \geq \int\limits_{|x-\mu| \geq c\sigma} (x-\mu)^2 p(x)dx \geq \int\limits_{|x-\mu| \geq c\sigma} c^2 \sigma^2 p(x)dx = c^2\sigma^2P(|x-\mu| \geq c\sigma)
 \end{align*}
 ma ciò implica la tesi, siccome
 $$
@@ -1150,7 +1196,7 @@ $$}
 \end{myproof}
 Il coefficiente di \emph{skewness}\index{skewness} risulta nullo siccome la distribuzione è simmetria.
 \section{La distribuzione esponenziale}
-La distribuzione esponenziale\index{distribuzione esponenziale} è una distribuzione che, spesso, è incontrata per la prima volta quando ci si sofferma a studiare la distribuzione del tempo $t$ che intercorre fra due eventi di un processo poissoniano. In primis si osserva che $t$ è una variabile aleatoria: se così non fosse, allora tutti gli eventi sarebbero equispaziati, il che implica che il numero di eventi in un intervallo $\Delta t$ non fluttuerebbe ma sarebbe determinato a priori e ciò rappresenterebbe un assurdo col fatto che stiamo considerando un processo poissoniano. Ora riprendiamo l'idea del suddividere l'intervallo $\Delta t$ in tanti intervallini: osserviamo che la media del tempo fra due eventi è allora data dal rapporto $\frac{\Delta t}{\mu} = \frac{\Delta t}{\lambda \Delta t} = \frac{1}{\lambda}$, dove si è usato che $\mu = \lambda \Delta t$. Tenendo a mente che stiamo lavorando con un processo poissoniano, la probabilità infinitesima che l'evento successivo si verifichi entro un intervallino (infinitesimo) di durata $dt$ ad una distanza temporale $t$ è dato dal prodotto della probabilità che non si verifichi un evento all'istante $t$ con la probabilità che l'evento si verifichi un intervallo $dt$, pari, rispettivamente, a $e^{-\lambda t}$ (si ripensi alla probabilità di osservare $0$ eventi in un processo poissoniano) e $\lambda dt$. Dunque
+La distribuzione esponenziale\index{distribuzione esponenziale} è una distribuzione che, spesso, è incontrata per la prima volta quando ci si sofferma a studiare la distribuzione del tempo $t$ che intercorre fra due eventi di un processo poissoniano. In primis si osserva che $t$ è una variabile aleatoria: se così non fosse, allora tutti gli eventi sarebbero equispaziati, il che implica che il numero di eventi in un intervallo $\Delta t$ non fluttuerebbe ma sarebbe determinato a priori e ciò rappresenterebbe un assurdo col fatto che stiamo considerando un processo poissoniano. Ora riprendiamo l'idea del suddividere l'intervallo $\Delta t$ in tanti intervallini: osserviamo che la media del tempo fra due eventi è allora data dal rapporto $\frac{\Delta t}{\mu} = \frac{\Delta t}{\lambda \Delta t} = \frac{1}{\lambda}$, dove si è usato che $\mu = \lambda \Delta t$. Tenendo a mente che stiamo lavorando con un processo poissoniano, la probabilità infinitesima che l'evento successivo si verifichi entro un intervallino (infinitesimo) di durata $dt$ ad una distanza temporale $t$ (in pratica la probabilità che avvenga fra $t$ e $t + dt$) è dato dal prodotto della probabilità che non si verifichi un evento fino all'istante $t$ con la probabilità che l'evento si verifichi un intervallo $dt$, pari, rispettivamente, a $e^{-\lambda t}$ (si ripensi alla probabilità di osservare $0$ eventi in un processo poissoniano) e $\lambda dt$. Dunque
 $$
 	dP(t, dt) = e^{-\lambda t} \times \lambda dt \implies \frac{dP(t, dt)}{dt} = \lambda e^{-\lambda t}.
 $$
@@ -1344,7 +1390,7 @@ Per svolgere i calcoli successivi è interessante mostrare il seguente lemma
 		&=(n-1)I_{n-2}
 	\end{align*}
 \end{myproof}
-\nt{I termini dispari della successione $I_n$ sono pari a zero: il motivo deriva dal fatto che $x^{2k+1}$ è una funzione dispari, dunque $x^{2k+1}e^{-\frac{1}{2}x^2}$ è una funzione dispari e ciò comporta che l'integrale su un dominio simmetrico è nullo.}
+\nt{I termini dispari della successione $I_n$ sono pari a zero: il motivo deriva dal fatto che $x^{2k+1}$ è una funzione dispari, dunque $x^{2k+1}e^{-\frac{1}{2}x^2}$ è una funzione dispari e ciò comporta che l'integrale su un dominio simmetrico (rispetto al punto di simmetria della funzione, in questo caso $x = 0$) è nullo.}
 Possiamo adesso calcolare più agevolmente media e varianza
 \thm{Media della distribuzione $\mathcal{N}(x; \mu, \sigma)$}{La media della distribuzione gaussiana $\mathcal{N}(x; \mu, \sigma)$ è pari a $\mu$}
 \begin{myproof}
@@ -1380,11 +1426,225 @@ Il coefficiente di \emph{skewness} è banalmente nullo perché la distribuzione 
 
 In questo capitolo ci si sofferma, limitandoci al caso unidimensionale, sul problema della determinazione della funzione di distribuzione di variabili casuali $y = f(x)$, nota la funzione di distribuzione della variabile casuale $x$.
 \section{Variabili discrete}
-Nel momento in cui si considera $f(x)$ dove $x$ è una variabile aleatoria, la funzione di distribuzione che caratterizza la funzione $f(x)$, nel caso in cui $f$ risulti biunivoca, è, banalmente, pari a
+Nel momento in cui si considera $f(x_k)$ dove $x_k$ è una variabile aleatoria, la funzione di distribuzione che caratterizza $y = f(x_k)$, nel caso in cui $f$ risulti biunivoca, è pari a
+\begin{equation}
+	P(y=f(x_i))=P(x = x_i),
+\end{equation}
+siccome ad ogni $x$ è associata, tramite $f$, un solo valore di $y$, quindi la probabilità che esca $y$ è pari alla probabilità che esca $x$. Nel caso di funzioni non iniettive, la questione si complica: il motivo deriva dal fatto che ad un valore $y_i$ della variabile aleatoria $y$ possono corrispondere più valori della variabile aleatoria $x$ che restituiscono, tramite $f$, lo stesso valore. Si rivela quindi necessario andare a sommare le probabilità di tutti i valori $x_i$ che restituiscono lo stesso valore $y_i$, permettendoci così di definire la funzione di distribuzione della variabile $y = f(x_k)$ come
+\dfn{Funzione di distribuzione della variabile $y = f(x_k)$}{
+Sia $x_k$ una variabile aleatoria discreta e sia $f$ una funzione. La funzione di distribuzione della variabile $y=f(x_k)$ è pari a
+\begin{equation}
+	P(y = f(x_i)) = \sum_{i=1}^m P(x = x_i),
+\end{equation}
+dove la somma è estesa a tutti i valori $x_i$ che restituiscono lo stesso valore $y_i$ (che, in questo caso, abbiamo supposto che questo fossero $m$).
+}
+\ex{Dado "simmetrico" al quadrato}{
+	Consideriamo un dado "simmetrico" a sette facce che può restituire (in maniera equiprobabile) i seguenti valori
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c c c c}
+		\toprule
+		$x_i$ & $-3$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\
+		\midrule
+		$P(x_i)$ & $\frac{1}{7}$ & $\frac{1}{7}$ & $\frac{1}{7}$ & $\frac{1}{7}$ & $\frac{1}{7}$ & $\frac{1}{7}$ & $\frac{1}{7}$ \\  
+		\bottomrule
+	\end{tabular}
+	
+\end{table}
+
+Se consideriamo la variabile aleatoria $y = x^2$ otteniamo che essa può assumere i valori $\{0, 1, 4, 9\}$. Per quanto riguarda la probabilità che esca un valore, per esempio $4$, abbiamo che
 $$
-	p(y)=p(x)
+	P(y = 4) = P(x = -2) + P(x = 2) = \frac{1}{7} + \frac{1}{7} = \frac{2}{7}.
 $$
-tuttavia nel caso di funzioni iniettive, la questione si complica.
+Ragionando per tutti gli altri valori, otteniamo che
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c c}
+		\toprule
+		$y_i$ & $0$ & $1$ & $4$ & $9$ \\
+		\midrule
+		$P(y_i)$ & $\frac{1}{7}$ & $\frac{2}{7}$ & $\frac{2}{7}$ & $\frac{2}{7}$ \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+}
+\section{Variabili continue}
+Il caso delle variabili continue è, naturalmente, più complesso ma più interessante. Partiamo, almeno per ora, dal caso di $f$ biunivoca e derivabile: questa ipotesi ci assicura che se $x$ è compresa in un certo intervallo infinitesimo $[x_0 - dx, x_0 + dx]$ allora $y$ è compresa in un certo intervallo infinitesimo
+$$
+y \in [y_0 - dy, y_0 + dy] \text{ con } y_0 = f(x_0) \text{ e } dy = |\frac{df(x_0)}{dx}|.
+$$
+L'ipotesi di biunivocità ci assicura, inoltre, di poter invertire la nostra funzione $f$, pertanto possiamo trovare una $f^{-1}$ tale che
+$$
+	x = f^{-1}(y) \text{ e } dx = |\frac{df^{-1}(y)}{dy}|.
+$$
+Ora, l'ipotesi di biunivocità ci assicura che se la variabile $x$ assume un certo valore $x_0$ allora la variabile $y$ può assumere solamente il valore $y_0 = f(x_0)$: questo, di fatto, si traduce nel dire che la probabilità che $y$ assuma un valore compreso in $[y_0 - dy, y_0 + dx]$ è pari alla probabilità affinché $x$ assuma un valore compreso fra $[x_0 - dx, x_0 + dx]$. Prendendo le densità di probabilità, possiamo "tradurre" questa affermazione nella seguente eguaglianza:
+$$
+	p_y(y)dy = p_x(x)dx = p_x(f^{-1}(y)) \left| \frac{df^{-1}(y)}{dy} \right| dy, 
+$$
+che deve valere per ogni $y$. Concludiamo che la densità di probabilità della variabile $y$ è data da
+$$
+	p_y(y) = p_x(f^{-1}(y)) \left| \frac{df^{-1}(y)}{dy} \right|
+$$
+Nel caso in cui la funzione $f$ non sia biunivoca, possiamo procedere come nel caso discreto, ovvero considerando tutti i possibili valori di $x$ che soddisfano l'uguaglianza $x = f^{-1}(y)$, dunque possiamo definire la densità di probabilità della variabile $y$ nella seguente maniera
+\dfn{Funzione di distribuzione della variabile $y = f(x)$}{
+	Sia $x$ una variabile aleatoria continua e sia $f$ una funzione. La densità di probabilità della variabile $y = f(x)$ è data da
+	\begin{equation}
+		p_y(y) = \sum_{i=1}^m p_x(f_i^{-1}(y)) \left| \frac{df_i^{-1}}{dy}(y) \right|
+		\label{eq:funz_distr_y_notinjective}
+	\end{equation}
+	dove gli $f_i^{-1}(y) = x_i$ sono i valori di $x$ che soddisfano l'uguaglianza $x = f^{-1}(y)$ (che abbiamo supposto essere in totale $m$).
+}
+\nt{Per definizione di densità di probabilità, la funzione $p_y(y)$ dev'essere definita fra $-\infty$ e $+\infty$, pertanto la estendiamo imponendo che faccia $0$ al di fuori dell'intervallo $[0, 3]$}
+\subsection{Quadrato di una distribuzione uniforme}
+	Consideriamo la seguente distribuzione uniforme
+	$$
+		p_x(x) = \begin{cases}
+			\frac{1}{2\sqrt{3}} & -\sqrt{3} \leq x \leq \sqrt{3} \\
+			0 & x < -\sqrt{3}; x > \sqrt{3}.
+		\end{cases}
+	$$
+	e studiamo la variabile $y = x^2$. Partiamo dal muovere qualche osservazione: si osserva che la distribuzione uniforme qua considerata ha media $\mu = \frac{\frac{1}{2\sqrt{3}} + (-\frac{1}{2\sqrt{3}})}{2} = 0$ e $\sigma = \sqrt{\sigma^2} = \sqrt{\frac{(\frac{1}{4\sqrt{3}})^2}{12}} = 1$; oltre a questo si osserva che
+	$$
+		E[y] = E[x^2] = \sigma^2 + \mu^2 = 1.
+	$$
+	dove abbiamo usato la relazione \ref{eq:calcolo_sigma}. Procediamo col calcolo della densità di probabilità della variabile $y = x^2$: si nota che la funzione $f(x) = x^2$ è simmetrica rispetto a $x = 0$, pertanto per ogni valore di $y$ esistono due valori di $x$ che soddisfano l'uguaglianza $x^2 = y \implies x = \pm \sqrt{y}$; tuttavia si osserva che il valore $x = -\sqrt{y}$ e $x = +\sqrt{y}$ sono equiprobabili e, a causa della simmetria della funzione, abbiamo che $\left| \frac{df^{-1, +}(y)}{dy} \right|$ e $\left| \frac{df^{-1, -}(y)}{dy} \right|$ sono uguali (con $f^{-1, +}$ indichiamo la funzione inversa che restituisce la soluzione positiva dell'equazione $x^2 = y$, mentre con $f^{-1, -}$ quella che restituisce il valore negativo). Segue allora che la \ref{eq:funz_distr_y_notinjective} 
+	$$
+		p_y(y) = 2p_x(f^{-1, +}(y)) \left| \frac{df^{-1, +}}{dy}(y) \right|
+	$$
+	dove il fattore $2$ tiene conto della simmetria. Abbiamo che
+	$$
+		x = f^{-1, +}(y) = \sqrt{y} \implies \left| \frac{df^{-1, +}}{dy}(y) \right| = \frac{1}{2\sqrt{y}},
+	$$
+	quindi la nostra densità di probabilità diventa
+	$$
+		p_y(y) = 2 \frac{1}{2\sqrt{3}} \frac{1}{2\sqrt{y}} = \frac{1}{2\sqrt{3y}} \text{ per } 0 \leq y \leq 3.
+	$$
+	Possiamo vedere che tale distribuzione è normalizzata, infatti
+	$$
+		\int_0^3 p_y(y) dy = \int_0^3 \frac{1}{2\sqrt{3y}}dy = \frac{1}{2\sqrt{3}} \int_0^3 \frac{1}{\sqrt{y}}dy = \left( \frac{y}{3} \right)^{\frac{1}{2}}\bigg|^3_0 = 1,
+ 	$$
+	e possiamo verificare che la media è pari a $1$, infatti
+	$$
+		E[y] = \int_0^3 y p_y(y) dy = \int_0^3 y \frac{1}{2\sqrt{3y}}dy = \frac{1}{2\sqrt{3}} \int_0^3 \sqrt{y} dy = \left( \frac{y}{3} \right)^{\frac{3}{2}}\bigg|^3_0 = 1,
+	$$
+	e calcolare la varianza, usando sempre la relazione \ref{eq:calcolo_sigma}
+	$$
+		E[y^2] = \int_0^3 y^2 p_y(y) dy = \int_0^3 y^2 \frac{1}{2 \sqrt{3y}}dy = \frac{1}{2\sqrt{3}} \int_0^3 y^{\frac{3}{2}} = \left( \frac{y^{\frac{5}{2}}}{5\sqrt{3}} \right)\bigg|^3_0 = \frac{9}{5} \text{ da cui } \text{Var}(y) = \frac{9}{5} - 1 = \frac{4}{5}.
+	$$
+
+\subsection{Quadrato di una distribuzione gaussiana}
+
+Vogliamo studiare nel dettaglio la variabile $y = x^2$ dove $x$ è una variabile gaussiana con $\mu = 0$ e $\sigma = 1$. Ragionando come prima, sappiamo che la funzione $f(x) = x^2$ è simmetrica rispetto a $x = 0$ e che, quindi, per ogni valore di $y$ esistono due valori di $x$ che soddisfano l'uguaglianza $x^2 = y \implies x = \pm \sqrt{y}$: per quanto detto nella sezione precedente, sappiamo che la densità di probabilità della variabile $y$ è data sempre da
+$$
+p_y(y) = 2p_x(f^{-1, +}(y)) \left| \frac{df^{-1, +}(y)}{dy} \right|
+$$
+dove il $2$ tiene conto della simmetria. L'unica differenza rispetto a prima è che ora la funzione $p_y(y)$ è diversa da zero per $[0, +\infty)$ (mentre prima lo era fra $[0, 3]$) e, procedendo come fatto prima, abbiamo che
+$$
+f^{-1, +}(y) = \sqrt{y} \implies \left| \frac{df^{-1, +}(y)}{dy} \right| = \frac{1}{2\sqrt{y}},
+$$
+mentre $p_x(f^{-1, +}(y)) = \frac{1}{\sqrt{2\pi}}e^{-\frac{(f^{-1, +}(y))^2}{2}} = \frac{1}{\sqrt{2\pi}} e^{-\frac{(+\sqrt{y})^2}{2}} = \frac{1}{\sqrt{2\pi}} e^{-\frac{y}{2}}$. Segue che
+$$
+p_y(y) = 2 \frac{1}{\sqrt{2 \pi}} \frac{e^{-\frac{y}{2}}}{2\sqrt{y}} = \frac{e^{-\frac{y}{2}}}{\sqrt{2 \pi y}} = \frac{e^{-\frac{y}{2}}}{\sqrt{2 \pi y}}.
+$$
+Mostriamo adesso che questa distribuzione è normalizzata, infatti
+$$
+	\int_0^{+\infty} \frac{e^{-\frac{y}{2}}}{\sqrt{2 \pi y}} = \frac{1}{\sqrt{2 \pi}} \int_0^{+\infty} y^{-\frac{1}{2}} e^{-\frac{y}{2}} dy = \frac{1}{\sqrt{2 \pi}} \left( \cancel{2 \sqrt{y} e^{-\frac{y}{2}}\bigg|^{+\infty}_0} + \int_0^{+\infty} \sqrt{y}e^{-\frac{y}{2}} \right),
+$$
+dove abbiamo usato l'integrazione per parti. Ora concentrandoci sull'integrale $\int_0^{+\infty} \sqrt{y} e^{-\frac{y}{2}}$ abbiamo che
+$$
+		\int_0^{+\infty} \sqrt{y} e^{-\frac{y}{2}}dy = \int_0^{+\infty} y^{\frac{1}{2}} e^{-\frac{y}{2}}dy, 
+$$
+effettuando il cambio di variabile $z = \frac{y}{2} \implies dz = \frac{1}{2} dy$, pertanto si ha che $y^{\frac{1}{2}} = (2z)^{\frac{1}{2}} = \sqrt{2} z^{\frac{1}{2}}$ e, moltiplicando per $\frac{2}{2}$, per ottenere il differenziale di $z$, il nostro integrale diventa
+$$
+		\int_0^{+\infty} \sqrt{y} e^{-\frac{y}{2}}dy = 2 \sqrt{2} \int_0^{+\infty} z^{\frac{1}{2}} e^{-z}dz = 2 \sqrt{2} \Gamma(\frac{3}{2}) = 2 \sqrt{2} \frac{\sqrt{\pi}}{2} = \sqrt{2 \pi}, 
+$$
+da cui vediamo che la nostra distribuzione è normalizzata, risostituendo il valore di questo integrale nella precedente espressione.
+\nt{Non ho idea di come questo integrale si possa calcolare senza l'uso della funzione Gamma, così definita
+$$
+\Gamma(x) = \int_0^{+\infty} t^{x-1} e^{-t}dt,
+$$
+nonostante il nostro integrale sia, in qualche modo, collegato all'integrale di Gauss per il fatto che la $\Gamma \left( \frac{3}{2} \right) = \frac{1}{2} \Gamma \left( \frac{1}{2} \right)$ (questo in virtù della relazione funzione che la $\Gamma$ soddisfa, ovvero $\Gamma(z + 1) = z\Gamma(z)$) ed è possibile mostrare che $\Gamma(\frac{1}{2}) = \int_0^{+\infty} e^{-x^2}dx = \frac{\sqrt{\pi}}{2}$.}
+Possiamo calcolare il valore medio della variabile $y$ osservando che
+$$
+E[y^2] = \int_0^{+\infty} y^2 p_y(y) dy = \frac{1}{\sqrt{2 \pi}} \int_0^{+\infty} y^{\frac{3}{2}} e^{-\frac{y}{2}}dy = - \frac{2}{\sqrt{2 \pi}} y^{-\frac{3}{2}} e^{-\frac{y}{2}}\bigg|^{+\infty}_0 + \frac{3}{\sqrt{2\pi}} \int_0^{+\infty} y^{\frac{1}{2}} e^{-\frac{y}{2}}dy = 3E[y],
+$$
+dove abbiamo usato l'integrazione per parti e abbiamo riconosciuto l'integrale $\int_0^{+\infty} y^{\frac{1}{2}}e^{-\frac{y}{2}}$ come l'integrale che abbiamo calcolato precedentemente, che coincideva con $E[y] = 1$, pertanto
+$$
+	E[y^2] = 3E[y] = 1 \implies \text{Var}(y) = E[y^2] - E[y]^2 = 3 - 1 = 2,
+$$
+dove abbiamo usato sempre la relazione \ref{eq:calcolo_sigma}.
+\section{Distribuzione del $\chi^2$}
+\dfn{Distribuzione del $\chi^2$}{
+	Consideriamo $n$ variabili aleatorie $x_i$ gaussiane indipendenti, definiamo la seguente somma (che sarà anch'essa una variabile aleatoria)
+	\begin{equation}
+		x = \sum_{i=1}^n x_i^2,
+		\label{eq:chi2}
+	\end{equation}
+	come il $\chi^2$ a $n$ gradi di liberta.
+}
+Possiamo usare i risultati ottenuti nella sezione precedente per calcolare agevolmente il valore atteso e la varianza della variabile aleatoria $\chi^2$: osserviamo, infatti, che
+\begin{align*}
+&E[x] = E \left[ \sum_{i=1}^n x_i^2 \right] = \sum_{i=1}^n E[x_i^2] = \sum_{i=1}^n 1 = n \\
+&\text{Var}(x) = \text{Var}\left(\sum_{i=1}^n x_i^2 \right) = \sum_{i=1}^n \text{Var}(x_i^2) = \sum_{i=1}^n 2 = 2n,
+\end{align*}
+dove abbiamo usato il fatto che il valore di aspettazione è lineare, e che la varianza della somma di $n$ variabili indipendenti si riconduce alla somma delle singole varianze (questo perché $\forall i \neq j, \text{Cov}(x_i, x_j) = 0$). Per il teorema centrale del limite, sappiamo che la distribuzione di $x$ tende ad una distribuzione Gaussiana con media $n$ e varianza $2n$ (siccome abbiamo $x$ altro non è che la somma di $n$ variabili indipendenti con media e varianza finite). \\
+E' anche possibile mostrare, ma non lo riporteremo, che la distribuzione del $\chi^2$ a $n$ gradi di liberta è data da
+$$
+\mathcal{\rho}(x; n) = \frac{1}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})} x^{\frac{n}{2} - 1}e^{-\frac{x}{2}},
+$$
+da cui è possibile mostrare, inserendo $n=1$ nella formula, che la distribuzione del $\chi^2$ ad un grado di libertà coincide con quanto ricavato nella sezione precedente, mentre per $n=2$ una distribuzione esponenziale.
+\section{Distribuzione di Cauchy}
+\dfn{Distribuzione di Cauchy}{
+	La distribuzione di Cauchy è definita come
+	\begin{equation}
+		c(x; x_0, \gamma) = \frac{1}{\pi} \left[ \frac{\gamma}{(x-x_0)^2 + \gamma^2} \right]
+		\label{eq:cauchy_distr}
+	\end{equation}
+	che dipende da due parametri: $x_0$, detto \emph{parametro di posizione}, e $\gamma$, detto \emph{parametro di scala}.
+}
+Una possibile derivazione della distribuzione di Cauchy si ottiene considerando la seguente funzione di distribuzione uniforme
+$$
+p_{\Phi}(\Phi) = \begin{cases}
+	\frac{1}{\pi} & -\frac{\pi}{2} \leq \Phi \leq \frac{\pi}{2}, \\
+	0 & x \leq -\frac{\pi}{2}; x \geq \frac{\pi}{2}
+\end{cases}
+$$
+e siamo interessati a individuare la forma esplicita della densità di probabilità della variabile $x = \gamma \tan{\Phi} + x_0$. Ricaviamo $f^{-1}$
+$$
+	x = \gamma \tan{\Phi} + x_0 \implies \frac{x - x_0}{\gamma} = \tan{\Phi} \implies \Phi = \arctan{\left( \frac{x-x_0}{\gamma} \right)} \implies \left| \frac{df^{-1}}{dx}(x)\right| = \frac{\gamma}{(x-x_0)^2 + \gamma^2}.
+$$
+Normalizziamo la funzione di distribuzione, osservando che
+$$
+\int_{-\infty}^{+\infty} p_x(x) dx = \int_{-\infty}^{+\infty} \frac{\gamma}{\gamma^2[(\frac{x-x_0}{\gamma})^2 + 1]} = \int_{-\infty}^{+\infty} \frac{1}{\gamma} \frac{1}{1 + (\frac{x-x_0}{\gamma}^2)} = \int_{-\infty}^{+\infty} \frac{1}{1+t^2} dt = \arctan{t}\bigg|^{+\infty}_{-\infty} = \pi.
+$$
+dove abbiamo usato il cambio di variabile $t = \frac{x-x_0}{\gamma} \implies dt = \frac{1}{\gamma}dx$. Segue che la densità di probabilità debba essere moltiplicata per $\frac{1}{\pi}$, facendoci ottenere la \ref{eq:cauchy_distr}.
+Tramite la primitiva che abbiamo calcolato, possiamo anche trovare la funzione cumulativa
+\begin{equation}
+F(x) = \int_{-\infty}^x c(x'; x_0, \gamma)dx' = \frac{1}{\pi} \arctan{\left( \frac{x'-x_0}{\gamma} \right)}\bigg|^x_{-\infty} = \frac{1}{\pi} \left( \arctan{\left( \frac{x-x_0}{\gamma} \right)} - (-\frac{\pi}{2}) \right) = \frac{1}{2} + \frac{1}{\pi} \arctan{\left( \frac{x-x_0}{\gamma} \right)},
+\end{equation}
+e possiamo ancora individuare la funzione di distribuzione inversa, che è data esplicitando la $x$ nell'ultima espressione ottenuta
+\begin{align*}
+	&y = F(x) = \frac{1}{2} + \frac{1}{\pi} \arctan{\left( \frac{x-x_0}{\gamma} \right)} \implies \pi(y - \frac{1}{2}) = \arctan{\left( \frac{x-x_0}{\gamma} \right)} \implies \tan{\pi(y - \frac{1}{2})} = \frac{x-x_0}{\gamma} \implies \\
+	&\implies F^{-1}(y) = x_0 + \gamma \tan(\pi y - \frac{\pi}{2})
+\end{align*}
+Soffermiamoci, per semplicità, nel caso in cui $x_0 = 0$ e $\gamma = 1$: in tal caso risulta che
+$$
+E[x] = \int_{-\infty}^{+\infty} x c(x;x_0, \gamma)dx = \int_{-\infty}^{+\infty} \frac{x}{\pi(1+x^2)}dx = \frac{1}{2\pi} \log{(1+x^2)}\bigg|^{+\infty}_{-\infty},
+$$
+mentre la varianza è data da
+$$
+E[x^2] = \int_{-\infty}^{+\infty} x^2 c(x; 0; 1) = \int_{-\infty}^{+\infty} \frac{x^2}{\pi(1+x^2)}dx \to +\infty.
+$$
+Il motivo della divergenza della varianza è dovuta al fatto alle code, che risultano essere molto più accentuate rispetto a quelle della distribuzione gaussiana (per fare un esempio). In generale, potremmo mostrare che, anche nel caso di $x_0 \neq 0$ e $\gamma \neq 1$, tutti i momenti algebrici di ordine dispari sono indefiniti, mentre quelli pari divergono; mentre la mediana e la moda esistono e corrispondo a $x_0$. Per quanto riguarda la HWHM, osserviamo che essa è definita dalle $x$ che soddisfano l'equazione
+$$
+	\frac{1}{2} \max_{x \in (-\infty, +\infty)}{c(x; x_0, \gamma)} = \frac{1}{2\pi \gamma} = \frac{1}{\pi}\left[ \frac{\gamma}{(x-x_0)^2 + \gamma^2 }\right] 
+$$
+ed è possibile mostrare che la HWHM è pari a $\gamma$.
+\subsection{La distribuzione di Cauchy e il teorema centrale del limite}
+
+Una delle ipotesi fondamentali affinché valga il teorema centrale del limite è che la somma della $n$ variabili aleatorie $x_i$ abbia media e varianza finite. Tuttavia, la distribuzione di Cauchy non soddisfa questa condizione, in quanto la sua varianza diverge. Di conseguenza, se consideriamo la somma di $n$ variabili aleatorie indipendenti e identicamente distribuite secondo una distribuzione di Cauchy, la somma non converge ad una distribuzione normale ma rimane una distribuzione di Cauchy (si può mostrare che se $x_1 \sim \text{Cauchy}(x_{01}, \gamma_1)$ e $x_2 \sim \text{Cauchy}(x_{02}, \gamma_2)$, allora $x_1 + x_2 \sim \text{Cauchy}(x_{01}+x_{02}, \gamma_1 + \gamma_2)$\footnote{questo equivale a dire che si sommano linearmente le larghezze delle distribuzioni e non in quadratura.}). Questo è un esempio classico che mostra come il teorema centrale del limite non si applichi in questo caso. \\
+
 \pagebreak
 \printindex
 \end{document}
