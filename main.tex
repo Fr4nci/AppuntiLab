@@ -1557,14 +1557,9 @@ $$
 $$
 effettuando il cambio di variabile $z = \frac{y}{2} \implies dz = \frac{1}{2} dy$, pertanto si ha che $y^{\frac{1}{2}} = (2z)^{\frac{1}{2}} = \sqrt{2} z^{\frac{1}{2}}$ e, moltiplicando per $\frac{2}{2}$, per ottenere il differenziale di $z$, il nostro integrale diventa
 $$
-		\int_0^{+\infty} \sqrt{y} e^{-\frac{y}{2}}dy = 2 \sqrt{2} \int_0^{+\infty} z^{\frac{1}{2}} e^{-z}dz = 2 \sqrt{2} \Gamma(\frac{3}{2}) = 2 \sqrt{2} \frac{\sqrt{\pi}}{2} = \sqrt{2 \pi}, 
+		\int_0^{+\infty} \sqrt{y} e^{-\frac{y}{2}}dy = 2 \sqrt{2} \int_0^{+\infty} z^{\frac{1}{2}} e^{-z}dz \stackrel{t=\sqrt{z}}{=} 2 \sqrt{2} \int_0^{+\infty} t^2 e^{-t^2} dt = 2 \sqrt{2} \left(\cancel{-te^{-t^2}\bigg|^{+\infty}_0} + \int_0^{+\infty} e^{-t^2}dt \right) = 2 \sqrt{2} \frac{\pi}{2}  = \sqrt{2 \pi}. 
 $$
-da cui vediamo che la nostra distribuzione è normalizzata, risostituendo il valore di questo integrale nella precedente espressione.
-\nt{Non ho idea di come questo integrale si possa calcolare senza l'uso della funzione Gamma, così definita
-$$
-\Gamma(x) = \int_0^{+\infty} t^{x-1} e^{-t}dt,
-$$
-nonostante il nostro integrale sia, in qualche modo, collegato all'integrale di Gauss per il fatto che la $\Gamma \left( \frac{3}{2} \right) = \frac{1}{2} \Gamma \left( \frac{1}{2} \right)$ (questo in virtù della relazione funzione che la $\Gamma$ soddisfa, ovvero $\Gamma(z + 1) = z\Gamma(z)$) ed è possibile mostrare che $\Gamma(\frac{1}{2}) = \int_0^{+\infty} e^{-x^2}dx = \frac{\sqrt{\pi}}{2}$.}
+dove abbiamo effettuato il cambio di variabile $t = \sqrt{t}$ e integrato per parti. Vediamo quindi che la nostra distribuzione è normalizzata, risostituendo il valore di questo integrale nella precedente espressione.
 Possiamo calcolare il valore medio della variabile $y$ osservando che
 $$
 E[y^2] = \int_0^{+\infty} y^2 p_y(y) dy = \frac{1}{\sqrt{2 \pi}} \int_0^{+\infty} y^{\frac{3}{2}} e^{-\frac{y}{2}}dy = - \frac{2}{\sqrt{2 \pi}} y^{-\frac{3}{2}} e^{-\frac{y}{2}}\bigg|^{+\infty}_0 + \frac{3}{\sqrt{2\pi}} \int_0^{+\infty} y^{\frac{1}{2}} e^{-\frac{y}{2}}dy = 3E[y],
